@@ -33,3 +33,31 @@ $remax-theme: mat-light-theme((
 // that you are using.
 @include angular-material-theme($remax-theme);
 
+
+
+
+// slider style 
+
+
+@import '~swiper/swiper-bundle';
+
+// body,
+// html {
+//   padding: 0;
+//   margin: 0;
+//   position: relative;
+//   height: 100%;
+// }
+// .swiper-container {
+//   width: 100%;
+//   height: 300px;
+//   margin: 50px auto;
+// }
+
+// .swiper-slide {
+//   background: #f1f1f1;
+//   color: #000;
+//   text-align: center;
+//   line-height: 300px;
+// }
+

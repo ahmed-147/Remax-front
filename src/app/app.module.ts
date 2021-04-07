@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { SwiperModule } from 'swiper/angular';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,9 @@ import { CheckoutComponent } from './client/checkout/checkout.component';
 import { ShowProductsComponent } from './client/show-products/show-products.component';
 import { FiltersComponent } from './client/show-products/filters/filters.component';
 import { ContentComponent } from './client/show-products/content/content.component';
+import { Erorr404Component } from './client/erorr404/erorr404.component';
+import { ADsliderComponent } from './client/home/adslider/adslider.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,13 +32,18 @@ import { ContentComponent } from './client/show-products/content/content.compone
     CheckoutComponent,
     ShowProductsComponent,
     FiltersComponent,
-    ContentComponent
+    ContentComponent,
+    Erorr404Component,
+    ADsliderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    SwiperModule,
+    NgbModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
