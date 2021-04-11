@@ -1,0 +1,16 @@
+.af_remax_btn{
+    background-color: #ec5720;
+    
+}
+.af_remax_btn:hover{
+    background-color: #ee6230fd;
+}
+
+.af_c_brand_img_txt{
+    width: 40%;
+    height: 50%;
+}
+.af_c_brand_img_sq{
+    width: 30%;
+    height: 90%;
+}
