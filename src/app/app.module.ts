@@ -20,7 +20,7 @@ import { Erorr404Component } from './client/erorr404/erorr404.component';
 import { ADsliderComponent } from './client/home/adslider/adslider.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDetalComponent } from './client/product-detal/product-detal.component';
-import { NgxImageZoomModule } from 'ngx-image-zoom';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     MatSliderModule,
     SwiperModule,
     NgbModule,
-    NgxImageZoomModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

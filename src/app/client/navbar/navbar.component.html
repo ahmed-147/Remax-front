@@ -1,1 +1,42 @@
-<p>navbar works!</p>
+<div class="container-fluid" style="background-color: #05091e;">
+    <div class="row">
+        <div class="col-lg-2">
+            <a class="navbar-brand pl-4" href="#">
+                <img src="../../../assets/logo.png" height="70px" width="150px">
+            </a>        
+        </div>
+        <div class="col-lg-8">
+            <div class="input-group mt-4">
+                <input class="border-0 rounded-0" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon2">
+                <div class="input-group-append ">
+                    <a class="btn btn-light text-dark dropdown-toggle border-0 rounded-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        All Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                
+                  <button class="btn" type="button"><i class="far fa-search"></i></button>
+                </div>
+              </div>            
+        </div>
+        <div class="col-lg-2">
+            <a data-toggle="modal" data-target="#exampleModal" href="#" role="button"   class="btn mt-4 dropdown-toggle" style="color: white;"><i class="far fa-shopping-cart"><span class="badge badge-light">0</span></i>  Cart</a>
+            
+            <div style="position: relative;" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="position: absolute;   background-color: white;">
+                    <div class="modal-body">
+                        <i class="far fa-shopping-cart"></i>
+                        Your Cart is empty<br>
+                        <button type="submit" class=" btn-danger btn-lg border-0 rounded-0" style="background-color: #ec5720;">Shop our Products</button>
+                     
+                    </div>
+                  </div>
+            </div>
+              
+
+        </div>
+    </div>
+</div>
