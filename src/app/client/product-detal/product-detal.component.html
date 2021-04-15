@@ -1,11 +1,11 @@
 <div class="container-fluid">
-    <div class="row my-4">
+    <div class="row my-2 position-relative">
 
         <!-- [magnification]=".5" 
                 [enableScrollZoom]="true"
                 [enableLens]="true" -->
-        <div class="preview col-sm-12 col-md-12 col-lg-6 p-2">
-            <div class="card">
+        <div class="preview col-sm-12 col-md-12 col-lg-6 p-3">
+            <div class="pro_card card">
                 <!-- <ngx-image-zoom [thumbImage]=myThumbnail [fullImage]=myFullresImage >
                 </ngx-image-zoom> -->
                 <!-- <lib-ngx-image-zoom
@@ -29,10 +29,50 @@
                 </ul>
                  
             </div>
+            <div class="row">
+                <div class="pro_card card">
+                    <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
+                </div>
+            </div>
+            
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-6 p-2">
-            <div class="card">
+        <div class="col-sm-12 col-md-12 col-lg-6 p-3  ">
+            <div class="pro_card card sticky-top">
+                <h1 class="product-title">men's shoes fashion</h1>
+                <div class="p-1 bg-red text-light rounded discount" >Discount 10%</div>
+                <div class="pt-2 my-2">
+                    <a href="#" class=" pr-2 text-info border-right" >brand</a>
+                    <span class="pl-2 text-muted" >Shk:214546543</span>
+                    <div class="text-muted float-right">
+                        <a href="#" class="faceLink rounded-circle bg-gray text-white btn-sm mx-1"><i class="fa fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" class="pintink rounded-circle bg-gray text-white btn-sm mx-1"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+                        <a href="#" class="twitLink rounded-circle bg-gray text-white btn-sm mx-1"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" class="enveLink rounded-circle bg-gray text-white btn-sm mx-1"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="colors"> <span class="h4">Color: </span> <span >selcted color</span> 
+                    <br>
+                    <select class="form-control">
+                        <option value="black">black</option>
+                        <option value="red">red</option>
+                        <option value="blue">blue</option>
+                    </select>
+                </div>
+                <div class="price"> <span class="h4">Price: </span> <span>$180</span></div>
+                <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                <div class="sizes">sizes:
+                    <span class="size" data-toggle="tooltip" title="small">s</span>
+                    <span class="size" data-toggle="tooltip" title="medium">m</span>
+                    <span class="size" data-toggle="tooltip" title="large">l</span>
+                    <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+                </div>
                 
+                <div class="action">
+                    <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                    <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                </div>     
             </div>
         </div>
     

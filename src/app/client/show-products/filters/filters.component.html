@@ -1,1 +1,46 @@
-<p>filters works!</p>
+
+  
+    <div class="card-body" >
+      <form class="border">
+        <br />
+        <h2 class="pl-4">Filters</h2>
+        <div class="form-check">
+          <label>
+            <input
+              type="checkbox"
+              name="check"
+              [checked]="currentlyChecked === check_box_type.ch_1"
+              (click)="selectCheckBox(check_box_type.ch_1)"
+            />
+            <span class="label-text">100 watt</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label>
+            <input
+              type="checkbox"
+              name="check"
+              [checked]="currentlyChecked === check_box_type.ch_2"
+              (click)="selectCheckBox(check_box_type.ch_2)"
+            />
+            <span class="label-text">100 watt</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label>
+            <input
+              type="checkbox"
+              name="check"
+              [checked]="currentlyChecked === check_box_type.ch_3"
+              (click)="selectCheckBox(check_box_type.ch_3)"
+            />
+            <span class="label-text">2 in 1 cable</span>
+          </label>
+        </div>
+      </form>
+    </div>
+
+    
+
+
+  

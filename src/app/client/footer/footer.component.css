@@ -1,0 +1,37 @@
+.footerIcon{
+    width: 35px;
+    height: 35px;
+}
+
+.bg-gray{
+    background: #c2c5c7;
+}
+
+.faceLink,
+.youtlink,
+.instaLink,
+.linkedLink
+{
+    width: 50px;
+    height: 50px;
+    -webkit-transition: background 0.5s ease;
+    transition: background 0.5s ease;
+}
+
+.youtlink:hover{
+    background-color: #701616;
+}
+
+.faceLink:hover
+{
+    background-color: #0b2842;
+}
+.linkedLink:hover
+{
+    background-color: #0d4677;
+}
+
+.instaLink:hover
+{
+  background-color: #f02166;
+}
