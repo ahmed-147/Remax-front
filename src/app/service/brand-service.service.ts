@@ -13,16 +13,21 @@ export class BrandServiceService {
     return this.http.get<IBrand[]>('http://localhost:8000/brand/getbrands/');
   }
   getAllBrandsById(id): Observable<IBrand>{
-    
-    return this.http.get<IBrand>(`http://localhost:8000/brand/brands/${id}/`);
-
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.get<IBrand>(`http://localhost:8000/brand/brands/${id}/`, httpOptions)
   }
   addBrand(pst: IBrand): Observable<IBrand> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': ' */*'
-        //  ,'Authorization': Bearer'my-auth-token'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
     return this.http.post<IBrand>('http://localhost:8000/brand/postbrands/', pst, httpOptions)
@@ -32,14 +37,20 @@ export class BrandServiceService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': ' */*'
-        //  ,'Authorization': 'my-auth-token'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
     return this.http.put<IBrand>(`http://localhost:8000/brand/brands/${id}/`, pst, httpOptions)
   }
   deleteBrandById(id): Observable<IBrand>{
-    
-    return this.http.delete<IBrand>(`http://localhost:8000/brand/brands/${id}/`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.delete<IBrand>(`http://localhost:8000/brand/brands/${id}/`, httpOptions)
 
   }
   

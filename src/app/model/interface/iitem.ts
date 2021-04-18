@@ -1,5 +1,6 @@
 export interface IItem {
-    user:number,
+    id?:number,
+    user?:number,
     name:string,
     price:number,
     details:string,

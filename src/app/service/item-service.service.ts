@@ -13,8 +13,14 @@ export class ItemServiceService {
     return this.http.get<IItem[]>('http://localhost:8000/item/getitems/');
   }
   getAllItemsById(id): Observable<IItem>{
-    
-    return this.http.get<IItem>(`http://localhost:8000/item/items/${id}/`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.get<IItem>(`http://localhost:8000/item/items/${id}/`, httpOptions);
 
   }
   addItem(pst: IItem): Observable<IItem> {
@@ -22,7 +28,7 @@ export class ItemServiceService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': ' */*'
-        //  ,'Authorization': 'my-auth-token'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
     return this.http.post<IItem>('http://localhost:8000/item/postitems/', pst, httpOptions)
@@ -32,14 +38,20 @@ export class ItemServiceService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': ' */*'
-        //  ,'Authorization': 'my-auth-token'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
     return this.http.put<IItem>(`http://localhost:8000/item/items/${id}/`, pst, httpOptions)
   }
   deleteItemById(id): Observable<IItem>{
-    
-    return this.http.delete<IItem>(`http://localhost:8000/item/items/${id}/`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.delete<IItem>(`http://localhost:8000/item/items/${id}/`, httpOptions);
 
   }
 }

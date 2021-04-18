@@ -1,3 +1,4 @@
+import { IItem } from './../model/interface/iitem';
 import { OrderServiceService } from './../service/order-service.service';
 import { OrderItemServiceService } from './../service/order-item-service.service';
 import { ItemServiceService } from './../service/item-service.service';
@@ -9,6 +10,7 @@ import { ICategory } from './../model/interface/icategory';
 import { CategoryServiceService } from './../service/category-service.service';
 import { AccountService } from './../service/account.service';
 import { Component, OnInit } from '@angular/core';
+import { IBrand } from '../model/interface/ibrand';
 
 @Component({
   selector: 'app-test',
@@ -16,9 +18,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
-  category:ICategory={name:'test',parent:1,slug:'dcsdffds'};
+  category:ICategory={name:'test',parent:1};
+  brand:IBrand={name:'new brand'};
+  item:IItem={user:1, name:'new item 3', brand:1, category:1, quantity:10, price:20, details:"dasf"}
 
-  constructor(private CategoryServiceService : CategoryServiceService, 
+  constructor(private AccountService: AccountService,
+    private CategoryServiceService : CategoryServiceService, 
     private BrandServiceService: BrandServiceService, 
     private ClientService: ClientService, 
     private ClientLocationService: ClientLocationService, 
@@ -32,13 +37,21 @@ export class TestComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.CategoryServiceService.addCategory(this.category).subscribe(data=>{
-      console.log(data);
-    },
-    err=>{
-      console.log(err);
+    // this.AccountService.login('admin','admin').subscribe(data=>{
+    //   console.log(data);
+    // },
+    // err=>{
+    //   console.log(err);
       
-    })
+    // })
+    
+    // this.ItemServiceService.addItem(this.item).subscribe(data=>{
+    //   console.log(data);
+    // },
+    // err=>{
+    //   console.log(err);
+      
+    // })
     
     
   }
