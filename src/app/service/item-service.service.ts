@@ -10,7 +10,14 @@ export class ItemServiceService {
 
   constructor(private http: HttpClient) { }
   getAllItems(): Observable<IItem[]> {
-    return this.http.get<IItem[]>('http://localhost:8000/item/getitems/');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        //,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.get<IItem[]>('http://localhost:8000/item/getitems/', httpOptions);
   }
   getAllItemsById(id): Observable<IItem>{
     const httpOptions = {

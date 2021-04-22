@@ -10,11 +10,24 @@ export class OrderItemServiceService {
 
   constructor(private http: HttpClient) { }
   getAllOrderItems(): Observable<IOrderItem[]> {
-    return this.http.get<IOrderItem[]>('http://localhost:8000/order/order-item/');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.get<IOrderItem[]>('http://localhost:8000/order/getorderitems/', httpOptions);
   }
   getAllOrderItemById(id): Observable<IOrderItem>{
-    
-    return this.http.get<IOrderItem>(`http://localhost:8000/order/order-item/${id}/`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.get<IOrderItem>(`http://localhost:8000/order/orderitems/${id}/`, httpOptions);
 
   }
   addOrderItem(pst: IOrderItem): Observable<IOrderItem> {
@@ -25,21 +38,27 @@ export class OrderItemServiceService {
         //  ,'Authorization': 'my-auth-token'
       })
     };
-    return this.http.post<IOrderItem>('http://localhost:8000/order/order-item/', pst, httpOptions)
+    return this.http.post<IOrderItem>('http://localhost:8000/order/postorderitems/', pst, httpOptions)
   }
   updateOrderItem(id, pst: IOrderItem): Observable<IOrderItem> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': ' */*'
-        //  ,'Authorization': 'my-auth-token'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.put<IOrderItem>(`http://localhost:8000/order/order-item/${id}/`, pst, httpOptions)
+    return this.http.put<IOrderItem>(`http://localhost:8000/order/orderitems/${id}/`, pst, httpOptions)
   }
   deleteOrderItemById(id): Observable<IOrderItem>{
-    
-    return this.http.delete<IOrderItem>(`http://localhost:8000/order/order-item/${id}/`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.delete<IOrderItem>(`http://localhost:8000/order/orderitems/${id}/`, httpOptions);
 
   }
 }
