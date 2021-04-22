@@ -30,6 +30,17 @@ export class OrderItemServiceService {
     return this.http.get<IOrderItem>(`http://localhost:8000/order/orderitems/${id}/`, httpOptions);
 
   }
+  getAllOrderItemsByOrderId(id): Observable<IOrderItem>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.get<IOrderItem>(`http://localhost:8000/order/orderitemsbyid/${id}/`, httpOptions);
+
+  }
   addOrderItem(pst: IOrderItem): Observable<IOrderItem> {
     const httpOptions = {
       headers: new HttpHeaders({
