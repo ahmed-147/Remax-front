@@ -1,5 +1,7 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="checkUser()"  ></app-navbar>
 <div class="container-fluid p-0">
   <router-outlet></router-outlet>
 </div>
-<app-footer></app-footer>
+<app-footer *ngIf="checkUser()"></app-footer>
+
+<!-- *ngIf="router == 'http://localhost:4200/home'"-->

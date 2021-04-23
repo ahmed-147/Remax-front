@@ -5,8 +5,12 @@ import { Erorr404Component } from './client/erorr404/erorr404.component';
 import { HomeComponent } from './client/home/home.component';
 import { ProductDetalComponent } from './client/product-detal/product-detal.component';
 import { CheckoutComponent } from './client/checkout/checkout.component';
+import { ShowProductsComponent } from './client/show-products/show-products.component';
+
 
 const routes: Routes = [
+  { path: 'dashboard', loadChildren: () => import(`./admin/dashboard/dashboard.module`).then(m => m.DashboardModule) },
+  { path: 'products', component:  ShowProductsComponent },
   { path: 'products/:pid', component:  ProductDetalComponent },
   { path: 'home', component:  HomeComponent },
   { path: 'cart', component:  CartComponent },
@@ -17,7 +21,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-
 
 exports: [RouterModule]
 })

@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDetalComponent } from './client/product-detal/product-detal.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,9 @@ import { ProductDetalComponent } from './client/product-detal/product-detal.comp
     ContentComponent,
     Erorr404Component,
     ADsliderComponent,
-    ProductDetalComponent
+    ProductDetalComponent,
+    
+   
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,6 @@
 <div class="container-fluid">
     <div class="row my-2 position-relative">
 
-        <!-- [magnification]=".5" 
-                [enableScrollZoom]="true"
-                [enableLens]="true" -->
         <div class="preview col-sm-12 col-md-12 col-lg-6 p-3">
             <div class="pro_card card">
                 <!-- <ngx-image-zoom [thumbImage]=myThumbnail [fullImage]=myFullresImage >
@@ -29,15 +26,15 @@
                 </ul>
                  
             </div>
-            <div class="row">
-                <div class="pro_card card">
+            <div class="row p-3">
+                <div class="pro_card card ">
                     <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
                 </div>
             </div>
             
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6 p-3  ">
-            <div class="pro_card card sticky-top">
+            <div class="pro_card card sticky-top" style="z-index: inherit;">
                 <h1 class="product-title">men's shoes fashion</h1>
                 <div class="p-1 bg-red text-light rounded discount" >Discount 10%</div>
                 <div class="pt-2 my-2">
@@ -52,29 +49,34 @@
 
                 </div>
                 <hr>
-                <div class="colors"> <span class="h4">Color: </span> <span >selcted color</span> 
-                    <br>
-                    <select class="form-control">
-                        <option value="black">black</option>
-                        <option value="red">red</option>
-                        <option value="blue">blue</option>
-                    </select>
-                </div>
-                <div class="price"> <span class="h4">Price: </span> <span>$180</span></div>
-                <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-                <div class="sizes">sizes:
-                    <span class="size" data-toggle="tooltip" title="small">s</span>
-                    <span class="size" data-toggle="tooltip" title="medium">m</span>
-                    <span class="size" data-toggle="tooltip" title="large">l</span>
-                    <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-                </div>
+                <div class="colors p-2"> <span class="h6">Color: </span> <span >selcted color</span> </div>
+
+                <select class="form-control w-25 m-2">
+                    <option value="black">black</option>
+                    <option value="red">red</option>
+                    <option value="blue">blue</option>
+                </select>
+                <div class="price p-2"> <span class="h6">Price: </span> <span>$180</span></div>
+                <div class="price p-2"> <span class="h6">Quantity: </span> 
+                <select class="form-control w-25 m-2 d-inline-block">
+                    <option value="black">black</option>
+                    <option value="red">red</option>
+                    <option value="blue">blue</option>
+                </select></div>
                 
-                <div class="action">
-                    <button class="add-to-cart btn btn-default" type="button">add to cart</button>
-                    <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                <div class="row">
+                    <div class="col bg-orange rounded-sm text-center p-3 mx-2 add-to-cart">
+                        <a href="#" class="h5 text-white text-decoration-none" >Add to cart</a>
+                    </div>
+                    
+                    <div class="col blue rounded-sm text-center p-3 mx-2 buy-it">
+                        <a href="#" class="h5 text-white text-decoration-none" >Buy it now</a>
+                    </div>
                 </div>     
             </div>
         </div>
     
     </div>
+    <app-products-row></app-products-row>
+    <app-products-row></app-products-row>
 </div>

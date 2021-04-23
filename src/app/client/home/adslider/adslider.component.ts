@@ -42,10 +42,10 @@ export class ADsliderComponent implements OnInit {
   }
 
   onSwiper(swiper) {
-    console.log(swiper);
+    // console.log(swiper);
   }
   onSlideChange() {
-    console.log('slide change');
+    // console.log('slide change');
   }
 
 }

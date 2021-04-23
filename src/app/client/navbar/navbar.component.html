@@ -1,42 +1,263 @@
-<div class="container-fluid" style="background-color: #05091e;">
+<div class="container-fluid sticky-top" style="background-color: #05091e;">
     <div class="row">
-        <div class="col-lg-2">
-            <a class="navbar-brand pl-4" href="#">
+        <div class="col-sm-1 d-block d-sm-none">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#linksNav" aria-controls="linksNav" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+             </button>
+        </div>
+        <div class="col-lg-2 col-sm-1">
+            <a class="navbar-brand pl-4" routerLink="/home">
                 <img src="../../../assets/logo.png" height="70px" width="150px">
             </a>        
         </div>
-        <div class="col-lg-8">
+        
+        <div class="col-lg-8 col-sm-8">
             <div class="input-group mt-4">
                 <input class="border-0 rounded-0" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon2">
                 <div class="input-group-append ">
-                    <a class="btn btn-light text-dark dropdown-toggle border-0 rounded-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-light text-dark dropdown-toggle border-0 rounded-0" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         All Categories
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-menu" aria-labelledby="#dropdownMenuLink">
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 
-                  <button class="btn" type="button"><i class="far fa-search"></i></button>
+                  <button class="btn" type="button"><i class="far fa-search text-light"></i></button>
                 </div>
               </div>            
         </div>
-        <div class="col-lg-2">
-            <a data-toggle="modal" data-target="#exampleModal" href="#" role="button"   class="btn mt-4 dropdown-toggle" style="color: white;"><i class="far fa-shopping-cart"><span class="badge badge-light">0</span></i>  Cart</a>
-            
-            <div style="position: relative;" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" style="position: absolute;   background-color: white;">
-                    <div class="modal-body">
-                        <i class="far fa-shopping-cart"></i>
-                        Your Cart is empty<br>
-                        <button type="submit" class=" btn-danger btn-lg border-0 rounded-0" style="background-color: #ec5720;">Shop our Products</button>
-                     
+        <div class="col-lg-2 col-sm-2 dropdown" >
+            <button id="cartDropdownBtn" class="btn mt-4 dropdown-toggle" style="color: white;" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false" >
+                <i class="far fa-shopping-cart fa-2x">
+                </i> <span class="badge badge-dark rounded-circle align-top mr-2">0</span> Cart
+            </button>
+            <div id="cartDropdown" class="dropdown-menu animate slideIn" >
+                <form >
+                    <div class="container-fluid p-4">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-7" > 
+                                    <div class="row">
+                                        
+                                    <div class="col-4">
+                                        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                                            <a href="#!">
+                                              <img class="img-fluid w-100"
+                                              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-8">
+                                            <div>
+                                              <h5>Blue denim shirt</h5>
+                                              <p class="mb-3 text-muted text-uppercase small">Shirt - blue</p>
+                                              <p class="mb-2 text-muted text-uppercase small">Color: blue</p>
+                                              <p class="mb-3 text-muted text-uppercase small">Size: M</p>
+                                            </div>
+                                             <p class="mb-0"><span>$17.99</span></p>
+                
+                                    </div>
+                                    </div>
+                                    
+                                  </div>
+                                  <div  class="col-3">
+                                      <div class="row">
+                                            <button style="display: inline;width: 20%;"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                           ><i class="fa fa-minus"></i></button>
+                                            <input style="display: inline;width: 60%;"  min="0" name="quantity" value="1" type="number">                         
+                                            <button style="display: inline;width: 20%;" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                           ><i class="fa fa-plus"></i></button>
+                                      </div>
+                                      <a onclick="" href=#>Remove</a>
+                                  </div>
+                                  <div class="col-2">
+                                    <h4> <p class="mb-0"><span><strong>$17.99</strong></span></p></h4>
+                                  </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-7" > 
+                                    <div class="row">
+                                        
+                                    <div class="col-4">
+                                        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                                            <a href="#!">
+                                              <img class="img-fluid w-100"
+                                              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
+                                            </a>
+                                          </div>
+                
+                                    </div>
+                                    
+                                    <div class="col-8">
+                                            <div>
+                                              <h5>Blue denim shirt</h5>
+                                              <p class="mb-3 text-muted text-uppercase small">Shirt - blue</p>
+                                              <p class="mb-2 text-muted text-uppercase small">Color: blue</p>
+                                              <p class="mb-3 text-muted text-uppercase small">Size: M</p>
+                                            </div>
+                                             <p class="mb-0"><span>$17.99</span></p>
+                
+                                    </div>
+                                    </div>
+                                    
+                                  </div>
+                                  <div  class="col-3">
+                                      <div class="row">
+                                            <button style="display: inline;width: 20%;"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                           ><i class="fa fa-minus"></i></button>
+                                            <input style="display: inline;width: 60%;"  min="0" name="quantity" value="1" type="number">                         
+                                            <button style="display: inline;width: 20%;" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                           ><i class="fa fa-plus"></i></button>
+                                      </div>
+                                      <a onclick="" href=#>Remove</a>
+                                  </div>
+                                  <div class="col-2">
+                                    <h4> <p class="mb-0"><span><strong>$17.99</strong></span></p></h4>
+                                  </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-7" > 
+                                    <div class="row">
+                                        
+                                    <div class="col-4">
+                                        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                                            <a href="#!">
+                                              <img class="img-fluid w-100"
+                                              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
+                                            </a>
+                                          </div>
+                
+                                    </div>
+                                    
+                                    <div class="col-8">
+                                            <div>
+                                              <h5>Blue denim shirt</h5>
+                                              <p class="mb-3 text-muted text-uppercase small">Shirt - blue</p>
+                                              <p class="mb-2 text-muted text-uppercase small">Color: blue</p>
+                                              <p class="mb-3 text-muted text-uppercase small">Size: M</p>
+                                            </div>
+                                             <p class="mb-0"><span>$17.99</span></p>
+                
+                                    </div>
+                                    </div>
+                                    
+                                  </div>
+                                  <div  class="col-3">
+                                      <div class="row">
+                                            <button style="display: inline;width: 20%;"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                           ><i class="fa fa-minus"></i></button>
+                                            <input style="display: inline;width: 60%;"  min="0" name="quantity" value="1" type="number">                         
+                                            <button style="display: inline;width: 20%;" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                           ><i class="fa fa-plus"></i></button>
+                                      </div>
+                                      <a onclick="" href=#>Remove</a>
+                                  </div>
+                                  <div class="col-2">
+                                    <h4> <p class="mb-0"><span><strong>$17.99</strong></span></p></h4>
+                                  </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row h5 font-weight-bold">
+                            <span class="">Total</span>
+                            <span class="ml-auto">180 $ </span>
+                        </div>
+                      <div class="row">
+                          <div class="col blue rounded-sm text-center p-3 mx-2 view-cart">
+                              <a href="#" class="h5 text-white text-decoration-none" >Veiw cart</a>
+                          </div>
+                          
+                          <div class="col bg-orange  rounded-sm text-center p-3 mx-2 checkout">
+                              <a href="#" class="h5 text-white text-decoration-none" >Checkout</a>
+                          </div>
+                      </div>  
                     </div>
-                  </div>
+                </form>
+                
             </div>
-              
-
         </div>
     </div>
+
+    <nav class="row navbar navbar-expand-lg navbar-light border-0 bg-white d-sm-none d-md-block">
+        
+        <div class="collapse navbar-collapse" id="linksNav">
+            <ul class="navbar-nav h6 ">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"  id="allProductsDropdownMenuLink"  
+                role="button"  data-toggle="dropdown"
+                aria-haspopup="true" 
+                aria-expanded="false" >All Products </a>
+                
+                <ul class="dropdown-menu" aria-labelledby="allProductsDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/products">Barnds</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/products">New Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"routerLink="/products">Smart Watches</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/products">Phone Holders & Table Holder</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/products">20W PD Charger & PD Cable ( C to I ) (C to C)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/products">Blog</a>
+            </li>
+            <li class="nav-item dropdown">
+                
+            </li>
+            </ul>
+        </div>
+    </nav>
+    
+  
 </div>
+
+
+
+ <!-- cart model  -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="cartDialog" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLabel">Cart</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <div class="container-fluid">
+              <div class="row h5 font-weight-bold">
+                  <span class="">Total</span>
+                  <span class="ml-auto">180 $ </span>
+              </div>
+            <div class="row">
+                <div class="col blue rounded-sm text-center p-3 mx-2 view-cart">
+                    <a href="#" class="h5 text-white text-decoration-none" >Veiw cart</a>
+                </div>
+                
+                <div class="col bg-orange  rounded-sm text-center p-3 mx-2 checkout">
+                    <a href="#" class="h5 text-white text-decoration-none" >Checkout</a>
+                </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

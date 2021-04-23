@@ -1,0 +1,100 @@
+
+.animate {
+  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  100% {
+    transform:translateY(0rem);
+    opacity: 1;
+  }
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1;
+  }
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0;
+  }
+}
+
+.slideIn {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn;
+}
+
+#cartDropdown
+{
+  position: fixed;
+  top: 0;
+  left :0;
+  width:500px;
+  max-height: 400px;
+  
+}
+
+.nav-item > a
+{
+    color:rgb(85, 85, 85);
+    margin-right: 20px ;
+}
+.nav-item > a:hover
+{
+    color:rgb(10, 20, 77);
+}
+
+.view-cart,
+.checkout
+{
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+.checkoutt:hover 
+{
+  background: #f76b38;
+  color: #fff;
+}
+
+.view-cart:hover 
+{
+  background: rgba(0, 186, 219, 0.8) ;
+  color: #fff;
+}
+
+.bg-orange {
+    background-color: #ec5720;
+}
+
+.blue {
+    background: #00badb;
+  }
+
+#cartModal
+{
+    position: fixed;
+    top:50px;
+    right:200px
+
+}
+#cartDialog
+{
+    color:black
+}
