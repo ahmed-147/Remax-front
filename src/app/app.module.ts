@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { SwiperModule } from 'swiper/angular';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,7 +21,7 @@ import { Erorr404Component } from './client/erorr404/erorr404.component';
 import { ADsliderComponent } from './client/home/adslider/adslider.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDetalComponent } from './client/product-detal/product-detal.component';
-
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -39,9 +40,9 @@ import { ProductDetalComponent } from './client/product-detal/product-detal.comp
     Erorr404Component,
     ADsliderComponent,
     ProductDetalComponent,
-    
-   
+    TestComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,6 +50,7 @@ import { ProductDetalComponent } from './client/product-detal/product-detal.comp
     MatSliderModule,
     SwiperModule,
     NgbModule,
+    HttpClientModule,
 
   ],
   providers: [],

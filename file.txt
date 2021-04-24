@@ -1,0 +1,24 @@
+npm install -s moment
+npm install -s jwt-decode
+npm install -s @types/jwt-decode
+
+
+pip install django-cors-headers
+
+
+tasks
+#add item img interface and services
+#update item services
+#add get by id in angular
+#get client id to use it
+#get order id to use it
+
+
+
+add client email return client id
+store client id
+create order by client id
+store order id
+create order item by order id
+delete client and order id
+

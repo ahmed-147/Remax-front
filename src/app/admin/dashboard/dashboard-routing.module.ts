@@ -6,17 +6,21 @@ import { BrandsComponent } from './brands/brands.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ClientsComponent } from './clients/clients.component';
 import { DashboardComponent } from './dashboard.component';
+import { DashcontentComponent } from './dashcontent/dashcontent.component';
+import { ItemsComponent } from './items/items.component';
 import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
+      { path: 'content', component: DashcontentComponent },
       { path: 'orders', component: OrdersComponent },
+      { path: 'items', component: ItemsComponent },
       { path: 'clients', component: ClientsComponent },
       { path: 'categories', component: CategoriesComponent },
       { path: 'brands', component: BrandsComponent },
       { path: 'accounts', component: AccountsComponent },
-      { path: '', redirectTo: 'orders', pathMatch: 'full' },
+      { path: '', redirectTo: 'content', pathMatch: 'full' },
       { path: '**', component: Erorr404Component }
     ]
   }

@@ -8,6 +8,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { BrandsComponent } from './brands/brands.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { DashboardComponent } from './dashboard.component';
+import { ItemsComponent } from './items/items.component';
+import { DashcontentComponent } from './dashcontent/dashcontent.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { DashboardComponent } from './dashboard.component';
     CategoriesComponent,
     BrandsComponent,
     AccountsComponent,
+    ItemsComponent,
+    DashcontentComponent,
   ],
   imports: [
     CommonModule,

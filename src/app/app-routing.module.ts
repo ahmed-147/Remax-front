@@ -1,3 +1,4 @@
+import { TestComponent } from './test/test.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './client/cart/cart.component';
@@ -11,6 +12,7 @@ import { ShowProductsComponent } from './client/show-products/show-products.comp
 const routes: Routes = [
   { path: 'dashboard', loadChildren: () => import(`./admin/dashboard/dashboard.module`).then(m => m.DashboardModule) },
   { path: 'products', component:  ShowProductsComponent },
+  { path: 'test', component: TestComponent},
   { path: 'products/:pid', component:  ProductDetalComponent },
   { path: 'home', component:  HomeComponent },
   { path: 'cart', component:  CartComponent },
