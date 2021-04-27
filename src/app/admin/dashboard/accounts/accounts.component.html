@@ -1,1 +1,144 @@
-<p>accounts works!</p>
+<div class="row p-1">
+    <div class="d-sm-flex align-items-center justify-content-between ">
+        <h1 class="font-weight-bold pl-5">Accounts</h1>
+        
+    </div>
+</div>
+
+<div class="row p-4">
+    <div class="col">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-link active" id="nav-item-view-tab" #accountView data-toggle="tab" href="#nav-item-view" role="tab" aria-controls="nav-home" aria-selected="true">Account </a>
+              <a class="nav-link" id="nav-item-form-tab" #addaccountform data-toggle="tab" href="#nav-item-form" role="tab" aria-controls="nav-profile" aria-selected="false">Add Account</a>
+              <a class="nav-link " id="nav-update-view-tab" #updateaccountform data-toggle="tab" href="#nav-update-view" role="tab" aria-controls="nav-home" aria-selected="false">update Account</a>
+              <!--<a class="nav-link" id="nav-item-form-tab" #resetpasswordaccountform data-toggle="tab" href="#nav-item-form" role="tab" aria-controls="nav-profile" aria-selected="false">Reset Password</a>
+              --></div>
+        </nav>
+        <div class="tab-content bg-white" id="nav-tabContent">
+            <div class="tab-pane fade show active shadow" id="nav-item-view" role="tabpanel" aria-labelledby="nav-item-view-tab">
+                <div class="row table-responsive p-4" style="max-height: 400px;">
+                    <table class="col table table-sm text-center">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">
+                                Actions
+                            </th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr  *ngFor="let account of accounts">
+                                <th scope="row">{{account.id}}</th>
+                                <td>{{account.username}}</td>
+                                <td>{{account.first_name}}</td>
+                                <td>{{account.last_name}}</td>
+                                <td>{{account.phone}}</td>
+                                <td><img src="{{imgDirectory}}{{account.img}}" alt="{{account.username}}" style="width: 50px; height: 50px;" *ngIf="account.img"> <span *ngIf="! account.img"><b>No Image</b></span></td>
+                                <td>
+                                    <!-- (click)="deleteFun(category.id)" -->
+                                    <button class="btn btn-sm btn-danger" (click)="deleteFun(account.id)" >
+                                        Delete 
+                                    </button>
+                                </td>
+                            </tr>
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+           <div class="tab-pane fade shadow" id="nav-item-form" role="tabpanel" aria-labelledby="nav-item-form-tab">
+                <div class="row p-2">
+                    <form class="col p-4" [formGroup]="addAccountForm" (ngSubmit)="saveAccount()">
+                        <div class="form-row">
+                          <div class="form-group col-sm-6 col-md-6">
+                            <label for="inputItemName">Username</label>
+                            <input type="text" class="form-control" id="inputItemName" name="username" formControlName="username">
+                            <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['username'].invalid && addAccountForm.controls['username'].touched">
+                                <strong *ngIf="addAccountForm.controls['username'].errors.required"> username  is required </strong>
+                            </div>
+                          </div>
+                          <div class="form-group col-sm-6 col-md-6">
+                            <label for="inputItemName">First Name</label>
+                            <input type="text" class="form-control" id="inputItemName" name="first_name" formControlName="first_name">
+                          </div>
+                          <div class="form-group col-sm-6 col-md-6">
+                            <label for="inputItemName">Last Name</label>
+                            <input type="text" class="form-control" id="inputItemName" name="last_name" formControlName="last_name">
+                          </div>
+                          <div class="form-group col-sm-6 col-md-6">
+                            <label for="inputItemName">Password</label>
+                            <input type="password" class="form-control" id="inputItemName" name="password" formControlName="password">
+                            <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['password'].invalid && addAccountForm.controls['password'].touched">
+                                <strong *ngIf="addAccountForm.controls['password'].errors.required"> Password  is required </strong>
+                            </div>
+                          </div>
+                          <div class="form-group col-sm-6 col-md-6">
+                            <label for="inputItemName">Confirm Password</label>
+                            <input type="password" class="form-control" id="inputItemName" name="password1" formControlName="password1">
+                            <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['password1'].invalid && addAccountForm.controls['password1'].touched">
+                                <strong *ngIf="addAccountForm.controls['password1'].errors.required"> Confirm Password  is required </strong>
+                            </div>
+                          </div>
+                          <div class="form-group col-sm-6 col-md-6">
+                            <label for="inputItemName">Phone</label>
+                            <input type="text" class="form-control" id="inputItemName" name="phone" formControlName="phone">
+                            <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['phone'].invalid && addAccountForm.controls['phone'].touched">
+                                <strong *ngIf="addAccountForm.controls['phone'].errors.required"> Phone is required </strong>
+                            </div>
+                          </div>
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="accountImg" name="Image" accept="image/*" (change)="loadImg($event)" />
+                            <label class="custom-file-label" for="accountImg">Choose Images</label>
+                        </div>
+                          
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+                
+            </div>
+            <div class="tab-pane fade shadow" id="nav-update-view" role="tabpanel" aria-labelledby="nav-item-form-tab">
+                <div class="row p-2">
+                    <form class="col p-4" [formGroup]="addAccountForm" (ngSubmit)="saveAccount()">
+                        <div class="form-row">
+                          
+                          <div class="form-group col-sm-6 col-md-6">
+                            <label for="inputItemName">First Name</label>
+                            <input type="text" class="form-control" id="inputItemName" name="first_name" formControlName="first_name">
+                          </div>
+                          <div class="form-group col-sm-6 col-md-6">
+                            <label for="inputItemName">Last Name</label>
+                            <input type="text" class="form-control" id="inputItemName" name="last_name" formControlName="last_name">
+                          </div>
+                          <div class="form-group col-sm-6 col-md-6">
+                            <label for="inputItemName">Phone</label>
+                            <input type="text" class="form-control" id="inputItemName" name="phone" formControlName="phone">
+                            <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['phone'].invalid && addAccountForm.controls['phone'].touched">
+                                <strong *ngIf="addAccountForm.controls['phone'].errors.required"> Phone is required </strong>
+                            </div>
+                          </div>
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="accountImg" name="Image" accept="image/*" (change)="loadImg($event)" />
+                            <label class="custom-file-label" for="accountImg">Choose Images</label>
+                        </div>
+                          
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+                
+            </div>
+        
+        </div>
+    </div>
+    
+</div>
