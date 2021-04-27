@@ -22,6 +22,8 @@ import { ADsliderComponent } from './client/home/adslider/adslider.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDetalComponent } from './client/product-detal/product-detal.component';
 import { TestComponent } from './test/test.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -40,10 +42,12 @@ import { TestComponent } from './test/test.component';
     Erorr404Component,
     ADsliderComponent,
     ProductDetalComponent,
-    TestComponent
+    TestComponent,
+    LoginComponent
   ],
   
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -51,6 +55,8 @@ import { TestComponent } from './test/test.component';
     SwiperModule,
     NgbModule,
     HttpClientModule,
+    ReactiveFormsModule,
+
 
   ],
   providers: [],

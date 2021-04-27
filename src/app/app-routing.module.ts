@@ -7,9 +7,11 @@ import { HomeComponent } from './client/home/home.component';
 import { ProductDetalComponent } from './client/product-detal/product-detal.component';
 import { CheckoutComponent } from './client/checkout/checkout.component';
 import { ShowProductsComponent } from './client/show-products/show-products.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
+  { path: 'login', component:  LoginComponent },
   { path: 'dashboard', loadChildren: () => import(`./admin/dashboard/dashboard.module`).then(m => m.DashboardModule) },
   { path: 'products', component:  ShowProductsComponent },
   { path: 'test', component: TestComponent},

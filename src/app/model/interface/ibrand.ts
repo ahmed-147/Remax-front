@@ -1,5 +1,5 @@
 export interface IBrand {
     id?:number,
     name:string,
-    img?:String,
+    img?:File,
 }

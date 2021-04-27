@@ -6,5 +6,6 @@ export interface IItem {
     details:string,
     quantity:number,
     category:number,
-    brand:number,
+    brand?:number,
+    discount?: number
 }
