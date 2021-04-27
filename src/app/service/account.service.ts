@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { CanActivate, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { tap, shareReplay } from 'rxjs/operators';
 
 import  jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
+import { IAccount } from '../model/interface/iaccount';
 
 @Injectable({
   providedIn: 'root'
@@ -38,14 +39,64 @@ export class AccountService {
       shareReplay(),
     );
   }
-
-  signup(username: string, email: string, password1: string, password2: string) {
-    // TODO: implement signup
+  getAllAccounts(): Observable<IAccount[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type': 'multipart/form-data',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.get<IAccount[]>('http://localhost:8000/account/accounts/', httpOptions);
   }
+
+  signup(pst: any): Observable<IAccount>
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type': 'multipart/form-data',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.post<IAccount>('http://localhost:8000/account/accounts/', pst, httpOptions)
+  }
+  
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expires_at');
+  }
+  getAccountById(id): Observable<IAccount>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.get<IAccount>(`http://localhost:8000/account/accounts/${id}/`, httpOptions)
+  }
+  updateAccount(id, pst: any): Observable<IAccount> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.patch<IAccount>(`http://localhost:8000/account/accounts/${id}/`, pst, httpOptions)
+  }
+  deleteAccountById(id): Observable<IAccount>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.delete<IAccount>(`http://localhost:8000/account/accounts/${id}/`, httpOptions)
+
   }
 
   refreshToken() {

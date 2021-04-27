@@ -1,11 +1,11 @@
 export interface IAccount {
-    id:number,
+    id?:number,
     username:string,
-    first_name:string,
-    last_name:string,
-    passward1:string,
-    passward2:string,
+    first_name?:string,
+    last_name?:string,
+    password?:string,
+    password1?:string,
     phone:string,
-    img:File,
+    img?:File,
     
 }
