@@ -30,7 +30,7 @@ export class ClientLocationService {
     return this.http.get<IClientLocation>(`http://localhost:8000/client/clientlocations/${id}/`, httpOptions);
 
   }
-  getAllClientLocationsByClientId(id): Observable<IClientLocation>{
+  getAllClientLocationsByClientId(id): Observable<IClientLocation[]>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export class ClientLocationService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.get<IClientLocation>(`http://localhost:8000/client/clientlocationsbyid/${id}/`, httpOptions);
+    return this.http.get<IClientLocation[]>(`http://localhost:8000/client/clientlocationsbyid/${id}/`, httpOptions);
 
   }
   addClientLocation(pst: IClientLocation): Observable<IClientLocation> {

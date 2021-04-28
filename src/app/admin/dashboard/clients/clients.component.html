@@ -1,1 +1,36 @@
-<p>clients works!</p>
+<div class="row p-1">
+    <div class="d-sm-flex align-items-center justify-content-between ">
+        <h1 class="font-weight-bold pl-5">Orders</h1>
+    </div>
+</div>
+
+<div class="row table-responsive p-1" style="max-height: 400px;">
+    <table class="col table table-sm  table-hover text-center border p-0">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phones numbers</th>
+            <th scope="col">locations</th>
+            <th scope="col" >Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let client of clients">
+                <th scope="row">{{client.id}}</th>
+                <td>{{client.name}}</td>
+                <td>{{client.email}}</td>
+                <td>
+                     {{getClientPhones(client.id)}}
+                </td>
+                <td>
+                     {{getClientLocations(client.id)}}
+                </td>
+                
+                
+            </tr>
+          
+        </tbody>
+    </table>
+</div>

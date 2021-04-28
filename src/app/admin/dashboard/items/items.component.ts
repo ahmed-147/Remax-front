@@ -154,7 +154,8 @@ export class ItemsComponent implements OnInit {
   }
 
   getBrandNameByID(brandId) : any {
-    let brandName = this.brands?.find(element =>{return element.id== brandId } )
+
+    let brandName = this.brands?.find(element =>{ return element.id== brandId } )
     if (brandName){
       return brandName.name
     }
