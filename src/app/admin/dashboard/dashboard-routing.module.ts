@@ -10,7 +10,7 @@ import { DashcontentComponent } from './dashcontent/dashcontent.component';
 import { ItemsComponent } from './items/items.component';
 import { OrdersComponent } from './orders/orders.component';
 
-const routes: Routes = [
+const dashRoutes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       { path: 'content', component: DashcontentComponent },
@@ -27,7 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(dashRoutes)],
   exports: [RouterModule]
 })
 export class DashboardRoutingModule { }

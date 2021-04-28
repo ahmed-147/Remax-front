@@ -30,6 +30,18 @@ export class OrderServiceService {
     return this.http.get<IOrder>(`http://localhost:8000/order/orders/${id}/`, httpOptions);
 
   }
+  //To get All Order By Client ID
+  getAllOrdersByClientId(id): Observable<IOrder[]>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.get<IOrder[]>(`http://localhost:8000/order/getordersbyclientid/${id}/`, httpOptions);
+
+  }
   addOrder(pst: IOrder): Observable<IOrder> {
     const httpOptions = {
       headers: new HttpHeaders({

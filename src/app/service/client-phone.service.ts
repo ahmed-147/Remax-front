@@ -30,7 +30,7 @@ export class ClientPhoneService {
     return this.http.get<IClientPhone>(`http://localhost:8000/client/clientphones/${id}/`, httpOptions);
 
   }
-  getAllClientPhonesByClientId(id): Observable<IClientPhone>{
+  getAllClientPhonesByClientId(id): Observable<IClientPhone[]>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export class ClientPhoneService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.get<IClientPhone>(`http://localhost:8000/client/clientphonesbyid/${id}/`, httpOptions);
+    return this.http.get<IClientPhone[]>(`http://localhost:8000/client/clientphonesbyid/${id}/`, httpOptions);
 
   }
   addClientPhone(pst: IClientPhone): Observable<IClientPhone> {

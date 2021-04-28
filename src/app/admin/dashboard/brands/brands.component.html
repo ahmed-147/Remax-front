@@ -1,1 +1,67 @@
-<p>brands works!</p>
+<div class="row p-4">
+    <div class="d-sm-flex align-items-center justify-content-between ">
+        <h1 class="font-weight-bold">brands</h1>
+        
+    </div>
+</div>
+
+<div class="row mb-4">
+    
+    <div class="col">
+        <form class="border-1">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="inputBrandName">Brands Name</label>
+                    <input type="text" 
+                        class="form-control"
+                         name="name" 
+                         id="inputBrandName"
+                         [(ngModel)]="name"/>
+                </div>
+                
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="brandImg" name="myImage" accept="image/*" (change)="loadImg($event)" />
+                <label class="custom-file-label" for="brandImg">Choose Images</label>
+            </div>
+            
+        </form>
+    </div>
+    <div class="col d-flex justify-content-center align-items-end">
+        <!-- (click)="newCategoryFun()" -->
+        <button class="btn btn-success" (click)="newCategoryFun($event)" >Save Brand </button>
+        <button class="btn btn-warning ml-4" (click)="resetValues()">Reset</button>
+
+    </div>
+</div>
+
+<div class="row table-responsive p-4 border" style="max-height: 300px;">
+    <table class="col table table-sm text-center">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Brand Name</th>
+            <th scope="col">img</th>
+            <th scope="col" >Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let brand of brands">
+                <th scope="row">{{brand.id}}</th>
+                <td>{{brand.name}}</td>
+                <td><img src="{{imgDirectory}}{{brand.img}}" alt="{{brand.name}}" style="width: 50px; height: 50px;" *ngIf="brand.img"> <span *ngIf="! brand.img"><b>No Image</b></span></td>
+                <td>
+                    <!-- (click)="updateFun(category)" -->
+                    <button class="btn btn-sm btn-primary mr-5" (click)="updateFun(brand)" > 
+                        Update 
+                    </button>
+                    <!-- (click)="deleteFun(category.id)" -->
+                    <button class="btn btn-sm btn-danger" (click)="deleteFun(brand.id)" >
+                        delete 
+                    </button>
+                </td>
+            </tr>
+          
+        </tbody>
+      </table>
+</div>

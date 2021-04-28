@@ -10,7 +10,8 @@ export class AppComponent implements OnInit {
   title = 'remax';
   routerStr: string;
   regex : RegExp = new RegExp('/dashboard/*');
-  regex2 = new RegExp('/admin/*');
+  regexlog : RegExp = new RegExp('/login');
+  // regex2 = new RegExp('/chech/*');
   constructor(private router : Router){
     
   }
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
 
   checkUser(): boolean {
     this.routerStr = this.router.url;
-    if(this.regex.test(this.routerStr)){
+    if(this.regex.test(this.routerStr) || this.regexlog.test(this.routerStr)){
       return false ;
     }
     else {

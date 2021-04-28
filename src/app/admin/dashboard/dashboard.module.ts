@@ -10,6 +10,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { DashboardComponent } from './dashboard.component';
 import { ItemsComponent } from './items/items.component';
 import { DashcontentComponent } from './dashcontent/dashcontent.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,8 +25,11 @@ import { DashcontentComponent } from './dashcontent/dashcontent.component';
     DashcontentComponent,
   ],
   imports: [
+    FormsModule,
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    ReactiveFormsModule
+
   ]
 })
 export class DashboardModule { }

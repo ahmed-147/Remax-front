@@ -1,3 +1,4 @@
+import { IAccount } from './../model/interface/iaccount';
 import { IItem } from './../model/interface/iitem';
 import { OrderServiceService } from './../service/order-service.service';
 import { OrderItemServiceService } from './../service/order-item-service.service';
@@ -21,7 +22,7 @@ export class TestComponent implements OnInit {
   category:ICategory={name:'test',parent:1};
   brand:IBrand={name:'new brand'};
   item:IItem={user:1, name:'new item 3', brand:1, category:1, quantity:10, price:20, details:"dasf"}
-
+  account:IAccount={username:'hassan1',phone:'01234568899', first_name:'hassan1', password:'hassan1'}
   constructor(private AccountService: AccountService,
     private CategoryServiceService : CategoryServiceService, 
     private BrandServiceService: BrandServiceService, 
@@ -37,13 +38,13 @@ export class TestComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // this.AccountService.login('admin','admin').subscribe(data=>{
-    //   console.log(data);
-    // },
-    // err=>{
-    //   console.log(err);
+     this.AccountService.signup(this.account).subscribe(data=>{
+       console.log(data);
+     },
+     err=>{
+       console.log(err);
       
-    // })
+     })
     
     // this.ItemServiceService.addItem(this.item).subscribe(data=>{
     //   console.log(data);

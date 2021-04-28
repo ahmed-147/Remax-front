@@ -20,7 +20,7 @@ export class ItemServiceService {
   addItem(pst: IItem): Observable<IItem> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         'Accept': ' */*'
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })

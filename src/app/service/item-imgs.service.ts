@@ -11,15 +11,15 @@ export class ItemImgsService {
   getAllItemImgs(): Observable<ItemImgs[]> {
     return this.http.get<ItemImgs[]>('http://localhost:8000/item/getitemsimgs/');
   }
-  getAllItemImgsByItemId(id): Observable<ItemImgs>{
+  getAllItemImgsByItemId(id): Observable<ItemImgs[]>{
     
-    return this.http.get<ItemImgs>(`http://localhost:8000/item/itemimgs/${id}/`);
+    return this.http.get<ItemImgs[]>(`http://localhost:8000/item/itemimgs/${id}/`);
 
   }
-  addItemImgs(pst: ItemImgs): Observable<ItemImgs> {
+  addItemImgs(pst: any): Observable<ItemImgs> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         'Accept': ' */*'
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })

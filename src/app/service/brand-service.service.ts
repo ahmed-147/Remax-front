@@ -22,20 +22,20 @@ export class BrandServiceService {
     };
     return this.http.get<IBrand>(`http://localhost:8000/brand/brands/${id}/`, httpOptions)
   }
-  addBrand(pst: IBrand): Observable<IBrand> {
+  addBrand(pst: any): Observable<IBrand> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'multipart/form-data',
         'Accept': ' */*'
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
     return this.http.post<IBrand>('http://localhost:8000/brand/postbrands/', pst, httpOptions)
   }
-  updateBrand(id, pst: IBrand): Observable<IBrand> {
+  updateBrand(id, pst: any): Observable<IBrand> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         'Accept': ' */*'
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
