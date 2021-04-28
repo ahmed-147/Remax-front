@@ -11,9 +11,9 @@
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a class="nav-link active" id="nav-item-view-tab" #accountView data-toggle="tab" href="#nav-item-view" role="tab" aria-controls="nav-home" aria-selected="true">Account </a>
               <a class="nav-link" id="nav-item-form-tab" #addaccountform data-toggle="tab" href="#nav-item-form" role="tab" aria-controls="nav-profile" aria-selected="false">Add Account</a>
-              <a class="nav-link " id="nav-update-view-tab" #updateaccountform data-toggle="tab" href="#nav-update-view" role="tab" aria-controls="nav-home" aria-selected="false">update Account</a>
-              <!--<a class="nav-link" id="nav-item-form-tab" #resetpasswordaccountform data-toggle="tab" href="#nav-item-form" role="tab" aria-controls="nav-profile" aria-selected="false">Reset Password</a>
-              --></div>
+              <a class="nav-link " id="nav-update-view-tab" *ngIf="id" #updateaccountform data-toggle="tab" href="#nav-update-view" role="tab" aria-controls="nav-home" aria-selected="false">update Account</a>
+              <a class="nav-link" id="nav-item-form-tab" *ngIf="id" #resetpasswordaccountform data-toggle="tab" href="#nav-resetpassword-form" role="tab" aria-controls="nav-profile" aria-selected="false">Reset Password</a>
+              </div>
         </nav>
         <div class="tab-content bg-white" id="nav-tabContent">
             <div class="tab-pane fade show active shadow" id="nav-item-view" role="tabpanel" aria-labelledby="nav-item-view-tab">
@@ -45,6 +45,12 @@
                                     <!-- (click)="deleteFun(category.id)" -->
                                     <button class="btn btn-sm btn-danger" (click)="deleteFun(account.id)" >
                                         Delete 
+                                    </button>
+                                    <button class="btn btn-sm btn-primary mr-5" (click)="editAccount(account)">
+                                      Edit Account 
+                                    </button>
+                                    <button class="btn btn-sm btn-primary mr-5" (click)="resetAccountPassword(account)">
+                                      Reset Password 
                                     </button>
                                 </td>
                             </tr>
@@ -90,14 +96,18 @@
                             <label for="inputItemName">Phone</label>
                             <input type="text" class="form-control" id="inputItemName" name="phone" formControlName="phone">
                             <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['phone'].invalid && addAccountForm.controls['phone'].touched">
-                                <strong *ngIf="addAccountForm.controls['phone'].errors.required"> Phone is required </strong>
+                              <strong *ngIf="addAccountForm.controls['phone'].errors.required"> Phone is required </strong>
+                              <strong *ngIf="addAccountForm.controls['phone'].errors.min"> Phone number is less than 11 numbers</strong>
+                              <strong *ngIf="addAccountForm.controls['phone'].errors.max"> Phone number is more than 11 numbers</strong>
                             </div>
                           </div>
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" id="accountImg" name="Image" accept="image/*" (change)="loadImg($event)" />
                             <label class="custom-file-label" for="accountImg">Choose Images</label>
                         </div>
-                          
+                        <button  type="submit" class="btn btn-primary m-3" [disabled]="addAccountForm.invalid" >Save Account</button>
+                        <button  type="reset" class="btn btn-danger m-3"  >Reset</button>
+                         
                         </div>
                         
                     </form>
@@ -107,7 +117,7 @@
             </div>
             <div class="tab-pane fade shadow" id="nav-update-view" role="tabpanel" aria-labelledby="nav-item-form-tab">
                 <div class="row p-2">
-                    <form class="col p-4" [formGroup]="addAccountForm" (ngSubmit)="saveAccount()">
+                    <form class="col p-4" [formGroup]="updateAccountForm" (ngSubmit)="updateAccount()">
                         <div class="form-row">
                           
                           <div class="form-group col-sm-6 col-md-6">
@@ -121,14 +131,18 @@
                           <div class="form-group col-sm-6 col-md-6">
                             <label for="inputItemName">Phone</label>
                             <input type="text" class="form-control" id="inputItemName" name="phone" formControlName="phone">
-                            <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['phone'].invalid && addAccountForm.controls['phone'].touched">
-                                <strong *ngIf="addAccountForm.controls['phone'].errors.required"> Phone is required </strong>
+                            <div class="alert alert-danger" role="alert" *ngIf="updateAccountForm.controls['phone'].invalid && updateAccountForm.controls['phone'].touched">
+                                <strong *ngIf="updateAccountForm.controls['phone'].errors.required"> Phone is required </strong>
+                                <strong *ngIf="updateAccountForm.controls['phone'].errors.min"> Phone number is less than 11 numbers</strong>
+                                <strong *ngIf="updateAccountForm.controls['phone'].errors.max"> Phone number is more than 11 numbers</strong>
                             </div>
                           </div>
                           <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="accountImg" name="Image" accept="image/*" (change)="loadImg($event)" />
+                            <input type="file" class="custom-file-input" id="accountImg" name="Image" accept="image/*" (change)="updateAccountImg($event)" />
                             <label class="custom-file-label" for="accountImg">Choose Images</label>
                         </div>
+                        <button  type="submit" class="btn btn-primary m-3" [disabled]="updateAccountForm.invalid" >Update Account</button>
+                        <button  type="button" class="btn btn-danger m-3" (click)="resetUpdateForm()" >Reset</button>
                           
                         </div>
                         
@@ -137,6 +151,31 @@
                 </div>
                 
             </div>
+            <div class="tab-pane fade shadow" id="nav-resetpassword-form" role="tabpanel" aria-labelledby="nav-item-form-tab">
+              <div class="row p-2">
+                  <form class="col p-4" [formGroup]="resetPasswordAccountForm" (ngSubmit)="resetPassword()">
+                      <div class="form-row">
+                        
+                        <div class="form-group col-sm-6 col-md-6">
+                          <label for="inputItempass">Password</label>
+                          <input type="password" class="form-control" id="inputItempass" name="pass" formControlName="password">
+                        </div>
+                        <div class="form-group col-sm-6 col-md-6">
+                          <label for="inputItempass1">Confirm Password</label>
+                          <input type="password" class="form-control" id="inputItempass1" name="pass" formControlName="password1">
+                        </div>
+                      </div>
+                        
+                      <button  type="submit" class="btn btn-primary m-3" [disabled]="resetPasswordAccountForm.invalid" >Update Password</button>
+                      <button  type="button" class="btn btn-danger m-3" (click)="resetPasswordForm()" >Reset</button>
+                          
+               
+                      
+                  </form>
+                  
+              </div>
+              
+          </div>
         
         </div>
     </div>
