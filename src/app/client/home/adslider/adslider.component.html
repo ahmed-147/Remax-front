@@ -1,32 +1,35 @@
 
 <div class="row m-0 p-0">
+  <div class="col p-0">
     <swiper class="af_c_sli_contanier"
-        [autoplay]="true"
-        [slidesPerView]="1"
-        [spaceBetween]="1"
-        (swiper)="onSwiper($event)"
-        (slideChange)="onSlideChange()"
-        [controller]="{ control: controlledSwiper }"
-        [pagination]="{ el: '.swiper-pagination.pagination-test' }"
-        [navigation]="{ clickable : 'true',el: '.swiper-button-prev.swiper-button-next' }"
-       
-        [scrollbar]="{ draggable: true }"
-        virtual="true"
-      
-    >
-    
-      <ng-template class="af_c_sli" swiperSlide ><img src="../../../../assets/imgs-ad/slider1.png" alt="" class="af_c_sli_img"></ng-template>
-      <ng-template class="af_c_sli" swiperSlide  ><img src="../../../../assets/imgs-ad/slider2.png" alt="" class="af_c_sli_img"></ng-template>
-      <ng-template class="af_c_sli" swiperSlide  ><img src="../../../../assets/imgs-ad/slider3.webp" alt="" class="af_c_sli_img" ></ng-template>
-      <ng-template class="af_c_sli" swiperSlide  ><img src="../../../../assets/imgs-ad/slider2.png" alt="" class="af_c_sli_img" ></ng-template>
-      <ng-template class="af_c_sli" swiperSlide  ><img src="../../../../assets/imgs-ad/slider2.png" alt="" class="af_c_sli_img" ></ng-template>
-      <div slot="container-end" class="swiper-pagination pagination-test">
-        <div slot="wrapper-start" class="swiper-button-next"></div>
-        <div slot="wrapper-end" class="swiper-button-prev"></div>
-      </div>
-      
-      
-    </swiper>
+    [autoplay]="true"
+    [slidesPerView]="1"
+    [spaceBetween]="1"
+    (swiper)="onSwiper($event)"
+    (slideChange)="onSlideChange()"
+    [controller]="{ control: controlledSwiper }"
+    [pagination]="{ el: '.swiper-pagination.pagination-test' }"
+    [navigation]="{ clickable : 'true',el: '.swiper-button-prev.swiper-button-next' }"
+   
+    [scrollbar]="{ draggable: true }"
+    virtual="true"
+  
+>
+
+  <ng-template class="af_c_sli" swiperSlide ><img src="../../../../assets/imgs-ad/slider1.png" alt="" class="af_c_sli_img"></ng-template>
+  <ng-template class="af_c_sli" swiperSlide  ><img src="../../../../assets/imgs-ad/slider2.png" alt="" class="af_c_sli_img"></ng-template>
+  <ng-template class="af_c_sli" swiperSlide  ><img src="../../../../assets/imgs-ad/slider3.webp" alt="" class="af_c_sli_img" ></ng-template>
+  <ng-template class="af_c_sli" swiperSlide  ><img src="../../../../assets/imgs-ad/slider2.png" alt="" class="af_c_sli_img" ></ng-template>
+  <ng-template class="af_c_sli" swiperSlide  ><img src="../../../../assets/imgs-ad/slider2.png" alt="" class="af_c_sli_img" ></ng-template>
+  <div slot="container-end" class="swiper-pagination pagination-test">
+    <div slot="wrapper-start" class="swiper-button-next"></div>
+    <div slot="wrapper-end" class="swiper-button-prev"></div>
+  </div>
+  
+  
+</swiper>
+  </div>
+   
 </div>
 
 

@@ -172,13 +172,13 @@ export class OrdersComponent implements OnInit {
 
 
   getOrders(): IOrder[]{
-    return this.orders.filter(element => {return element.status == 'pre' })
+    return this.orders?.filter(element => {return element.status == 'pre' })
   }
   getOrdersNotDeliver(): IOrder[]{
-    return this.orders.filter(element => {return element.status == 'not' })
+    return this.orders?.filter(element => {return element.status == 'not' })
   }
   getOrdersDelivered(): IOrder[]{
-    return this.orders.filter(element => {return element.status == 'del' })
+    return this.orders?.filter(element => {return element.status == 'del' })
   }
 
  

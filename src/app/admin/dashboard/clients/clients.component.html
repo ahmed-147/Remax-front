@@ -1,10 +1,10 @@
-<div class="row p-1">
+<div class="row">
     <div class="d-sm-flex align-items-center justify-content-between ">
-        <h1 class="font-weight-bold pl-5">Orders</h1>
+        <h1 class="p-4 font-weight-bold">Clients</h1>
+       
     </div>
 </div>
-
-<div class="row table-responsive p-1" style="max-height: 400px;">
+<div class="row table-responsive p-3 bg-white shadow" style="max-height: 400px;">
     <table class="col table table-sm  table-hover text-center border p-0">
         <thead>
           <tr>
@@ -13,7 +13,7 @@
             <th scope="col">Email</th>
             <th scope="col">Phones numbers</th>
             <th scope="col">locations</th>
-            <th scope="col" >Actions</th>
+            <th scope="col">Orders.No</th>
           </tr>
         </thead>
         <tbody>
@@ -27,7 +27,9 @@
                 <td>
                      {{getClientLocations(client.id)}}
                 </td>
-                
+                <td>
+                    {{getClientOrders(client.id)}}
+               </td>
                 
             </tr>
           

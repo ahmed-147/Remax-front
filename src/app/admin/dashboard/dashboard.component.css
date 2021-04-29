@@ -1,0 +1,17 @@
+#sideBarlinks > li{
+    border-bottom: 1px solid rgb(64, 67, 70) ;
+}
+#sideBarlinks > li > a {
+    width:100%;
+    
+}
+#sideBarlinks i {
+    color: #f3bc40;
+}
+
+#remaxLogoDiv{
+    text-align: center;
+    width: 80%;
+    border-radius: 55px;
+    background-color: #f3bc40;
+}

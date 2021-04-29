@@ -77,6 +77,17 @@ export class AccountService {
     };
     return this.http.get<IAccount>(`http://localhost:8000/account/accounts/${id}/`, httpOptions)
   }
+
+  getCurrentAccount(): Observable<IAccount>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    return this.http.get<IAccount>(`http://localhost:8000/account/currentuser/`, httpOptions)
+  }
   updateAccount(id, pst: any): Observable<IAccount> {
     const httpOptions = {
       headers: new HttpHeaders({

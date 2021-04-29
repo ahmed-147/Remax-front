@@ -31,14 +31,15 @@ export class TestComponent implements OnInit {
     private ClientPhoneService: ClientPhoneService, 
     private ItemServiceService: ItemServiceService, 
     private OrderItemServiceService: OrderItemServiceService, 
-    private OrderServiceService: OrderServiceService) {
+    private OrderServiceService: OrderServiceService,
+    ) {
     console.log(localStorage);
     this.category.name= 'Apple' ;
      
    }
 
   ngOnInit(): void {
-     this.AccountService.signup(this.account).subscribe(data=>{
+     this.AccountService.getCurrentAccount().subscribe(data=>{
        console.log(data);
      },
      err=>{

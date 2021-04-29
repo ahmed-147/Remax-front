@@ -9,10 +9,12 @@ import { DashboardComponent } from './dashboard.component';
 import { DashcontentComponent } from './dashcontent/dashcontent.component';
 import { ItemsComponent } from './items/items.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const dashRoutes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
+      { path: 'profile', component: ProfileComponent },
       { path: 'content', component: DashcontentComponent },
       { path: 'orders', component: OrdersComponent },
       { path: 'items', component: ItemsComponent },

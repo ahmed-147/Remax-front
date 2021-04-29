@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ItemsComponent } from './items/items.component';
 import { DashcontentComponent } from './dashcontent/dashcontent.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AccountsComponent,
     ItemsComponent,
     DashcontentComponent,
+    ProfileComponent,
   ],
   imports: [
     FormsModule,
