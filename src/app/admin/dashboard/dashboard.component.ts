@@ -10,6 +10,7 @@ import { Router} from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  imgDirectory : string = 'http://localhost:8000';
   username : string ='';
   currentuser : IAccount;
   islogedin : boolean 

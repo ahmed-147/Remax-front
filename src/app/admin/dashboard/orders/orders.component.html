@@ -13,12 +13,12 @@
               <a class="nav-link" id="nav-old-order-tab" #oldOrders data-toggle="tab" href="#nav-old-order" role="tab" aria-controls="nav-profile" aria-selected="false">Delivered Orders</a>
             </div>
         </nav>
-        <div class="tab-content bg-white" id="nav-tabContent">
+        <div class="tab-content bg-white" id="nav-tabContent" >
             <div class="container-fluid tab-pane fade show active shadow" id="nav-current-orders" role="tabpanel" aria-labelledby="nav-current-orders-tab">
-                <div class="row">
+                <div class="row" *ngIf="getOrders() != []">
                     <div class= "col-sm-8 col-md-8 col-lg-8">
                         <div class="row table-responsive p-1" style="max-height: 400px;">
-                            <table class="col table table-sm  table-hover text-center border p-0">
+                            <table class="col table table-sm  table-hover text-center border p-0" >
                                 <thead>
                                   <tr>
                                     <th scope="col">Order.No</th>
@@ -28,7 +28,7 @@
                                     <th scope="col" >Actions</th>
                                   </tr>
                                 </thead>
-                                <tbody>
+                                <tbody >
                                     <tr  *ngFor="let order of getOrders()">
                                         <th scope="row">{{order.id}}</th>
                                         <td>{{order.date_time}}</td>
@@ -49,7 +49,9 @@
                                     </tr>
                                   
                                 </tbody>
+                                 
                             </table>
+                            
                         </div>
                     </div>
                     <div class= "col-sm-4 col-md-4 col-lg-4">
@@ -57,8 +59,8 @@
                             <table class="col table table-sm  table-hover text-center border p-0">
                                 <thead>
                                   <tr>
-                                    <th scope="col">Item.No</th>
-                                    <th scope="col">Item</th>
+                                    <th scope="col">Product.No</th>
+                                    <th scope="col">Product</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
                                     
@@ -77,7 +79,15 @@
                             </table>
                         </div>
                     </div>
+                    
                 </div>
+
+                <div class="row" *ngIf="getOrders() == []">
+                    <div class="col" >
+                        <h3 >There are no orders</h3>
+                    </div>
+                </div>
+
             </div>
             <div class="container-fluid tab-pane fade shadow" id="nav-not-dliver-order" role="tabpanel" aria-labelledby="nav-submited-order-tab">
                 <div class="row">

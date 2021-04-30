@@ -2,7 +2,7 @@
 
 <div class="row p-3">
     <div class="d-sm-flex align-items-center justify-content-between ">
-        <h1 class="font-weight-bold ">Items</h1>
+        <h1 class="font-weight-bold ">Products</h1>
     </div>
 </div>
 
@@ -10,8 +10,8 @@
     <div class="col">
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <a class="nav-link active" id="nav-item-view-tab" #itemView data-toggle="tab" href="#nav-item-view" role="tab" aria-controls="nav-home" aria-selected="true">All Items </a>
-              <a class="nav-link" id="nav-item-form-tab" #itemform data-toggle="tab" href="#nav-item-form" role="tab" aria-controls="nav-profile" aria-selected="false">Add Item</a>
+              <a class="nav-link active" id="nav-item-view-tab" #itemView data-toggle="tab" href="#nav-item-view" role="tab" aria-controls="nav-home" aria-selected="true">All Products </a>
+              <a class="nav-link" id="nav-item-form-tab" #itemform data-toggle="tab" href="#nav-item-form" role="tab" aria-controls="nav-profile" aria-selected="false">Add Product</a>
             </div>
         </nav>
         <div class="tab-content bg-white" id="nav-tabContent">
@@ -39,10 +39,10 @@
                                 <td>{{item.quantity}}</td>
                                 <td>
                                     <button class="btn btn-sm btn-primary mr-5" (click)="editItem(item)">
-                                        Edit Itme 
+                                        <i class="fas fa-edit"></i>
                                     </button>
                                     <button class="btn btn-sm btn-danger" (click)="deleteFun(item.id)">
-                                        delete 
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -122,8 +122,8 @@
                         </div>
                         
 
-                        <button  type="submit" class="btn btn-primary" [disabled]="itemForm.invalid" >Save Item</button>
-                        <button  type="button" class="btn btn-warning" (click)="resetValues()" >Reset</button>
+                        <button  type="submit" class="btn btn-success" [disabled]="itemForm.invalid" >Save Item</button>
+                        <button  type="button" class="btn btn-warning ml-4" (click)="resetValues()" >Reset</button>
                     </form>
                     <div class="col" *ngIf="id">
                         <div class="row my-3">
@@ -152,8 +152,8 @@
                                         <th scope="row">{{img.id}}</th>
                                         <td><img src="{{imgDirectory}}{{img.img}}" alt="{{img.id}}" style="width: 50px; height: 50px;" > </td>
                                         <td>
-                                            <button class="btn btn-sm btn-danger" (click)="deleteImg(img.id)">
-                                                delete 
+                                            <button class="btn btn-sm btn-light" (click)="deleteImg(img.id)">
+                                                <i class="fas fa-trash-alt"></i> 
                                             </button>
                                         </td>
                                     </tr>
