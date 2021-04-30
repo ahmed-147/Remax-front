@@ -17,7 +17,8 @@ export class AccountsComponent implements OnInit {
   resetPasswordAccountForm: FormGroup;
   img: any;
   updateImg: any;
-  id: number;
+  idEdit: number;
+  idReset: number;
   accounts: IAccount[];
   resetElement: boolean = false;
   updateElement: boolean = false;
@@ -103,7 +104,7 @@ export class AccountsComponent implements OnInit {
   }
   editAccount(accountdetails: IAccount) {
     this.updateElement = true;
-    this.id = accountdetails.id;
+    this.idEdit = accountdetails.id;
     this.updateAccountForm.patchValue({
       first_name: accountdetails.first_name,
       last_name: accountdetails.last_name,
@@ -115,7 +116,7 @@ export class AccountsComponent implements OnInit {
   }
   resetUpdateForm() {
     this.updateElement = false;
-    this.id = 0;
+    this.idEdit = 0;
     this.updateAccountForm.patchValue({
       first_name: '',
       last_name: '',
@@ -166,7 +167,7 @@ export class AccountsComponent implements OnInit {
       formdata.append("img", this.updateImg);
     }
 
-    this.accountService.updateAccount(this.id, formdata).subscribe(data => {
+    this.accountService.updateAccount(this.idEdit, formdata).subscribe(data => {
       this.getAccounts();
       this.resetUpdateForm();
     },
@@ -177,7 +178,7 @@ export class AccountsComponent implements OnInit {
   }
   resetPasswordForm() {
     this.resetElement = false;
-    this.id = 0;
+    this.idReset = 0;
     this.resetPasswordAccountForm.patchValue({
       password: '',
       password1: '',
@@ -188,14 +189,14 @@ export class AccountsComponent implements OnInit {
   }
   resetAccountPassword(accountdetails: IAccount) {
     this.resetElement = true;
-    this.id = accountdetails.id;
+    this.idReset = accountdetails.id;
     this.resetpasswordaccountform.nativeElement.click();
   }
   resetPassword() {
     const formdata = new FormData();
     formdata.append("password", this.resetPasswordAccountForm.get('password').value);
 
-    this.accountService.updateAccount(this.id, formdata).subscribe(data => {
+    this.accountService.updateAccount(this.idReset, formdata).subscribe(data => {
       this.getAccounts();
       this.resetPasswordForm();
     },
