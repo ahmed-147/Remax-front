@@ -11,8 +11,8 @@
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a class="nav-link active" id="nav-item-view-tab" #accountView data-toggle="tab" href="#nav-item-view" role="tab" aria-controls="nav-home" aria-selected="true">Account </a>
               <a class="nav-link" id="nav-item-form-tab" #addaccountform data-toggle="tab" href="#nav-item-form" role="tab" aria-controls="nav-profile" aria-selected="false">Add Account</a>
-              <a class="nav-link " id="nav-update-view-tab" *ngIf="id" #updateaccountform data-toggle="tab" href="#nav-update-view" role="tab" aria-controls="nav-home" aria-selected="false">update Account</a>
-              <a class="nav-link" id="nav-item-form-tab" *ngIf="id" #resetpasswordaccountform data-toggle="tab" href="#nav-resetpassword-form" role="tab" aria-controls="nav-profile" aria-selected="false">Reset Password</a>
+              <a class="nav-link " id="nav-update-view-tab" [style.visibility]="(!updateElement) ? 'hidden' : 'visible' "  #updateaccountform data-toggle="tab" href="#nav-update-view" role="tab" aria-controls="nav-home" aria-selected="false">update Account</a>
+              <a class="nav-link" id="nav-item-form-tab" [style.visibility]="(!resetElement) ? 'hidden' : 'visible' " #resetpasswordaccountform data-toggle="tab" href="#nav-resetpassword-form" role="tab" aria-controls="nav-profile" aria-selected="false">Reset Password</a>
               </div>
         </nav>
         <div class="tab-content bg-white" id="nav-tabContent">
@@ -72,12 +72,28 @@
                             </div>
                           </div>
                           <div class="form-group col-sm-6 col-md-6">
+                            <label for="inputItemName">Phone</label>
+                            <input type="text" class="form-control" id="inputItemName" name="phone" formControlName="phone">
+                            <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['phone'].invalid && addAccountForm.controls['phone'].touched">
+                              <strong *ngIf="addAccountForm.controls['phone'].errors.required"> Phone is required </strong>
+                              <strong *ngIf="addAccountForm.controls['phone'].errors.minlength"> Phone number is less than 11 numbers</strong>
+                              <strong *ngIf="addAccountForm.controls['phone'].errors.maxlength"> Phone number is more than 11 numbers</strong>
+                              <strong *ngIf="addAccountForm.controls['phone'].errors.pattern"> Phone number must be numbers only</strong>
+                            </div>
+                          </div>
+                          <div class="form-group col-sm-6 col-md-6">
                             <label for="inputItemName">First Name</label>
                             <input type="text" class="form-control" id="inputItemName" name="first_name" formControlName="first_name">
+                            <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['first_name'].invalid && addAccountForm.controls['last_name'].touched">
+                              <strong *ngIf="addAccountForm.controls['first_name'].errors.required"> First name is required </strong>
+                            </div>
                           </div>
                           <div class="form-group col-sm-6 col-md-6">
                             <label for="inputItemName">Last Name</label>
                             <input type="text" class="form-control" id="inputItemName" name="last_name" formControlName="last_name">
+                            <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['last_name'].invalid && addAccountForm.controls['last_name'].touched">
+                              <strong *ngIf="addAccountForm.controls['last_name'].errors.required"> Last name is required </strong>
+                            </div>
                           </div>
                           <div class="form-group col-sm-6 col-md-6">
                             <label for="inputItemName">Password</label>
@@ -91,17 +107,10 @@
                             <input type="password" class="form-control" id="inputItemName" name="password1" formControlName="password1">
                             <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['password1'].invalid && addAccountForm.controls['password1'].touched">
                                 <strong *ngIf="addAccountForm.controls['password1'].errors.required"> Confirm Password  is required </strong>
-                            </div>
+                                <strong *ngIf="addAccountForm.controls['password1'].errors.mustMatch">Passwords must match</strong>
+                              </div>
                           </div>
-                          <div class="form-group col-sm-6 col-md-6">
-                            <label for="inputItemName">Phone</label>
-                            <input type="text" class="form-control" id="inputItemName" name="phone" formControlName="phone">
-                            <div class="alert alert-danger" role="alert" *ngIf="addAccountForm.controls['phone'].invalid && addAccountForm.controls['phone'].touched">
-                              <strong *ngIf="addAccountForm.controls['phone'].errors.required"> Phone is required </strong>
-                              <strong *ngIf="addAccountForm.controls['phone'].errors.min"> Phone number is less than 11 numbers</strong>
-                              <strong *ngIf="addAccountForm.controls['phone'].errors.max"> Phone number is more than 11 numbers</strong>
-                            </div>
-                          </div>
+                          
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" id="accountImg" name="Image" accept="image/*" (change)="loadImg($event)" />
                             <label class="custom-file-label" for="accountImg">Choose Images</label>
@@ -124,18 +133,25 @@
                           <div class="form-group col-sm-6 col-md-6">
                             <label for="inputItemName">First Name</label>
                             <input type="text" class="form-control" id="inputItemName" name="first_name" formControlName="first_name">
+                            <div class="alert alert-danger" role="alert" *ngIf="updateAccountForm.controls['first_name'].invalid && updateAccountForm.controls['first_name'].touched">
+                              <strong *ngIf="updateAccountForm.controls['first_name'].errors.required"> First name is required </strong>
+                            </div>
                           </div>
                           <div class="form-group col-sm-6 col-md-6">
                             <label for="inputItemName">Last Name</label>
                             <input type="text" class="form-control" id="inputItemName" name="last_name" formControlName="last_name">
+                            <div class="alert alert-danger" role="alert" *ngIf="updateAccountForm.controls['last_name'].invalid && updateAccountForm.controls['last_name'].touched">
+                              <strong *ngIf="updateAccountForm.controls['last_name'].errors.required"> Last name is required </strong>
+                            </div>
                           </div>
                           <div class="form-group col-sm-6 col-md-6">
                             <label for="inputItemName">Phone</label>
                             <input type="text" class="form-control" id="inputItemName" name="phone" formControlName="phone">
                             <div class="alert alert-danger" role="alert" *ngIf="updateAccountForm.controls['phone'].invalid && updateAccountForm.controls['phone'].touched">
                                 <strong *ngIf="updateAccountForm.controls['phone'].errors.required"> Phone is required </strong>
-                                <strong *ngIf="updateAccountForm.controls['phone'].errors.min"> Phone number is less than 11 numbers</strong>
-                                <strong *ngIf="updateAccountForm.controls['phone'].errors.max"> Phone number is more than 11 numbers</strong>
+                                <strong *ngIf="updateAccountForm.controls['phone'].errors.minlength"> Phone number is less than 11 numbers</strong>
+                                <strong *ngIf="updateAccountForm.controls['phone'].errors.maxlength"> Phone number is more than 11 numbers</strong>
+                                <strong *ngIf="updateAccountForm.controls['phone'].errors.pattern"> Phone number must be numbers only</strong>  
                             </div>
                           </div>
                           <div class="custom-file">
@@ -160,10 +176,17 @@
                         <div class="form-group col-sm-6 col-md-6">
                           <label for="inputItempass">Password</label>
                           <input type="password" class="form-control" id="inputItempass" name="pass" formControlName="password">
+                          <div class="alert alert-danger" role="alert" *ngIf="resetPasswordAccountForm.controls['password'].invalid && resetPasswordAccountForm.controls['password'].touched">
+                            <strong *ngIf="resetPasswordAccountForm.controls['password'].errors.required"> Password  is required </strong>
+                        </div>
                         </div>
                         <div class="form-group col-sm-6 col-md-6">
                           <label for="inputItempass1">Confirm Password</label>
                           <input type="password" class="form-control" id="inputItempass1" name="pass" formControlName="password1">
+                          <div class="alert alert-danger" role="alert" *ngIf="resetPasswordAccountForm.controls['password1'].invalid && resetPasswordAccountForm.controls['password1'].touched">
+                            <strong *ngIf="resetPasswordAccountForm.controls['password1'].errors.required"> Confirm Password is required </strong>
+                            <strong *ngIf="resetPasswordAccountForm.controls['password1'].errors.mustMatch">Passwords must match</strong>
+                          </div>
                         </div>
                       </div>
                         
