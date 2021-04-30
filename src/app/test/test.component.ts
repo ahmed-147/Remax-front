@@ -1,3 +1,4 @@
+import { CartItemService } from './../service/cart-item.service';
 import { IAccount } from './../model/interface/iaccount';
 import { IItem } from './../model/interface/iitem';
 import { OrderServiceService } from './../service/order-service.service';
@@ -31,20 +32,32 @@ export class TestComponent implements OnInit {
     private ClientPhoneService: ClientPhoneService, 
     private ItemServiceService: ItemServiceService, 
     private OrderItemServiceService: OrderItemServiceService, 
-    private OrderServiceService: OrderServiceService) {
-    console.log(localStorage);
-    this.category.name= 'Apple' ;
+    private OrderServiceService: OrderServiceService,
+    private cartitem: CartItemService) {
      
    }
 
   ngOnInit(): void {
-     this.AccountService.signup(this.account).subscribe(data=>{
-       console.log(data);
+     let itms:IItem[];
+     this.ItemServiceService.getAllItems().subscribe(data=>{
+       //itms = data;
+       //this.cartitem.addItem(itms[1]);
+       //this.cartitem.addItem(itms[2]);
+       //this.cartitem.addQuantity(itms[2]);
+       //this.cartitem.addQuantity(itms[2]);
+       //this.cartitem.subtractQuantity(itms[2]);
+       //console.log(localStorage);
+       //this.cartitem.deleteQuantity(itms[1]);
+       //this.cartitem.resetCart();
+       //console.log(localStorage);
+       //console.log(this.cartitem.getCartItems());
      },
      err=>{
        console.log(err);
       
      })
+     
+     
     
     // this.ItemServiceService.addItem(this.item).subscribe(data=>{
     //   console.log(data);
