@@ -1,28 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-enum CheckBoxType { ch_1, ch_2, ch_3,NONE };
+import { Component, EventEmitter,  OnInit, Output } from '@angular/core';
+import { BrandServiceService } from 'src/app/service/brand-service.service';
+import { CategoryServiceService } from 'src/app/service/category-service.service';
+import { IBrand } from 'src/app/model/interface/ibrand';
+import { ICategory } from 'src/app/model/interface/icategory';
+
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit {
-  check_box_type = CheckBoxType;
 
-  currentlyChecked: CheckBoxType;
-  selectCheckBox(targetType: CheckBoxType) {
-    // If the checkbox was already checked, clear the currentlyChecked variable
-    if(this.currentlyChecked === targetType) {
-      this.currentlyChecked = CheckBoxType.NONE;
-      return;
-    }
+ brands : IBrand[];
+ categories : ICategory[];
+ 
+ @Output() filter:EventEmitter<any> = new EventEmitter<any>();
 
-    this.currentlyChecked = targetType;
-  }
-
-  constructor() { }
+  constructor( 
+    private brandServ : BrandServiceService,
+    private categoryServ : CategoryServiceService) { }
 
   ngOnInit(): void {
+
+    this.categoryServ.getAllCategories().subscribe(
+      data => {
+        this.categories = data
+      },
+      err => {
+        console.log(err)
+      }
+    );
+
+    this.brandServ.getAllBrands().subscribe(
+      data => {
+        this.brands = data
+      },
+      err => {
+        console.log(err)
+      }
+    );
+
+  }
+
+  testfun(){
+    console.log('test')
   }
   
+  selectfilter(type:number, filterId : number){
+    this.filter.emit(
+      {
+        'type':type,
+        'filterId': filterId
+      });
+  }
 
 }

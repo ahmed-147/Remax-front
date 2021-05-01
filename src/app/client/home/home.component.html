@@ -2,7 +2,18 @@
 <app-adslider></app-adslider>
 
 
-<app-products-row></app-products-row>
+<app-products-row
+*ngIf="categories?.length"
+[category]= "categories[0]"
+[brand]= "undefined" >
+</app-products-row>
+
+
+<app-products-row
+*ngFor="let row of getBrands()"
+[category]= "undefined"
+[brand]= "row" >
+</app-products-row>
 
 
 <div class="row m-0 p-0 my-3">

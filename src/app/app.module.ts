@@ -43,7 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ADsliderComponent,
     ProductDetalComponent,
     TestComponent,
-    LoginComponent
+    LoginComponent,
   ],
   
   imports: [

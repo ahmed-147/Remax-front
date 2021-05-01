@@ -13,11 +13,11 @@ label{
 
 input[type="checkbox"], input[type="radio"]{
 	position: absolute;
-	right: 9000px;
+	/* right: 9000px; */
 }
 
 /*Check box*/
-input[type="checkbox"] + .label-text:before{
+/* input[type="checkbox"] + .label-text:before{
 	content: "\f096";
 	font-family: "FontAwesome";
 	speak-as: none;
@@ -45,4 +45,4 @@ input[type="checkbox"]:disabled + .label-text{
 input[type="checkbox"]:disabled + .label-text:before{
 	content: "\f0c8";
 	color: rgb(192, 191, 191);
-}
+} */

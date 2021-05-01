@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IBrand } from 'src/app/model/interface/ibrand';
+import { ICategory } from 'src/app/model/interface/icategory';
+import { IItem } from 'src/app/model/interface/iitem';
+import { ItemServiceService } from 'src/app/service/item-service.service';
 
 
 import SwiperCore, {
@@ -19,16 +23,64 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, EffectFade ]);
 })
 export class ProductsRowComponent implements OnInit {
 
-  constructor() { }
+  items : IItem [];
+
+  @Input() category: ICategory;
+  @Input() brand:  IBrand;
+
+  constructor(private itemServ : ItemServiceService) { }
 
   ngOnInit(): void {
+    if(this.category){
+      this.itemServ.getItemsByCategortyId(this.category.id).subscribe(
+        data => {
+          this.items = data 
+        },
+        err => {
+          console.log(err)
+        });
+    }
+    if(this.brand){
+      this.itemServ.getItemsByBrandId(this.brand.id).subscribe(
+        data => {
+          this.items = data 
+        },
+        err => {
+          console.log(err)
+        });
+    }
   }
 
   onSwiper(swiper) {
-    console.log(swiper);
+   
   }
   onSlideChange() {
-    console.log('slide change');
+    
+  }
+
+  getGroupItem(groupNum):IItem[]{
+    let gropITem : IItem [] ;
+    
+    if (this.items?.length >= groupNum * 5 ){
+      gropITem = this.items.slice( (groupNum - 1) * 5, groupNum * 5 );
+
+    }
+    else if (this.items?.length > ((groupNum - 1) * 5) )
+    {
+      let itemsNum = 5 - (this.items?.length - (groupNum - 1)* 5) ;
+      if (groupNum == 1){
+        gropITem = this.items;
+      }
+      else {
+        gropITem = this.items.slice( ( (groupNum - 1) * 5) - itemsNum, this.items?.length ) ;
+      }
+      
+    }
+    else{
+      gropITem = []
+    }
+    
+    return gropITem
   }
 
 }

@@ -48,4 +48,14 @@ export class ItemServiceService {
     return this.http.delete<IItem>(`http://localhost:8000/item/updateordeleteitembyid/${id}/`, httpOptions);
 
   }
+
+  getItemsByCategortyId(id): Observable<IItem[]>{
+    
+    return this.http.get<IItem[]>(`http://localhost:8000/item/getitembycategoryid/${id}/`);
+  }
+  getItemsByBrandId(id): Observable<IItem[]>{
+    
+    return this.http.get<IItem[]>(`http://localhost:8000/item/getitembybrandid/${id}/`);
+
+  }
 }

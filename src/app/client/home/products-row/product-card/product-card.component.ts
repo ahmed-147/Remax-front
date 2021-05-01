@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IItem } from 'src/app/model/interface/iitem';
+import { ItemImgsService } from 'src/app/service/item-imgs.service';
+import { ItemImgs } from './../../../../model/interface/item-imgs';
 
 @Component({
   selector: 'app-product-card',
@@ -7,9 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductCardComponent implements OnInit {
 
-  constructor() { }
+  imgDirectory : string = 'http://localhost:8000';
+  itemImgs : ItemImgs [] ;
+  currentPrict: number = 0;
+
+  @Input() item: IItem;
+  constructor(private itemImgServ :  ItemImgsService) { }
 
   ngOnInit(): void {
+
+    this.itemImgServ.getAllItemImgsByItemId(this.item.id).subscribe(
+      data => {
+        this.itemImgs= data;
+      },
+      err => {
+        console.log(err);
+    });
+
+    if(this.item.discount){
+      this.currentPrict = this.item.price - this.item.discount  
+    }
+    else
+    {
+      this.currentPrict = this.item.price 
+    }
+
+    
+
+
   }
+
+  
 
 }

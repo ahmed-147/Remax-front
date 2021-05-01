@@ -12,9 +12,7 @@ export class ItemImgsService {
     return this.http.get<ItemImgs[]>('http://localhost:8000/item/getitemsimgs/');
   }
   getAllItemImgsByItemId(id): Observable<ItemImgs[]>{
-    
     return this.http.get<ItemImgs[]>(`http://localhost:8000/item/itemimgs/${id}/`);
-
   }
   addItemImgs(pst: any): Observable<ItemImgs> {
     const httpOptions = {

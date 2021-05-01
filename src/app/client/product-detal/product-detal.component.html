@@ -11,34 +11,35 @@
                 ></lib-ngx-image-zoom> -->
                 	
                 <div class="preview-pic tab-content">
-                    <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
-                    <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
-                    <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane active" id="pic-1"><img src="{{imgDirectory}}{{ItemImgs[0].img}}" /></div>
+                    <div *ngFor="let img of ItemImgs; index as i; first as isFirst" class="tab-pane" id="pic-{{i}}"><img src="{{imgDirectory}}{{img.img}}" /></div>
+                    <!-- <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
                     <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-                    <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div> -->
                 </div>
                 <ul class="preview-thumbnail nav nav-tabs">
-                    <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                    <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                    <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                    <!-- <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li> -->
+
+                    <li *ngFor="let img of ItemImgs; index as i;"><a data-target="#pic-{{i}}" data-toggle="tab"><img src="{{imgDirectory}}{{img.img}}" /></a></li>
+                    <!-- <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
                     <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                    <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li> -->
                 </ul>
                  
             </div>
             <div class="row p-3">
-                <div class="pro_card card ">
-                    <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
+                <div class="pro_card card col">
+                    <p class="product-description">{{item?.details }}</p>
                 </div>
             </div>
             
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6 p-3  ">
             <div class="pro_card card sticky-top" style="z-index: inherit;">
-                <h1 class="product-title">men's shoes fashion</h1>
-                <div class="p-1 bg-red text-light rounded discount" >Discount 10%</div>
+                <h1 class="product-title">{{item?.name}}</h1>
+                <div class="p-1 bg-red text-light rounded discount" *ngIf="item?.discount" >Discount {{item?.discount}}</div>
                 <div class="pt-2 my-2">
-                    <a href="#" class=" pr-2 text-info border-right" >brand</a>
+                    <a href="#" class=" pr-2 text-info border-right" >{{brand?.name}}</a>
                     <span class="pl-2 text-muted" >Shk:214546543</span>
                     <div class="text-muted float-right">
                         <a href="#" class="faceLink rounded-circle bg-gray text-white btn-sm mx-1"><i class="fa fa-facebook-f" aria-hidden="true"></i></a>
@@ -56,27 +57,25 @@
                     <option value="red">red</option>
                     <option value="blue">blue</option>
                 </select>
-                <div class="price p-2"> <span class="h6">Price: </span> <span>$180</span></div>
-                <div class="price p-2"> <span class="h6">Quantity: </span> 
-                <select class="form-control w-25 m-2 d-inline-block">
-                    <option value="black">black</option>
-                    <option value="red">red</option>
-                    <option value="blue">blue</option>
-                </select></div>
+                <div class="price p-2"> <span class="h6">Price: </span> <span>{{item?.price | currency : 'EGP'}}</span></div>
+                <div class="price p-2"> <span class="h6">Quantity:  </span> 
+                    <input aria-label="Quantity" class="quantity-selector__value w-25 m-2 d-inline-block" 
+                    min="1" max="{{(item?.quantity)-1}}" name="quantity" value="1" type="number">
+                </div>
                 
                 <div class="row">
                     <div class="col bg-orange rounded-sm text-center p-3 mx-2 add-to-cart">
-                        <a href="#" class="h5 text-white text-decoration-none" >Add to cart</a>
+                        <a  class="h5 text-white text-decoration-none" >Add to cart</a>
                     </div>
                     
                     <div class="col blue rounded-sm text-center p-3 mx-2 buy-it">
-                        <a href="#" class="h5 text-white text-decoration-none" >Buy it now</a>
+                        <a  class="h5 text-white text-decoration-none" >Buy it now</a>
                     </div>
                 </div>     
             </div>
         </div>
     
     </div>
-    <app-products-row></app-products-row>
-    <app-products-row></app-products-row>
+    <!-- <app-products-row></app-products-row>
+    <app-products-row></app-products-row> -->
 </div>

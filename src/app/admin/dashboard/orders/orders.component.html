@@ -15,7 +15,7 @@
         </nav>
         <div class="tab-content bg-white" id="nav-tabContent" >
             <div class="container-fluid tab-pane fade show active shadow" id="nav-current-orders" role="tabpanel" aria-labelledby="nav-current-orders-tab">
-                <div class="row" *ngIf="getOrders() != []">
+                <div class="row" *ngIf="getOrders().length">
                     <div class= "col-sm-8 col-md-8 col-lg-8">
                         <div class="row table-responsive p-1" style="max-height: 400px;">
                             <table class="col table table-sm  table-hover text-center border p-0" >
@@ -82,15 +82,15 @@
                     
                 </div>
 
-                <div class="row" *ngIf="getOrders() == []">
-                    <div class="col" >
-                        <h3 >There are no orders</h3>
+                <div class="row" *ngIf="!getOrders().length">
+                    <div class="col d-flex align-items-center justify-content-center" style="height: 200px;" >
+                        <h3 class="text-center ">There are no orders</h3>
                     </div>
                 </div>
 
             </div>
             <div class="container-fluid tab-pane fade shadow" id="nav-not-dliver-order" role="tabpanel" aria-labelledby="nav-submited-order-tab">
-                <div class="row">
+                <div class="row"  *ngIf="getOrdersNotDeliver().length" >
                     <div class= "col-sm-8 col-md-8 col-lg-8">
                         <div class="row table-responsive p-1" style="max-height: 400px;">
                             <table class="col table table-sm  table-hover text-center border p-0">
@@ -150,9 +150,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" *ngIf="!getOrdersNotDeliver().length">
+                    <div class="col d-flex align-items-center justify-content-center" style="height: 200px;" >
+                        <h3 class="text-center ">There are no orders to deliver</h3>
+                    </div>
+                </div>
             </div>
             <div class="container-fluid tab-pane fade shadow" id="nav-old-order" role="tabpanel" aria-labelledby="nav-old-order-tab">
-                <div class="row">
+                <div class="row" *ngIf="getOrdersDelivered().length">
                     <div class= "col-sm-8 col-md-8 col-lg-8">
                         <div class="row table-responsive p-1" style="max-height: 400px;">
                             <table class="col table table-sm  table-hover text-center border p-0">
@@ -211,6 +216,11 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="!getOrdersDelivered().length">
+                    <div class="col d-flex align-items-center justify-content-center" style="height: 200px;" >
+                        <h3 class="text-center ">There are no orders</h3>
                     </div>
                 </div>
             </div>

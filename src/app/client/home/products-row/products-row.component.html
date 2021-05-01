@@ -1,39 +1,52 @@
+<div class="row pt-5 justify-content-between" *ngIf="items?.length">
+  <div class="col">
+    <h1 class="px-4 m-0 font-weight-bold" *ngIf="category">{{category.name}}</h1>
+    <h1 class="px-4 m-0 font-weight-bold" *ngIf="brand">{{brand.name}}</h1>
+  </div>
+  <div class="col-2 text-center " >
+    <a id="showMorelink" *ngIf="category" class="text-info text-decoration-none"
+    [routerLink]="['/products/1/',category?.id]"
+      >Show More 
+      <!-- <i class="fas fa-angle-right"></i> -->
+      <i class="fas fa-chevron-right"></i></a>
+      <a id="showMorelink" *ngIf="brand" class="text-info text-decoration-none"
+    [routerLink]="['/products/2/',brand?.id]"
+      >Show More 
+      <!-- <i class="fas fa-angle-right"></i> -->
+      <i class="fas fa-chevron-right"></i></a>
+  </div>
+</div>
 
-
-<div class="row p-4 m-0">
+<div class="row pt-2 px-4 m-0" *ngIf="items?.length">
     <swiper 
     [slidesPerView]="1"
     [spaceBetween]="50"
     (swiper)="onSwiper($event)"
     (slideChange)="onSlideChange()"
     [pagination]="{ clickable: true }"
-    [navigation]="true"
-    
-  >
+    [navigation]="true">
+
     <ng-template  swiperSlide >
       <div class="card-group">
-          <div class="card col">
-            <app-product-card></app-product-card>
+          <div class="card col " *ngFor="let item of getGroupItem(1)">
+            <app-product-card
+              [item]="item"
+            ></app-product-card>
           </div>
-          <div class="card col">
-            <app-product-card></app-product-card>
-          </div>
-          <div class="card col">
-            <app-product-card></app-product-card>
-          </div>
-          <div class="card col">
-            <app-product-card></app-product-card>
-          </div>
-          <div class="card col">
-            <app-product-card></app-product-card>
-          </div>
-          
       </div>
     </ng-template>
-    <ng-template  swiperSlide >
+    <ng-template  swiperSlide *ngIf="getGroupItem(2)?.length">
+      <div class="card-group">
+          <div class="card col " *ngFor="let item of getGroupItem(2)" >
+            <app-product-card
+              [item]="item"
+            ></app-product-card>
+          </div>
+      </div>
+    </ng-template>
+    <!-- <ng-template  swiperSlide >
       <div class="card-group">
         <div class="card col">
-          <!-- <img src="..." class="card-img-top" alt="..."> -->
   
           <div class="card-img-top product-grid " >
             <img class="pic-1 p-3 text-center" style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
@@ -49,7 +62,6 @@
           </div>
         </div>
           <div class="card col">
-            <!-- <img src="..." class="card-img-top" alt="..."> -->
     
             <div class="card-img-top product-grid " >
               <img class="pic-1 p-3 text-center" style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
@@ -65,7 +77,6 @@
             </div>
           </div>
           <div class="card col">
-            <!-- <img src="..." class="card-img-top" alt="..."> -->
     
             <div class="card-img-top product-grid " >
               <img class="pic-1 p-3 text-center" style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
@@ -81,7 +92,6 @@
             </div>
           </div>
           <div class="card col">
-            <!-- <img src="..." class="card-img-top" alt="..."> -->
     
             <div class="card-img-top product-grid " >
               <img class="pic-1 p-3 text-center" style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
@@ -97,7 +107,6 @@
             </div>
           </div>
           <div class="card col">
-            <!-- <img src="..." class="card-img-top" alt="..."> -->
     
             <div class="card-img-top product-grid " >
               <img class="pic-1 p-3 text-center" style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
@@ -113,42 +122,12 @@
             </div>
           </div>
       </div>
-    </ng-template>
-    <ng-template pag>
+    </ng-template> -->
+    <!-- <ng-template pagination>
 
-    </ng-template>
+    </ng-template> -->
     <div class="swiper-pagination"></div>
   </swiper>
-
-  <!-- <ngb-carousel *ngIf="images">
-    <ng-template ngbSlide>
-      <div class="wrapper">
-        <img [src]="images[1]" alt="Random first slide">
-      </div>
-      <div class="carousel-caption">
-        <h3>First Slide</h3>
-        <p> Angular 10 Carousel Example </p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="wrapper">
-        <img [src]="images[1]" alt="Random second slide">
-      </div>
-      <div class="carousel-caption">
-        <h3>Second Slide</h3>
-        <p> Check out Techiediaries</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="wrapper">
-        <img [src]="images[2]"  alt="Random third slide">
-      </div>
-      <div class="carousel-caption">
-        <h3>Third Slide</h3>
-        <p>for full tutorial...</p>
-      </div>
-    </ng-template>
-</ngb-carousel> -->
 
 </div>
  

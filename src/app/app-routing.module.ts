@@ -13,7 +13,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: 'login', component:  LoginComponent },
   { path: 'dashboard', loadChildren: () => import(`./admin/dashboard/dashboard.module`).then(m => m.DashboardModule) },
-  { path: 'products', component:  ShowProductsComponent },
+  { path: 'products/:typeid/:fid', component:  ShowProductsComponent },
   { path: 'test', component: TestComponent},
   { path: 'products/:pid', component:  ProductDetalComponent },
   { path: 'home', component:  HomeComponent },

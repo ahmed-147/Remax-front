@@ -5,6 +5,27 @@
         <form class="bg-white">
           <h2 class="pl-3">Filters</h2>
           <div class="form-check">
+            <input class="form-check-input" type="radio" name="filters" id="exampleRadios1" (change)="selectfilter(0, 0)"  checked>
+            <label class="form-check-label" for="exampleRadios1">
+              No Filter 
+            </label>
+          </div>
+          <h4 class="text-secondary">Brands</h4>
+          <div class="form-check" *ngFor="let brand of brands">
+            <input class="form-check-input" type="radio" name="filters"  (change)="selectfilter(2, brand?.id)" >
+            <label class="form-check-label" >
+              {{brand.name}}
+            </label>
+          </div>
+          
+          <h4 class="text-secondary">Categories</h4>
+          <div class="form-check" *ngFor="let categ of categories">
+            <input class="form-check-input" type="radio" name="filters"  (change)="selectfilter(1, categ?.id)" >
+            <label class="form-check-label" >
+              {{categ.name}}
+            </label>
+          </div>
+          <!-- <div class="form-check">
             <label>
               <input
                 type="checkbox"
@@ -14,8 +35,8 @@
               />
               <span class="label-text">100 watt</span>
             </label>
-          </div>
-          <div class="form-check">
+          </div> -->
+          <!-- <div class="form-check">
             <label>
               <input
                 type="checkbox"
@@ -36,7 +57,29 @@
               />
               <span class="label-text">2 in 1 cable</span>
             </label>
+          </div> -->
+          <!-- <div class="form-check">
+            <label>
+              <input
+                type="checkbox"
+                name="check"
+                [checked]="currentlyChecked === check_box_type.ch_2"
+                (click)="selectCheckBox(check_box_type.ch_2)"
+              />
+              <span class="label-text">100 watt</span>
+            </label>
           </div>
+          <div class="form-check">
+            <label>
+              <input
+                type="checkbox"
+                name="check"
+                [checked]="currentlyChecked === check_box_type.ch_3"
+                (click)="selectCheckBox(check_box_type.ch_3)"
+              />
+              <span class="label-text">2 in 1 cable</span>
+            </label>
+          </div> -->
         </form>
       </div>
   </div>
