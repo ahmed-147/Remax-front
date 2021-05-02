@@ -11,8 +11,8 @@
                 ></lib-ngx-image-zoom> -->
                 	
                 <div class="preview-pic tab-content">
-                    <div class="tab-pane active" id="pic-1"><img src="{{imgDirectory}}{{ItemImgs[0].img}}" /></div>
-                    <div *ngFor="let img of ItemImgs; index as i; first as isFirst" class="tab-pane" id="pic-{{i}}"><img src="{{imgDirectory}}{{img.img}}" /></div>
+                    <!-- <div class="tab-pane active" id="pic-1"><img src="{{imgDirectory}}{{ItemImgs[0].img}}" /></div>
+                    <div *ngFor="let img of ItemImgs; index as i; first as isFirst" class="tab-pane" id="pic-{{i}}"><img src="{{imgDirectory}}{{img.img}}" /></div> -->
                     <!-- <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
                     <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
                     <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div> -->
@@ -60,12 +60,12 @@
                 <div class="price p-2"> <span class="h6">Price: </span> <span>{{item?.price | currency : 'EGP'}}</span></div>
                 <div class="price p-2"> <span class="h6">Quantity:  </span> 
                     <input aria-label="Quantity" class="quantity-selector__value w-25 m-2 d-inline-block" 
-                    min="1" max="{{(item?.quantity)-1}}" name="quantity" value="1" type="number">
+                    min="1" max="{{(item?.quantity)-1}}" name="quantity" value="1" type="number" #quantity>
                 </div>
                 
                 <div class="row">
                     <div class="col bg-orange rounded-sm text-center p-3 mx-2 add-to-cart">
-                        <a  class="h5 text-white text-decoration-none" >Add to cart</a>
+                        <a (click)="addToCart(item,quantity.value)" class="h5 text-white text-decoration-none btn" >Add to cart</a>
                     </div>
                     
                     <div class="col blue rounded-sm text-center p-3 mx-2 buy-it">

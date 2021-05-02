@@ -4,7 +4,7 @@ npm install -s @types/jwt-decode
 
 
 pip install django-cors-headers
-
+pip install django-filter
 
 tasks
 #add item img interface and services

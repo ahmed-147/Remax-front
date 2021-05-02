@@ -10,10 +10,10 @@ export class CartItemService {
   constructor() { 
     console.log(localStorage.getItem('items'));
     if (localStorage.getItem('items') != null) {
-      console.log('good');
+      //console.log('good');
     }
     else {
-      console.log('not good');
+      //console.log('not good');
       let items:CartItem[] = [];
       localStorage.setItem("items", JSON.stringify(items));
   }
@@ -24,22 +24,22 @@ export class CartItemService {
   setCartItem(){
     
   }
-  addItem(iitem: IItem) {
+  addItem(iitem: IItem, quantity:number) {
     var items:CartItem[] = <CartItem[]>JSON.parse(localStorage.getItem("items"));
     
     let item = items.find(arr => arr.item.id == iitem.id);
-    console.log(item);
+    //console.log(item);
     if (item){
       items = items.map(arr =>{
         if(arr.item.id == iitem.id){
-          arr.quantity+=1;
+          arr.quantity =  Number(quantity) ;
         }
         return arr;
       })
 
     }
     else{
-      let cartitem:CartItem = {item:iitem,quantity:1};
+      let cartitem:CartItem = {item:iitem,quantity:Number(quantity)};
       items.push(cartitem);
     }
     localStorage.setItem("items", JSON.stringify(items));
@@ -50,7 +50,7 @@ subtractQuantity(iitem: IItem){
   items = items.map(arr =>{
     if(arr.item.id == iitem.id)
     {
-      arr.quantity-=1;
+      arr.quantity =  Number(arr.quantity) -1;
     }
     return arr;
 
@@ -62,7 +62,7 @@ addQuantity(iitem: IItem){
   items = items.map(arr =>{
     if(arr.item.id == iitem.id)
     {
-      arr.quantity+=1;
+      arr.quantity =  Number(arr.quantity) +1;
     }
     return arr;
 

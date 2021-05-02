@@ -63,13 +63,13 @@ export class TestComponent implements OnInit {
      
      
     
-    // this.ItemServiceService.addItem(this.item).subscribe(data=>{
-    //   console.log(data);
-    // },
-    // err=>{
-    //   console.log(err);
+    //  this.ClientService.activeClientKey('hassan@gmail.com', 1035).subscribe(data=>{
+    //    console.log(data);
+    //  },
+    //  err=>{
+    //    console.log(err);
       
-    // })
+    //  })
     
     
   }

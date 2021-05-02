@@ -14,15 +14,14 @@
         color: #ee0000;
     }
     
-  button,
-  input[type="submit"] {
+    .quantityButton {
     padding: 0;
     overflow: visible;
     background: none;
     border: none;
     border-radius: 0;
     -webkit-appearance: none; }
-  
+   
   .quantity-selector {
     display: inline-flex;
     align-items: center;

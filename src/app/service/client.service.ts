@@ -61,4 +61,28 @@ export class ClientService {
     return this.http.delete<IClient>(`http://localhost:8000/client/clients/${id}/`, httpOptions);
 
   }
+  sendClientKey(email): Observable<IClient>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        //,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    
+    return this.http.post<IClient>(`http://localhost:8000/client/postclientkey/`,{email:email}, httpOptions);
+
+  }
+  activeClientKey(email, key): Observable<IClient>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': ' */*'
+        //,'Authorization': 'jwt '+localStorage.getItem('token')
+      })
+    };
+    
+    return this.http.post<IClient>(`http://localhost:8000/client/clientactivekey/`,{email:email, key:key}, httpOptions);
+
+  }
 }

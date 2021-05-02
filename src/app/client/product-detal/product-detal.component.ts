@@ -1,3 +1,4 @@
+import { CartItemService } from './../../service/cart-item.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IItem } from 'src/app/model/interface/iitem';
@@ -29,7 +30,8 @@ export class ProductDetalComponent implements OnInit {
     private itemImgServ : ItemImgsService,
     private itemServ : ItemServiceService,
     private barndServ : BrandServiceService,
-    private categServ : CategoryServiceService
+    private categServ : CategoryServiceService,
+    private cartServices: CartItemService,
     ) {}
 
   ngOnInit(): void {
@@ -68,6 +70,13 @@ export class ProductDetalComponent implements OnInit {
     });
 
     
+
+  }
+  addToCart(item:IItem,quantity:number)
+  {
+    this.cartServices.addItem(item,quantity);
+    console.log(this.cartServices.getCartItems());
+
 
   }
 
