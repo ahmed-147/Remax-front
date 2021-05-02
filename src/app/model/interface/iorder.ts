@@ -5,4 +5,5 @@ export interface IOrder {
     total?:number,
     delivery_cost?:number,
     client:number,    
+    address:string,
 }
