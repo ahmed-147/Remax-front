@@ -143,8 +143,8 @@
                 aria-haspopup="true" 
                 aria-expanded="false" >All Products </a>
                 <ul class="dropdown-menu" aria-labelledby="allProductsDropdownMenuLink">
-                  <li class="dropdown-item" ><a  routerLinkActive="active" routerLink="/products/0/0/">All Products</a></li>
-                    <li class="dropdown-item" *ngFor="let categ of categories"><a   [routerLink]="['/products/1',categ?.id ]" >{{categ?.name}}</a></li>
+                  <li ><a class="dropdown-item" routerLinkActive="active" routerLink="/products/0/0/">All Products</a></li>
+                    <li *ngFor="let categ of categories"><a  class="dropdown-item" href="http://localhost:4200/products/1/{{categ?.id }}" >{{categ?.name}}</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -153,7 +153,7 @@
                 aria-haspopup="true" 
                 aria-expanded="false" >Barnds</a>
                 <ul class="dropdown-menu" aria-labelledby="allBrandsDropdownMenuLink">
-                    <li *ngFor="let brand of brands"><a  class="dropdown-item" routerLinkActive="active" [routerLink]="['/products/2',brand?.id ]">{{brand?.name}}</a></li>
+                    <li *ngFor="let brand of brands"><a  class="dropdown-item" href="http://localhost:4200/products/2/{{brand?.id}}" >{{brand?.name}}</a></li>
                 </ul>
             </li>
             <li class="nav-item">

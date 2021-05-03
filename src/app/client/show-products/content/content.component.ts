@@ -49,7 +49,8 @@ export class ContentComponent implements OnInit  {
         err => {
           console.log(err);
       });
-    }else if (this.type == 1){
+    }
+    else if (this.type == 1){
       this.ctegServ.getAllCategoriesById(this.filter).subscribe(
         data => {
           this.titel = data.name;
@@ -57,10 +58,9 @@ export class ContentComponent implements OnInit  {
         err => {
           console.log(err);
       });
-    }else{
-
+    }
+    else{
       this.titel = 'All Products';
-
     }
    
     this.itemServ.getAllItems().subscribe(
