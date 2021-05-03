@@ -28,66 +28,59 @@
 <div class="row m-0 p-0 my-3">
     <div class="col p-5">
         <h1 class="row  font-weight-bold">Brands we distribute</h1>
-        <div class="row ">
-            <div class="card-group col ">
-                <div class="card  ">
-                  <div class="card-body text-center animate__fadeInDownBig animate__delay-2 2s">
-                    <img src="../../../assets/brands/107.webp" alt="" class="af_c_brand_img_sq">
-                  </div>
-                </div>
-                <div class="card ">
-                    <div class="card-body text-center ">
-                        <img src="../../../assets/brands/Q1.webp" alt="" class="af_c_brand_img_txt">
-                    </div>
-                  </div>
-                  <div class="card ">
-                    <div class="card-body text-center ">
-                        <img src="../../../assets/brands/P1.webp" alt="" class="af_c_brand_img_txt">
-                    </div>
-                  </div>
-                  <div class="card ">
-                    <div class="card-body text-center ">
-                        <img src="../../../assets/brands/1e.webp" alt="" class="af_c_brand_img_sq">
-                    </div>
-                  </div>
-                  <div class="card ">
-                    <div class="card-body text-center ">
-                        <img src="../../../assets/brands/171.webp" alt="" class="af_c_brand_img_sq">
-                    </div>
-                  </div>
-                
+        <div class="row row-cols-sm-3 row-cols-md-4 row-cols-lg-5 ">
+          <div class="card col" *ngFor="let brans of brands">
+            <div class="card-body text-center animate__fadeInDownBig animate__delay-2 2s">
+              <img src="{{imgDirectory}}{{brans?.img}}" alt="" class="af_c_brand_img_sq">
             </div>
-        </div>
-        <div class="row ">
-            <div class="card-group col ">
-                <div class="card  ">
-                  <div class="card-body text-center animate__fadeInDownBig animate__delay-2 2s">
-                    <img src="../../../assets/brands/107.webp" alt="" class="af_c_brand_img_sq">
-                  </div>
-                </div>
-                <div class="card ">
-                    <div class="card-body text-center ">
-                        <img src="../../../assets/brands/Q1.webp" alt="" class="af_c_brand_img_txt">
-                    </div>
-                  </div>
-                  <div class="card ">
-                    <div class="card-body text-center ">
-                        <img src="../../../assets/brands/P1.webp" alt="" class="af_c_brand_img_txt">
-                    </div>
-                  </div>
-                  <div class="card ">
-                    <div class="card-body text-center ">
-                        <img src="../../../assets/brands/1e.webp" alt="" class="af_c_brand_img_sq">
-                    </div>
-                  </div>
-                  <div class="card ">
-                    <div class="card-body text-center ">
-                        <img src="../../../assets/brands/171.webp" alt="" class="af_c_brand_img_sq">
-                    </div>
-                  </div>
-                
+          </div>
+          <!-- <div class="card col">
+            <div class="card-body text-center ">
+                <img src="../../../assets/brands/Q1.webp" alt="" class="af_c_brand_img_txt">
             </div>
+          </div>
+          <div class="card col">
+            <div class="card-body text-center ">
+                <img src="../../../assets/brands/P1.webp" alt="" class="af_c_brand_img_txt">
+            </div>
+          </div>
+          <div class="card col">
+            <div class="card-body text-center ">
+                <img src="../../../assets/brands/1e.webp" alt="" class="af_c_brand_img_sq">
+            </div>
+          </div>
+          <div class="card col">
+            <div class="card-body text-center ">
+                <img src="../../../assets/brands/171.webp" alt="" class="af_c_brand_img_sq">
+            </div>
+          </div>
+          <div class="card col">
+            <div class="card-body text-center animate__fadeInDownBig animate__delay-2 2s">
+              <img src="../../../assets/brands/107.webp" alt="" class="af_c_brand_img_sq">
+            </div>
+          </div>
+          <div class="card col">
+            <div class="card-body text-center ">
+                <img src="../../../assets/brands/Q1.webp" alt="" class="af_c_brand_img_txt">
+            </div>
+          </div>
+          <div class="card col">
+            <div class="card-body text-center ">
+                <img src="../../../assets/brands/P1.webp" alt="" class="af_c_brand_img_txt">
+            </div>
+          </div>
+          <div class="card col">
+            <div class="card-body text-center ">
+                <img src="../../../assets/brands/1e.webp" alt="" class="af_c_brand_img_sq">
+            </div>
+          </div>
+          <div class="card col">
+            <div class="card-body text-center ">
+                <img src="../../../assets/brands/171.webp" alt="" class="af_c_brand_img_sq">
+            </div>
+          </div> -->
         </div>
+        
     </div>
 </div>
 

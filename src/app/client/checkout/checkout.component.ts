@@ -15,6 +15,7 @@ import { OrderServiceService } from './../../service/order-service.service';
 import { OrderItemServiceService } from './../../service/order-item-service.service';
 import { element } from 'protractor';
 import { IOrderItem } from './../../model/interface/iorder-item';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -45,7 +46,8 @@ export class CheckoutComponent implements OnInit {
     private OrderItemServiceService:OrderItemServiceService,
     private fb: FormBuilder,
     private ClientService:ClientService,
-    
+    private router : Router,
+        
   
     ) 
     {
@@ -280,7 +282,8 @@ export class CheckoutComponent implements OnInit {
 
 
         }
-        )
+        );
+        this.router.navigate['/home']
       }
     )
   }

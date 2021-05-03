@@ -7,6 +7,8 @@ import { ItemServiceService } from 'src/app/service/item-service.service';
 import { OrderItemServiceService } from 'src/app/service/order-item-service.service';
 import { OrderServiceService } from 'src/app/service/order-service.service';
 import { IClient } from 'src/app/model/interface/iclient';
+import { IClientLocation } from 'src/app/model/interface/iclient-location';
+import { ClientLocationService } from 'src/app/service/client-location.service';
 
 @Component({
   selector: 'app-orders',
@@ -19,6 +21,7 @@ export class OrdersComponent implements OnInit {
   OrderItems : IOrderItem[];
   items : IItem[]; 
   clients : IClient[];
+  clientAddresss : IClientLocation [] ;
 
   orderSelect : boolean = false; 
 
@@ -26,7 +29,8 @@ export class OrdersComponent implements OnInit {
     private orderServ : OrderServiceService, 
     private orderItemServ : OrderItemServiceService,
     private itemServ : ItemServiceService,
-    private clientServ : ClientService ) { }
+    private clientServ : ClientService,
+    private clientlocatServ : ClientLocationService) { }
 
   ngOnInit(): void {
     this.fillTableData()
@@ -59,6 +63,15 @@ export class OrdersComponent implements OnInit {
       console.log(err.detail);
     });
 
+    this.clientlocatServ.getAllClientLocations().subscribe(
+      data => {
+        this.clientAddresss = data;
+      },
+      err => {
+        console.log(err)
+      }
+    );
+     
   }
 
   showOrderItems(OrderId){
@@ -75,7 +88,12 @@ export class OrdersComponent implements OnInit {
   }
 
   deleteOrder(idItem){
-    
+    this.orderServ.deleteOrderById(idItem).subscribe(data=>{
+    },
+    err=>{
+      console.log(err.detail);
+    });
+
   }
 
   getItemName(itemId):any{
@@ -96,7 +114,15 @@ export class OrdersComponent implements OnInit {
     else {
       return 'No Name'
     }
-    
+  }
+  getaddress(addressId):any{
+    let orderAddress = this.clientAddresss?.find(element =>{return element.id == addressId } )
+    if (orderAddress){
+      return orderAddress.location
+    }
+    else {
+      return 'No localtion'
+    }
   }
 
   getItemPrice(itemId, itemQui): any {

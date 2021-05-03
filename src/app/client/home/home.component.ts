@@ -12,7 +12,7 @@ import { element } from 'protractor';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  imgDirectory : string = 'http://localhost:8000';
   categories : ICategory[];
   brands : IBrand[];
 
