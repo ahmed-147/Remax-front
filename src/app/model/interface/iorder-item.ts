@@ -1,5 +1,5 @@
 export interface IOrderItem {
-    id:number,
+    id?:number,
     item:number,
     order:number,
     quantity:number,

@@ -79,6 +79,7 @@ export class NavbarComponent implements OnInit {
   getALLItems()
   {
     this.cartItems = this.CartItemService.getCartItems();
+    return this.cartItems;
   }
   getCurrentPrice(item:IItem)
   {
