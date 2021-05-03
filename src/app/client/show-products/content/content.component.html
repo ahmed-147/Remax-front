@@ -56,12 +56,12 @@
             <h1 class="font-weight-bold ">{{titel}} </h1>
           </div>
         </div>
-        <div class="row row-cols-sm-3 justify-content-between">
+        <!-- <div class="row row-cols-sm-3 justify-content-between">
           <div class="col hidden-sm-up">
             Showing 1 - 24 of 30 products
           </div>
           <div class="col">
-            <!-- first one  -->
+            
             <a class="text-secondary text-decoration-none dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">Action</a>
@@ -72,7 +72,7 @@
             </div>
           </div>
           <div class="col">
-            <!-- first one  -->
+            
             <a class="text-secondary text-decoration-none dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">Action</a>
@@ -82,8 +82,8 @@
               <a class="dropdown-item" href="#">Separated link</a>
             </div>
           </div>
-        </div>
-        <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4" >
+        </div> -->
+        <div class="row mb-4 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" >
           
           <div class="card col" *ngFor="let item of getContentItem()">
             <app-product-card
@@ -94,19 +94,15 @@
 
         </div>
         <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
+          <ul class="pagination justify-content-end">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1">Previous</a>
             </li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
+              <a class="page-link" href="#">Next</a>
             </li>
           </ul>
         </nav>

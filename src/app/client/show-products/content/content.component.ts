@@ -59,6 +59,8 @@ export class ContentComponent implements OnInit  {
       });
     }else{
 
+      this.titel = 'All Products';
+
     }
    
     this.itemServ.getAllItems().subscribe(
