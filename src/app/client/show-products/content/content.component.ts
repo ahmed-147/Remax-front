@@ -2,15 +2,24 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IItem } from 'src/app/model/interface/iitem';
 import { ItemServiceService } from 'src/app/service/item-service.service';
 import { element } from 'protractor';
+import { CategoryServiceService } from 'src/app/service/category-service.service';
+import { BrandServiceService } from 'src/app/service/brand-service.service';
+import { IBrand } from 'src/app/model/interface/ibrand';
+import { ICategory } from 'src/app/model/interface/icategory';
+
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit  {
+
+  titel : string =''; 
 
   items : IItem[];
+  barnd : IBrand;
+  category : ICategory;
 
   @Input() type: number;
   @Input() filter:  number;
@@ -19,17 +28,46 @@ export class ContentComponent implements OnInit {
   @Input() selectfilterId:  number;
 
   constructor(
-    private itemServ : ItemServiceService) { }
+    private itemServ : ItemServiceService,
+    private ctegServ : CategoryServiceService,
+    private brandServ  : BrandServiceService
+    ) { }
 
   ngOnInit(): void {
-    console.log(this.type + '' + this.filter)
     this.itemServ.getAllItems().subscribe(
       data => {
         this.items = data;
       },
       err => {
         console.log(err);
+    });
+    if (this.type == 2){
+      this.brandServ.getAllBrandsById(this.filter).subscribe(
+        data => {
+          this.titel = data.name;
+        },
+        err => {
+          console.log(err);
       });
+    }else if (this.type == 1){
+      this.ctegServ.getAllCategoriesById(this.filter).subscribe(
+        data => {
+          this.titel = data.name;
+        },
+        err => {
+          console.log(err);
+      });
+    }else{
+
+    }
+   
+    this.itemServ.getAllItems().subscribe(
+      data => {
+        this.items = data;
+      },
+      err => {
+        console.log(err);
+    });
   }
 
   getContentItem(){
@@ -45,7 +83,7 @@ export class ContentComponent implements OnInit {
       }
 
     }
-    else
+    else if (this.type == 2)
     {
       if (this.selectType == 0){
         return this.items?.filter(element => {return element.brand == this.filter });
@@ -56,7 +94,10 @@ export class ContentComponent implements OnInit {
       else if (this.selectType == 2){
         return this.items?.filter(element => {return element.brand == this.filter && element.brand == this.selectfilterId });
       }
-  
+    }
+    else 
+    {
+      return this.items
     }
   }
 }

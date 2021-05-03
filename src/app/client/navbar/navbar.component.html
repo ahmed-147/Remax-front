@@ -1,9 +1,9 @@
 <div class="container-fluid sticky-top" style="background-color: #05091e;">
     <div class="row">
-        <div class="col-sm-1 d-block d-sm-none">
+        <div class="col-sm-1 d-inline-block d-sm-none">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#linksNav" aria-controls="linksNav" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon "></span>
-             </button>
+              <i class="fa fa-bars text-light" aria-hidden="true"></i>
+            </button>
         </div>
         <div class="col-lg-2 col-sm-1">
             <a class="navbar-brand pl-4" routerLink="/home">
@@ -11,170 +11,122 @@
             </a>        
         </div>
         
-        <div class="col-lg-8 col-sm-8">
-            <div class="input-group mt-4">
-                <input class="border-0 rounded-0" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon2">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="input-group mt-4 ">
+                <input class="border-0 rounded-0" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon2"
+                [(ngModel)]="searchTerm" (keyup)="serachResult()">
+                <ul class="position-fixed bg-white list-group overflow-auto" *ngIf="results"  id="searchList">
+                  <li class="list-group-item" *ngFor="let result of results | slice:0:9" >
+                    <a [routerLink]="['/products',result.id ]" target="_blank">
+                      <img  src="../../../assets/noImgItem.png" width="50" height="50" alt="Sample" *ngIf="!getItemImg(result.id)?.length"  >
+                      <img src="{{ imgDirectory }}{{ getItemImg(result.id)[0]?.img}}" width="50" height="50" alt="{{result.name}}" *ngIf="getItemImg(result.id)?.length" >
+                      {{ result.name }}
+                    </a>
+                  </li>
+                </ul>
                 <div class="input-group-append ">
+
                     <a class="btn btn-light text-dark dropdown-toggle border-0 rounded-0" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         All Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="#dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" *ngFor="let categ of categories"  >{{categ?.name}}</a>
                     </div>
                 
                   <button class="btn" type="button"><i class="far fa-search text-light"></i></button>
                 </div>
-              </div>            
+            </div>            
         </div>
-        <div class="col-lg-2 col-sm-2 dropdown" >
+        <div class="col-lg-2 col-md-2 col-sm-2  dropdown" >
             <button id="cartDropdownBtn" class="btn mt-4 dropdown-toggle" style="color: white;" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false" >
                 <i class="far fa-shopping-cart fa-2x">
-                </i> <span class="badge badge-dark rounded-circle align-top mr-2">0</span> Cart
+                </i> <span class="badge badge-dark rounded-circle align-top mr-2">{{totalQuantity()}}</span> <span class="d-none d-md-inline "> Cart</span>
             </button>
-            <div id="cartDropdown" class="dropdown-menu animate slideIn" >
-                <form >
-                    <div class="container-fluid p-4">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-7" > 
-                                    <div class="row">
-                                        
+            <div id="cartDropdown" class="dropdown-menu animate slideIn overflow-auto" styel="max-height:150px;" >
+                <form class=""  >
+                    <div class="container-fluid p-4 " >
+                      <div class="row ">
+                        <div class="col container-fluid  " >
+                          <div class="row border-bottom p-2 my-1" *ngFor="let item of cartItems" >
+                            <div class="col">
+                              <div class="row d-flex align-items-center" >
+                                <div class="col-8">
+                                  <div class="row">
+                  
                                     <div class="col-4">
-                                        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                                            <a href="#!">
-                                              <img class="img-fluid w-100"
-                                              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-8">
-                                            <div>
-                                              <h5>Blue denim shirt</h5>
-                                              <p class="mb-3 text-muted text-uppercase small">Shirt - blue</p>
-                                              <p class="mb-2 text-muted text-uppercase small">Color: blue</p>
-                                              <p class="mb-3 text-muted text-uppercase small">Size: M</p>
-                                            </div>
-                                             <p class="mb-0"><span>$17.99</span></p>
-                
-                                    </div>
-                                    </div>
-                                    
-                                  </div>
-                                  <div  class="col-3">
-                                      <div class="row">
-                                            <button style="display: inline;width: 20%;"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                           ><i class="fa fa-minus"></i></button>
-                                            <input style="display: inline;width: 60%;"  min="0" name="quantity" value="1" type="number">                         
-                                            <button style="display: inline;width: 20%;" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                           ><i class="fa fa-plus"></i></button>
+                                      <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                                        <a [routerLink]="['/products',item.item.id ]">
+                                          <img class="img-fluid w-100"
+                                            src="../../../assets/noImgItem.png" alt="Sample" *ngIf="!getItemImg(item.item.id)?.length" >
+                                          <img class="img-fluid w-100"
+                                            src="{{imgDirectory}}{{getItemImg(item.item.id)[0].img}}" alt="Sample" *ngIf="getItemImg(item.item.id)?.length" >
+                                        </a>
                                       </div>
-                                      <a onclick="" href=#>Remove</a>
+                                    </div>
+                  
+                                    <div class="col-8">
+                                      <div class="card-body">
+                                        <h5 class="card-title">{{item.item.name}}</h5>
+                                        <p class="card-text text-truncate">{{item.item.details}}.</p>
+                                        <p class="mb-0 text-info"><span><strong>{{ getTotalPrice(item)| currency : 'EGP'}}</strong></span></p>
+                                        <p class="price price--compare" *ngIf="item.discount"><del>{{item.item.price}}</del></p>
+                                      </div>
+                  
+                                    </div>
                                   </div>
-                                  <div class="col-2">
-                                    <h4> <p class="mb-0"><span><strong>$17.99</strong></span></p></h4>
-                                  </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-7" > 
-                                    <div class="row">
-                                        
-                                    <div class="col-4">
-                                        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                                            <a href="#!">
-                                              <img class="img-fluid w-100"
-                                              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
-                                            </a>
+                  
+                                </div>
+                                <div class="col-4">
+                                  <!--
+                                            <div class="row">
+                                                <button style="display: inline;width: 20%;"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                              ><i class="fa fa-minus"></i></button>
+                                                <input style="display: inline;width: 60%;"  min="0" name="quantity" value="1" type="number">                         
+                                                <button style="display: inline;width: 20%;" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                              ><i class="fa fa-plus"></i></button>
                                           </div>
-                
-                                    </div>
-                                    
-                                    <div class="col-8">
-                                            <div>
-                                              <h5>Blue denim shirt</h5>
-                                              <p class="mb-3 text-muted text-uppercase small">Shirt - blue</p>
-                                              <p class="mb-2 text-muted text-uppercase small">Color: blue</p>
-                                              <p class="mb-3 text-muted text-uppercase small">Size: M</p>
-                                            </div>
-                                             <p class="mb-0"><span>$17.99</span></p>
-                
-                                    </div>
-                                    </div>
-                                    
+                                         -->
+                                  <div class="quantity-selector">
+                                    <button type="button" class="quantity-selector__button quantityButton" data-action="decrease-quantity"
+                                      data-quantity="1" data-line-id="32463935373372:2c6eca2e264be199b03d8637acda4cba"
+                                      aria-label="Decrease quantity by 1" title="Decrease quantity by 1"
+                                      (click)="subQuantity(item)" >
+                                      <svg class="icon icon--minus" viewBox="0 0 10 2" role="presentation">
+                                        <path d="M10 0v2H0V0z" fill="currentColor"></path>
+                                      </svg>
+                                    </button>
+                                    <input aria-label="Quantity" class="quantity-selector__value"  style="display: inline;width: 60%;"
+                                      min="1" max="{{item.item.quantity -1}}" name="quantity" value="{{item.quantity}}" type="number" (change)="calcQuantity(item.item, $event.target.value)">
+                                    <button type="button"  class="quantity-selector__button quantityButton" (click)="addQuantity(item)"
+                                                  aria-label="Increase quantity by 1" title="Increase quantity by 1">
+                                      <svg class="icon icon--plus" viewBox="0 0 10 10" role="presentation">
+                                        <path d="M6 4h4v2H6v4H4V6H0V4h4V0h2v4z" fill="currentColor" fill-rule="evenodd"></path>
+                                      </svg>
+                                    </button>
                                   </div>
-                                  <div  class="col-3">
-                                      <div class="row">
-                                            <button style="display: inline;width: 20%;"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                           ><i class="fa fa-minus"></i></button>
-                                            <input style="display: inline;width: 60%;"  min="0" name="quantity" value="1" type="number">                         
-                                            <button style="display: inline;width: 20%;" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                           ><i class="fa fa-plus"></i></button>
-                                      </div>
-                                      <a onclick="" href=#>Remove</a>
-                                  </div>
-                                  <div class="col-2">
-                                    <h4> <p class="mb-0"><span><strong>$17.99</strong></span></p></h4>
-                                  </div>
+                                  <a (click)="deleteItem(item.item)" class="ml-3 text-muted text-decoration-none btn" style="margin-left: 50px;" >Remove</a>
+                                </div>
+                              </div>
                             </div>
-                            <div class="row">
-                                <div class="col-7" > 
-                                    <div class="row">
-                                        
-                                    <div class="col-4">
-                                        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                                            <a href="#!">
-                                              <img class="img-fluid w-100"
-                                              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
-                                            </a>
-                                          </div>
-                
-                                    </div>
-                                    
-                                    <div class="col-8">
-                                            <div>
-                                              <h5>Blue denim shirt</h5>
-                                              <p class="mb-3 text-muted text-uppercase small">Shirt - blue</p>
-                                              <p class="mb-2 text-muted text-uppercase small">Color: blue</p>
-                                              <p class="mb-3 text-muted text-uppercase small">Size: M</p>
-                                            </div>
-                                             <p class="mb-0"><span>$17.99</span></p>
-                
-                                    </div>
-                                    </div>
-                                    
-                                  </div>
-                                  <div  class="col-3">
-                                      <div class="row">
-                                            <button style="display: inline;width: 20%;"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                           ><i class="fa fa-minus"></i></button>
-                                            <input style="display: inline;width: 60%;"  min="0" name="quantity" value="1" type="number">                         
-                                            <button style="display: inline;width: 20%;" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                           ><i class="fa fa-plus"></i></button>
-                                      </div>
-                                      <a onclick="" href=#>Remove</a>
-                                  </div>
-                                  <div class="col-2">
-                                    <h4> <p class="mb-0"><span><strong>$17.99</strong></span></p></h4>
-                                  </div>
-                            </div>
+                          </div>
                         </div>
+                      </div>
                         
-                        <div class="row h5 font-weight-bold">
-                            <span class="">Total</span>
-                            <span class="ml-auto">180 $ </span>
-                        </div>
+                      <div class="row h5 font-weight-bold  p-3">
+                        <span class="ml-1">Total</span>
+                        <span class="ml-auto">{{ totalPrice()| currency : 'EGP'}}</span>
+                      </div>
                       <div class="row">
                           <div class="col blue rounded-sm text-center p-3 mx-2 view-cart">
-                              <a href="#" class="h5 text-white text-decoration-none" >Veiw cart</a>
+                              <a [routerLink]="['/cart']" class="h5 text-white text-decoration-none" >Veiw cart</a>
                           </div>
                           
                           <div class="col bg-orange  rounded-sm text-center p-3 mx-2 checkout">
-                              <a href="#" class="h5 text-white text-decoration-none" >Checkout</a>
+                              <a [routerLink]="['/checkout']" class="h5 text-white text-decoration-none" >Checkout</a>
                           </div>
                       </div>  
                     </div>
+                    
                 </form>
                 
             </div>
@@ -184,21 +136,25 @@
     <nav class="row navbar navbar-expand-lg navbar-light border-0 bg-white d-sm-none d-md-block">
         
         <div class="collapse navbar-collapse" id="linksNav">
-            <ul class="navbar-nav h6 ">
+          <ul class="navbar-nav h6 ">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"  id="allProductsDropdownMenuLink"  
                 role="button"  data-toggle="dropdown"
                 aria-haspopup="true" 
                 aria-expanded="false" >All Products </a>
-                
                 <ul class="dropdown-menu" aria-labelledby="allProductsDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li class="dropdown-item" ><a  routerLinkActive="active" routerLink="/products/0/0/">All Products</a></li>
+                    <li class="dropdown-item" *ngFor="let categ of categories"><a   [routerLink]="['/products/1',categ?.id ]" >{{categ?.name}}</a></li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/products">Barnds</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"  id="allBrandsDropdownMenuLink"  
+                role="button"  data-toggle="dropdown"
+                aria-haspopup="true" 
+                aria-expanded="false" >Barnds</a>
+                <ul class="dropdown-menu" aria-labelledby="allBrandsDropdownMenuLink">
+                    <li *ngFor="let brand of brands"><a  class="dropdown-item" routerLinkActive="active" [routerLink]="['/products/2',brand?.id ]">{{brand?.name}}</a></li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/products">New Products</a>
@@ -228,7 +184,7 @@
 
 
  <!-- cart model  -->
-<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" id="cartDialog" >
       <div class="modal-content">
         <div class="modal-header">
@@ -259,5 +215,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 

@@ -8,30 +8,30 @@
 
 @keyframes slideIn {
   0% {
-    transform: translateY(1rem);
+    
     opacity: 0;
   }
   100% {
-    transform:translateY(0rem);
+    
     opacity: 1;
   }
   0% {
-    transform: translateY(1rem);
+    
     opacity: 0;
   }
 }
 
 @-webkit-keyframes slideIn {
   0% {
-    -webkit-transform: transform;
+    
     -webkit-opacity: 0;
   }
   100% {
-    -webkit-transform: translateY(0);
+    
     -webkit-opacity: 1;
   }
   0% {
-    -webkit-transform: translateY(1rem);
+    
     -webkit-opacity: 0;
   }
 }
@@ -98,3 +98,79 @@
 {
     color:black
 }
+
+.heading {
+  font-family: "DIN Next", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #080c21;
+}
+.h1, .rte h1 {
+  
+  font-size: 25px;
+  line-height: 1.45;
+}
+   .price--highlight {
+        margin-right: 0.7em;
+        color: #ee0000;
+    }
+    
+    .quantityButton {
+    padding: 0;
+    overflow: visible;
+    background: none;
+    border: none;
+    border-radius: 0;
+    -webkit-appearance: none; }
+   
+  .quantity-selector {
+    display: inline-flex;
+    align-items: center;
+    height: 38px;
+    font-size: 16px;
+    border: 1px solid #e1e3e4;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgb(225 227 228 / 20%);
+    vertical-align: middle;
+    }
+    .quantity-selector svg:hover {
+      opacity: 1; }
+    .quantity-selector .icon--minus {
+      width: 10px;
+      height: 2px; }
+    .quantity-selector .icon--plus {
+      width: 10px;
+      height: 10px; }
+  
+  .quantity-selector__button {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    color: rgba(103, 114, 121, 0.6);
+    height: 100%;
+    transition: color 0.2s ease-in-out; }
+    .quantity-selector__button:not([disabled]):hover {
+      color: #080c21; }
+  
+  .quantity-selector__value {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0 5px;
+    min-width: 32px;
+    text-align: center;
+    border: none; }
+    .quantity-selector__value:focus {
+      outline: none; }
+    .quantity-selector__value br {
+      display: none;
+      /* quite ugly fix to prevent contenteditable to have breaklines, but simpler than JS based solution */ 
+    }
+
+
+    #searchList{
+      z-index: 3;
+      width: 61%;
+      top: 62px;
+      
+    }

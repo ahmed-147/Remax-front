@@ -3,6 +3,8 @@ import { IItem } from './../../model/interface/iitem';
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/model/interface/cart-item';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'node:constants';
+import { ItemImgs } from 'src/app/model/interface/item-imgs';
+import { ItemImgsService } from 'src/app/service/item-imgs.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,13 +12,23 @@ import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'node:constants';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  imgDirectory : string = 'http://localhost:8000';
   cartItems:CartItem[];
+  itemImgs :ItemImgs [];
   constructor(
     private CartItemService: CartItemService,
+    private itemImgServ : ItemImgsService,
   ) { }
 
   ngOnInit(): void {
     this.getALLItems();  
+    this.itemImgServ.getAllItemImgs().subscribe(
+      data => {
+        this.itemImgs= data;
+      },
+      err => {
+        console.log(err);
+    }); 
     
   }
   getALLItems()
@@ -83,6 +95,10 @@ export class CartComponent implements OnInit {
   {
     this.CartItemService.resetCart();
     this.getALLItems();
+  }
+
+  getItemImg(itemId){
+    return this.itemImgs.filter(element => {return element.item == itemId })
   }
 
 }

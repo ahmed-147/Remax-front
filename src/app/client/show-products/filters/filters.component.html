@@ -14,7 +14,7 @@
           <div class="form-check" *ngFor="let brand of brands">
             <input class="form-check-input" type="radio" name="filters"  (change)="selectfilter(2, brand?.id)" >
             <label class="form-check-label" >
-              {{brand.name}}
+              {{brand?.name}}
             </label>
           </div>
           
@@ -22,7 +22,7 @@
           <div class="form-check" *ngFor="let categ of categories">
             <input class="form-check-input" type="radio" name="filters"  (change)="selectfilter(1, categ?.id)" >
             <label class="form-check-label" >
-              {{categ.name}}
+              {{categ?.name}}
             </label>
           </div>
           <!-- <div class="form-check">

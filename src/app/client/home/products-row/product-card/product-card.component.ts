@@ -34,12 +34,5 @@ export class ProductCardComponent implements OnInit {
     {
       this.currentPrict = this.item.price 
     }
-
-    
-
-
   }
-
-  
-
 }
