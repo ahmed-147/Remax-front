@@ -55,19 +55,19 @@
                   
                                     <div class="col-4">
                                       <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                                        <a [routerLink]="['/products',item.item.id ]">
+                                        <a [routerLink]="['/products',item.item?.id ]">
                                           <img class="img-fluid w-100"
-                                            src="../../../assets/noImgItem.png" alt="Sample" *ngIf="!getItemImg(item.item.id)?.length" >
+                                            src="../../../assets/noImgItem.png" alt="Sample" *ngIf="!getItemImg(item.item?.id)?.length" >
                                           <img class="img-fluid w-100"
-                                            src="{{imgDirectory}}{{getItemImg(item.item.id)[0].img}}" alt="Sample" *ngIf="getItemImg(item.item.id)?.length" >
+                                            src="{{imgDirectory}}{{getItemImg(item.item.id)[0].img}}" alt="Sample" *ngIf="getItemImg(item.item?.id)?.length" >
                                         </a>
                                       </div>
                                     </div>
                   
                                     <div class="col-8">
                                       <div class="card-body">
-                                        <h5 class="card-title">{{item.item.name}}</h5>
-                                        <p class="card-text text-truncate">{{item.item.details}}.</p>
+                                        <h5 class="card-title">{{item.item?.name}}</h5>
+                                        <p class="card-text text-truncate">{{item.item?.details}}.</p>
                                         <p class="mb-0 text-info"><span><strong>{{ getTotalPrice(item)| currency : 'EGP'}}</strong></span></p>
                                         <p class="price price--compare" *ngIf="item.discount"><del>{{item.item.price}}</del></p>
                                       </div>
@@ -96,7 +96,7 @@
                                       </svg>
                                     </button>
                                     <input aria-label="Quantity" class="quantity-selector__value"  style="display: inline;width: 60%;"
-                                      min="1" max="{{item.item.quantity -1}}" name="quantity" value="{{item.quantity}}" type="number" (change)="calcQuantity(item.item, $event.target.value)">
+                                      min="1" max="{{item.item?.quantity -1}}" name="quantity" value="{{item.quantity}}" type="number" (change)="calcQuantity(item.item, $event.target.value)">
                                     <button type="button"  class="quantity-selector__button quantityButton" (click)="addQuantity(item)"
                                                   aria-label="Increase quantity by 1" title="Increase quantity by 1">
                                       <svg class="icon icon--plus" viewBox="0 0 10 10" role="presentation">

@@ -19,14 +19,8 @@ export class ClientService {
     return this.http.get<IClient[]>('http://localhost:8000/client/getclients/', httpOptions);
   }
   getAllClientsById(id): Observable<IClient>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
-      })
-    };
-    return this.http.get<IClient>(`http://localhost:8000/client/clients/${id}/`, httpOptions);
+
+    return this.http.get<IClient>(`http://localhost:8000/client/clients/${id}/`);
 
   }
   addClient(pst: IClient): Observable<IClient> {
@@ -44,21 +38,13 @@ export class ClientService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
+    //    ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
     return this.http.put<IClient>(`http://localhost:8000/client/clients/${id}/`, pst, httpOptions)
   }
   deleteClientById(id): Observable<IClient>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
-      })
-    };
-    
-    return this.http.delete<IClient>(`http://localhost:8000/client/clients/${id}/`, httpOptions);
+        return this.http.delete<IClient>(`http://localhost:8000/client/clients/${id}/`);
 
   }
   sendClientKey(email): Observable<IClient>{

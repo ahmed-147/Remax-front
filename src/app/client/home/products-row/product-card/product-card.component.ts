@@ -27,12 +27,12 @@ export class ProductCardComponent implements OnInit {
         console.log(err);
     });
 
-    if(this.item.discount){
-      this.currentPrict = this.item.price - this.item.discount  
+    if(this.item?.discount){
+      this.currentPrict = this.item?.price - this.item?.discount  
     }
     else
     {
-      this.currentPrict = this.item.price 
+      this.currentPrict = this.item?.price 
     }
   }
 }
