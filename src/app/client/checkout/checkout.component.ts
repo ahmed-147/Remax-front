@@ -5,7 +5,7 @@ import { IItem } from 'src/app/model/interface/iitem';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IClient } from './../../model/interface/iclient';
 import { ClientService } from 'src/app/service/client.service';
-;
+import { Router } from '@angular/router';
 import { IClientLocation } from 'src/app/model/interface/iclient-location';
 import { IClientPhone } from 'src/app/model/interface/iclient-phone';
 import { ClientLocationService } from './../../service/client-location.service';
@@ -45,6 +45,7 @@ export class CheckoutComponent implements OnInit {
     private OrderItemServiceService:OrderItemServiceService,
     private fb: FormBuilder,
     private ClientService:ClientService,
+    private router: Router,
     
   
     ) 
@@ -76,6 +77,14 @@ export class CheckoutComponent implements OnInit {
 
 
     }
+  selectfunction(){
+    this.getclientdata();
+    this.orderlocationForm.patchValue({
+      address : this.clientsLocations[0].id
+    })
+    
+
+  }
 
   ngOnInit(): void {
         this.cart=this.CartItemService.getCartItems();
@@ -259,10 +268,7 @@ export class CheckoutComponent implements OnInit {
         this.cuurentorder=data
         console.log(this.cuurentorder)
         this.cart.forEach(element=>{
-          let orderitem:IOrderItem;
-          orderitem.item=element?.item?.id;
-          orderitem.order=this.cuurentorder?.id;
-          orderitem.quantity=element?.quantity;
+          let orderitem:IOrderItem={item:element?.item?.id,order:this.cuurentorder?.id, quantity:element?.quantity};
           if(orderitem.quantity>0)
           {
           this.OrderItemServiceService.addOrderItem(orderitem).subscribe(
@@ -275,6 +281,8 @@ export class CheckoutComponent implements OnInit {
               console.log(err)
             }
           )}
+          this.CartItemService.resetCart();
+          this.router.navigateByUrl('home');
 
 
 

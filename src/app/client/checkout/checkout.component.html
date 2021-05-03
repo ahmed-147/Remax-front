@@ -28,7 +28,7 @@
                       
                       <a class="nav-link" id="nav-send-key-tab" #sendkey data-toggle="tab" [style.visibility]="(currentclient?.is_active) ? 'hidden' : 'visible' " href="#nav-send-key" role="tab" aria-controls="nav-profile" aria-selected="false">send code</a>
                        <a class="nav-link " id="nav-update-view-tab" [style.visibility]="(!currentclient?.is_active) ? 'hidden' : 'visible' "  #clientinfo data-toggle="tab" href="#nav-client-info" role="tab" aria-controls="nav-home" aria-selected="false" (click)="getclientdata()" >client info</a>
-                      <a class="nav-link" id="nav-order-info-tab" [style.visibility]="(!clientsLocations?.length) ? 'hidden' : 'visible' " #orderinfo data-toggle="tab" href="#nav-order-form" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="getclientdata()">order info</a>
+                      <a class="nav-link" id="nav-order-info-tab" [style.visibility]="(!clientsLocations?.length) ? 'hidden' : 'visible' " #orderinfo data-toggle="tab" href="#nav-order-form" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="selectfunction()">order info</a>
                       </div>
                 </nav>
                 <div class="tab-content bg-white" id="nav-tabContent">
