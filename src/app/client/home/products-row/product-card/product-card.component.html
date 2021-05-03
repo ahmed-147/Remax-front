@@ -11,7 +11,7 @@
       <h1 class="card-title font-weight-bold"><a [routerLink]="['/products/',item?.id]" class="text-decoration-none text-dark">{{item.name}} </a></h1>
       <p class="card-text text-truncate">{{item.details}}</p>
       <p class="card-text price price--highlight">{{currentPrict | currency : 'EGP'}}</p>
-      <p class="price price--compare" *ngIf="item.discount"><del>{{item.price}}</del></p>
+      <p class="price price--compare" *ngIf="item.discount"><del>{{item?.price}}</del></p>
     </div>
 </div>
 

@@ -82,12 +82,12 @@ export class NavbarComponent implements OnInit {
   }
   getCurrentPrice(item:IItem)
   {
-    if(item.discount){
-      return item.price - item.discount  
+    if(item?.discount){
+      return item?.price - item?.discount  
     }
     else
     {
-      return item.price 
+      return item?.price 
     }
     
   }
@@ -115,7 +115,7 @@ export class NavbarComponent implements OnInit {
   }
   getTotalPrice(item:CartItem)
   {
-    return item.quantity * item.item.price;
+    return item?.quantity * item.item?.price;
   }
   deleteItem(item:IItem){
     this.CartItemService.deleteQuantity(item);
@@ -124,7 +124,7 @@ export class NavbarComponent implements OnInit {
   totalPrice(){
     let total = 0;
     for (let index = 0; index < this.cartItems.length; index++) {
-      total += Number(this.cartItems[index].item.price) * Number(this.cartItems[index].quantity)
+      total += Number(this.cartItems[index].item?.price) * Number(this.cartItems[index].quantity)
     }
     return total;
   }

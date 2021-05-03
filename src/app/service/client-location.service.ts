@@ -10,35 +10,16 @@ export class ClientLocationService {
 
   constructor(private http: HttpClient) { }
   getAllClientLocations(): Observable<IClientLocation[]> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
-      })
-    };
-    return this.http.get<IClientLocation[]>('http://localhost:8000/client/getclientlocations/', httpOptions);
+   
+    return this.http.get<IClientLocation[]>('http://localhost:8000/client/getclientlocations/');
   }
   getAllClientLocationsById(id): Observable<IClientLocation>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
-      })
-    };
-    return this.http.get<IClientLocation>(`http://localhost:8000/client/clientlocations/${id}/`, httpOptions);
+    return this.http.get<IClientLocation>(`http://localhost:8000/client/clientlocations/${id}/`);
 
   }
   getAllClientLocationsByClientId(id): Observable<IClientLocation[]>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
-      })
-    };
-    return this.http.get<IClientLocation[]>(`http://localhost:8000/client/clientlocationsbyid/${id}/`, httpOptions);
+
+    return this.http.get<IClientLocation[]>(`http://localhost:8000/client/clientlocationsbyid/${id}/`);
 
   }
   addClientLocation(pst: IClientLocation): Observable<IClientLocation> {
@@ -56,20 +37,14 @@ export class ClientLocationService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
+   //     ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
     return this.http.put<IClientLocation>(`http://localhost:8000/client/clientlocations/${id}/`, pst, httpOptions)
   }
   deleteClientLocationById(id): Observable<IClientLocation>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
-      })
-    };
-    return this.http.delete<IClientLocation>(`http://localhost:8000/client/clientlocations/${id}/`, httpOptions);
+    
+    return this.http.delete<IClientLocation>(`http://localhost:8000/client/clientlocations/${id}/`);
 
   }
 }

@@ -70,7 +70,11 @@ export class CartComponent implements OnInit {
   }
   getTotalPrice(item:CartItem)
   {
-    return item.quantity * item.item.price;
+    if(item.item?.discount)
+    return item.quantity * (item.item.price-item.item?.discount);
+    else
+    return item.quantity * (item.item.price);
+    
   }
   deleteItem(item:IItem){
     this.CartItemService.deleteQuantity(item);
@@ -79,6 +83,9 @@ export class CartComponent implements OnInit {
   totalPrice(){
     let total = 0;
     for (let index = 0; index < this.cartItems.length; index++) {
+      if(this.cartItems[index].item?.discount)
+      total += Number(this.cartItems[index].item.price-this.cartItems[index].item?.discount) * Number(this.cartItems[index].quantity)
+      else
       total += Number(this.cartItems[index].item.price) * Number(this.cartItems[index].quantity)
     }
     return total;
