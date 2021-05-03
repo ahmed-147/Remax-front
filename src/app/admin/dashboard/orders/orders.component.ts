@@ -34,6 +34,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.fillTableData()
+    console.log(this.items);
   }
 
   //---------------
@@ -126,7 +127,9 @@ export class OrdersComponent implements OnInit {
   }
 
   getItemPrice(itemId, itemQui): any {
+    //console.log(this.items);
     let itemPrice = this.items?.find(element =>{return element.id== itemId } )
+    console.log(itemPrice);
     if (itemPrice){
       return itemPrice.price * itemQui
     }

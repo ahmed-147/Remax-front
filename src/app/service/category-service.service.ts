@@ -13,14 +13,14 @@ export class CategoryServiceService {
     return this.http.get<ICategory[]>('http://localhost:8000/category/getcategories/');
   }
   getAllCategoriesById(id): Observable<ICategory>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
-      })
-    };
-    return this.http.get<ICategory>(`http://localhost:8000/category/categories/${id}/`, httpOptions);
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'Accept': ' */*'
+    //     ,'Authorization': 'jwt '+localStorage.getItem('token')
+    //   })
+    // };
+    return this.http.get<ICategory>(`http://localhost:8000/category/categories/${id}/`);
 
   }
   addCategory(pst: ICategory): Observable<ICategory> {
@@ -38,20 +38,20 @@ export class CategoryServiceService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
+      //  ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
     return this.http.put<ICategory>(`http://localhost:8000/category/categories/${id}/`, pst, httpOptions)
   }
   deleteCategoryById(id): Observable<ICategory>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': ' */*'
-        ,'Authorization': 'jwt '+localStorage.getItem('token')
-      })
-    };
-    return this.http.delete<ICategory>(`http://localhost:8000/category/categories/${id}/`, httpOptions);
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'Accept': ' */*'
+    //     //,'Authorization': 'jwt '+localStorage.getItem('token')
+    //   })
+    // };
+    return this.http.delete<ICategory>(`http://localhost:8000/category/categories/${id}/`);
 
   }
   

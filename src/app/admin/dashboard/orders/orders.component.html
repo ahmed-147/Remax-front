@@ -15,7 +15,7 @@
         </nav>
         <div class="tab-content bg-white" id="nav-tabContent" >
             <div class="container-fluid tab-pane fade show active shadow" id="nav-current-orders" role="tabpanel" aria-labelledby="nav-current-orders-tab">
-                <div class="row" *ngIf="getOrders().length">
+                <div class="row" *ngIf="getOrders()?.length">
                     <div class= "col-sm-8 col-md-8 col-lg-8">
                         <div class="row table-responsive p-1" style="max-height: 400px;">
                             <table class="col table table-sm  table-hover text-center border p-0" >
@@ -84,7 +84,7 @@
                     
                 </div>
 
-                <div class="row" *ngIf="!getOrders().length">
+                <div class="row" *ngIf="!getOrders()?.length">
                     <div class="col d-flex align-items-center justify-content-center" style="height: 200px;" >
                         <h3 class="text-center ">There are no orders</h3>
                     </div>
@@ -179,7 +179,7 @@
                                         <td>{{order.total}}</td>
                                         <td>
                                             <button class="btn btn-sm btn-primary" (click)="showOrderItems(order.id)">
-                                                Show Items
+                                                Show Products
                                             </button>
                                             <button class="btn btn-sm btn-success ml-2" (click)="resetOrder(order)">
                                                 Reset 

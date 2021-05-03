@@ -143,7 +143,7 @@
                 aria-haspopup="true" 
                 aria-expanded="false" >All Products </a>
                 <ul class="dropdown-menu" aria-labelledby="allProductsDropdownMenuLink">
-                  <li ><a class="dropdown-item" routerLinkActive="active" routerLink="/products/0/0/">All Products</a></li>
+                  <li ><a class="dropdown-item" routerLinkActive="active" href="http://localhost:4200/products/0/0">All Products</a></li>
                     <li *ngFor="let categ of categories"><a  class="dropdown-item" href="http://localhost:4200/products/1/{{categ?.id }}" >{{categ?.name}}</a></li>
                 </ul>
             </li>
