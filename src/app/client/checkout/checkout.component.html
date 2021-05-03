@@ -16,242 +16,254 @@
             <h2 class="my-2 h2">Checkout form</h2>
           </div>
 
-          <!--Card content-->
-          <form class="card-body">
+        
+          <div class="card-body">
 
             <!--Grid row-->
             <div class="row">
-              <div class="input-group col-12 my-3">
-                <span class="input-group-text" id="basic-addon1">Tel</span>
-                <input type="tel" class="form-control">
-                <hr>
-                <hr>
-                <hr>
-              </div>
-             
-              <!--Grid column-->
-              <div class="col-md-6 mb-2">
+              <div class="col">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <a class="nav-link active" id="nav-check-email-tab" #checkemail data-toggle="tab" href="#nav-check_email" role="tab" aria-controls="nav-home" aria-selected="true">Check email</a>
+                      
+                      <a class="nav-link" id="nav-send-key-tab" #sendkey data-toggle="tab" [style.visibility]="(currentclient?.is_active) ? 'hidden' : 'visible' " href="#nav-send-key" role="tab" aria-controls="nav-profile" aria-selected="false">send code</a>
+                       <a class="nav-link " id="nav-update-view-tab" [style.visibility]="(!currentclient?.is_active) ? 'hidden' : 'visible' "  #clientinfo data-toggle="tab" href="#nav-client-info" role="tab" aria-controls="nav-home" aria-selected="false" (click)="getclientdata()" >client info</a>
+                      <a class="nav-link" id="nav-order-info-tab" [style.visibility]="(!clientsLocations?.length) ? 'hidden' : 'visible' " #orderinfo data-toggle="tab" href="#nav-order-form" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="getclientdata()">order info</a>
+                      </div>
+                </nav>
+                <div class="tab-content bg-white" id="nav-tabContent">
+                    <div class="tab-pane fade show active shadow" id="nav-check_email" role="tabpanel" aria-labelledby="nav-item-view-tab">
+                        <div class="row table-responsive p-4" style="max-height: 400px;">
+                          <form class="col p-4" [formGroup]="emailCheck" (ngSubmit)="emailChecksubmin()">
+                            <div class="form-row">
+                              <div class="form-group col-sm-6 col-md-6">
+                                <label for="inputItemName">Email</label>
+                                <input type="email" class="form-control" id="inputItemName" name="email" formControlName="email">
+                                <div class="alert alert-danger" role="alert" *ngIf="emailCheck.controls['email'].invalid && emailCheck.controls['email'].touched">
+                                    <strong *ngIf="emailCheck.controls['email'].errors.required"> email  is required </strong>
+                                    <strong *ngIf="emailCheck.controls['email'].errors.pattern"> email  must be email format</strong>
+                        
+                                </div>
+                              </div>
+                              
+                            <button  type="submit" class="btn btn-success m-3" [disabled]="emailCheck.invalid" >check</button>      
+                            </div>
+                            
+                        </form>
 
-                <!--firstName-->
-                <div class="md-form ">
-                  <div class="input-group-prepend">
-                    <label for="firstName" class="">First name</label>
-                  </div>
-    
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show  shadow" id="nav-send-key" role="tabpanel" aria-labelledby="nav-item-view-tab">
+      
+                        <div class="row p-2">
+                            <form class="col p-4" [formGroup]="sendkeyForm" (ngSubmit)="sendkeysubmit()">
+                                <div class="form-row">
+                                  <div class="form-group col-sm-6 col-md-6">
+                                    <label for="inputItemName">code</label>
+                                    <input type="text" class="form-control" id="inputItemName" name="keyForm" formControlName="keyForm">
+                                    <div class="alert alert-danger" role="alert" *ngIf="sendkeyForm.controls['keyForm'].invalid && sendkeyForm.controls['keyForm'].touched">
+                                        <strong *ngIf="sendkeyForm.controls['keyForm'].errors.required"> code  is required </strong>
+                                    </div>
+                                  </div>
+                                <button  type="submit" class="btn btn-success m-3" [disabled]="sendkeyForm.invalid" >send key</button>               
+                                </div>
+                            </form>
+                            
+                        </div>
+                        
+                    </div>
                 
-                  <input type="text" id="firstName" class="form-control">
-               
+                    <div class="tab-pane fade shadow" id="nav-client-info" role="tabpanel" aria-labelledby="nav-item-form-tab">
+                        <div class="row p-2">
+                            <form class="col p-4" [formGroup]="clientForm" (ngSubmit)="updateclient()">
+                                <div class="form-row">
+                                  
+                                  <div class="form-group col-sm-6 col-md-6">
+                                    <label for="inputItemName">Name</label>
+                                    <input type="text" class="form-control" id="inputItemName" name="name" formControlName="name">
+                                    <div class="alert alert-danger" role="alert" *ngIf="clientForm.controls['name'].invalid && clientForm.controls['name'].touched">
+                                      
+                                      <strong *ngIf="clientForm.controls['name'].errors.required">  name is required </strong>
+                                      <strong *ngIf="clientForm.controls['name'].errors.minlength">  name must be than 3 letter</strong>
+                                  
+                                    </div>
+                                  </div>
+                              
+                                <button  type="submit" class="btn btn-primary m-3" [disabled]="clientForm.invalid" >change Name</button>
+                                  
+                                </div>
+                                
+                            </form>    
+                        </div>
+                        <hr>
+                        <div class="row p-2">
+                     
+                        <form class="col p-4" [formGroup]="clientphoneForm" (ngSubmit)="updateclientphone()">
+                          <div class="form-row">
+                            
+                            <div class="form-group col-sm-6 col-md-6">
+                              
+                                <label for="inputItemName">Phone</label>
+                                <input type="text" class="form-control" id="inputItemName" name="phone" formControlName="phone">
+                                <div class="alert alert-danger" role="alert" *ngIf="clientphoneForm.controls['phone'].invalid && clientphoneForm.controls['phone'].touched">
+                                    <strong *ngIf="clientphoneForm.controls['phone'].errors.required"> Phone is required </strong>
+                                    <strong *ngIf="clientphoneForm.controls['phone'].errors.minlength"> Phone number is less than 11 numbers</strong>
+                                    <strong *ngIf="clientphoneForm.controls['phone'].errors.maxlength"> Phone number is more than 11 numbers</strong>
+                                    <strong *ngIf="clientphoneForm.controls['phone'].errors.pattern"> Phone number must be numbers only</strong>  
+                                </div>
+                              </div>
+                    
+                        
+                          <button  type="submit" class="btn btn-primary m-3" [disabled]="clientphoneForm.invalid" >ِAdd Phone</button>
+                            
+                          </div>
+                          
+                        </form>
+                        </div>
+                        <div class="row p-2">
+                     
+                            <div class="form-row">
+                              
+                              <table class="col table table-sm ml-3  table-hover text-center border p-0">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">phone</th>
+                                    <th scope="col">action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  *ngFor="let phone of clientPhones">
+                                        <th scope="row">{{phone.id}}</th>
+                                        <td>{{phone.phone}}</td>
+                                        <td>
+                                          <button class="btn btn-sm btn-danger ml-4" (click)="deletephone(phone)">
+                                            Delete
+                                          </button>
+                                        </td>           
+                                    </tr>
+                                </tbody>
+                            </table>
+                        
+                       </div>
+                        </div>
+                        <hr>
+                        <div class="row p-2">
+                     
+                        <form class="col p-4" [formGroup]="ClientlocationForm" (ngSubmit)="addlocation()">
+                          <div class="form-row">
+                            
+                            <div class="form-group col-sm-6 col-md-6">
+                              
+                                <label for="inputItemName">Address</label>
+                                <input type="text" class="form-control" id="inputItemName" name="address" formControlName="address">
+                                <div class="alert alert-danger" role="alert" *ngIf="ClientlocationForm.controls['address'].invalid && ClientlocationForm.controls['address'].touched">
+                                    <strong *ngIf="ClientlocationForm.controls['address'].errors.required"> address is required </strong>
+                                    <strong *ngIf="ClientlocationForm.controls['address'].errors.minlength"> address  must be more than 10 letter</strong>
+                                </div>
+                              </div>
+                    
+                        
+                          <button  type="submit" class="btn btn-primary m-3" [disabled]="ClientlocationForm.invalid" >add address</button>
+                            
+                          </div>
+                          
+                        </form>
+                        </div>
+                        <div class="row p-2">
+                     
+                            <div class="form-row">
+                              
+                              <table class="col table table-sm ml-3 table-hover text-center border p-0">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  *ngFor="let address of clientsLocations">
+                                        <th scope="row">{{address.id}}</th>
+                                        <td>{{address.location}}</td>
+                                        <td>
+                                          <button class="btn btn-sm btn-danger ml-4" (click)="deleteaddress(address)">
+                                            Delete
+                                          </button>
+                                        </td>           
+                                    </tr>
+                                </tbody>
+                            </table>
+                        
+                       </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane fade shadow" id="nav-order-form" role="tabpanel" aria-labelledby="nav-item-form-tab">
+                      <div class="row p-2">
+                        <form class="col p-4" [formGroup]="orderlocationForm" (ngSubmit)="addorder()">
+                          <div class="form-row">
+                            
+                            <div class="form-group col-sm-6 col-md-6">
+                              
+                                <label for="inputItemName">Address</label>
+                                <select class="form-control" id="inputItemName" name="address" formControlName="address" >
+
+                                
+                                  <option *ngFor="let loc of clientsLocations" value="{{loc.id}}">
+                                    {{loc.location }}
+                                  </option>
+                                </select>      <div class="alert alert-danger" role="alert" *ngIf="orderlocationForm.controls['address'].invalid && orderlocationForm.controls['address'].touched">
+                                    <strong *ngIf="orderlocationForm.controls['address'].errors.required"> address is required </strong>
+                                </div>
+                              </div>
+                    
+                        
+                          <button  type="submit" class="btn btn-primary m-3" [disabled]="orderlocationForm.invalid" >add order</button>
+                            
+                          </div>
+                          
+                        </form>
+                          
+                      </div>
+                      
+                  </div>
+                
                 </div>
-
-              </div>
-              <!--Grid column-->
-
-              <!--Grid column-->
-              <div class="col-md-6 mb-2">
-
-                <!--lastName-->
-                <div class="md-form">
-                  <label for="lastName" class="">Last name</label>
-                  <input type="text" id="lastName" class="form-control">
-                  
-                </div>
-
-              </div>
-              <!--Grid column-->
-
             </div>
-            <!--Grid row-->
-
-            <!--Username-->
-            <div class="md-form input-group pl-0 mb-5">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
-              </div>
-              <input type="text" class="form-control py-0" placeholder="Username" aria-describedby="basic-addon1">
-            </div>
-
-            <!--email-->
-            <div class="md-form mb-5">
-              <label for="email" class="">Email (optional)</label>
-              <input type="text" id="email" class="form-control" placeholder="youremail@example.com">
-              
-            </div>
-
-            <!--address-->
-            <div class="md-form mb-5">
-              <label for="address" class="">Address</label>
-              <input type="text" id="address" class="form-control" placeholder="1234 Main St">
-             
-            </div>
-
-            <!--address-2-->
-            <div class="md-form mb-5">
-              <label for="address-2" class="">Address 2 (optional)</label>
-              <input type="text" id="address-2" class="form-control" placeholder="Apartment or suite">
-              
-            </div>
-
-            <!--Grid row-->
-            <div class="row">
-
-              <!--Grid column-->
-              <div class="col-lg-4 col-md-12 mb-4">
-
-                <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country" required>
-                  <option value="">Choose...</option>
-                  <option>United States</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-
-              </div>
-              <!--Grid column-->
-
-              <!--Grid column-->
-              <div class="col-lg-4 col-md-6 mb-4">
-
-                <label for="state">State</label>
-                <select class="custom-select d-block w-100" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>California</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
-
-              </div>
-              <!--Grid column-->
-
-              <!--Grid column-->
-              <div class="col-lg-4 col-md-6 mb-4">
-
-                <label for="zip">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required>
-                <div class="invalid-feedback">
-                  Zip code required.
-                </div>
-
-              </div>
-              <!--Grid column-->
-
-            </div>
-            <!--Grid row-->
-
-            <hr>
-
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="same-address">
-              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="save-info">
-              <label class="custom-control-label" for="save-info">Save this information for next time</label>
-            </div>
-
-            <hr>
-
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Credit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Debit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Paypal</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-
-          </form>
+          
+  
+            
 
         </div>
         <!--/.Card-->
 
       </div>
-      <!--Grid column-->
-
-      <!--Grid column-->
+        </div>
+      </div>
+    
+   
       <div class="col-md-4 mb-4">
 
         <!-- Heading -->
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Your cart</span>
-          <span class="badge badge-secondary badge-pill">3</span>
+          <span class="badge badge-secondary badge-pill">{{cart?.length}}</span>
         </h4>
 
         <!-- Cart -->
         <ul class="list-group mb-3 z-depth-1">
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <li *ngFor="let item of cart" class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
-              <h6 class="my-0">Product name</h6>
-              <small class="text-muted">Brief description</small>
+              <h6 class="my-0">{{item.item.name}}</h6>
+              <small class="text-muted">{{item.item.details}}.</small>
             </div>
-            <span class="text-muted">$12</span>
+            <span class="text-muted">{{getPrice(item) | currency : 'EGP'}}</span>
           </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Second product</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">$8</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Third item</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">$5</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small>EXAMPLECODE</small>
-            </div>
-            <span class="text-success">-$5</span>
-          </li>
+
           <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
+            <span>Total (EGP)</span>
+            <strong>{{totalPrice() | currency : 'EGP'}}</strong>
           </li>
         </ul>
         <!-- Cart -->
@@ -268,10 +280,10 @@
         <!-- Promo code -->
 
       </div>
-      <!--Grid column-->
+  
 
     </div>
-    <!--Grid row-->
+
 
   </div>
 </main>
