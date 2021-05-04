@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { IBrand } from 'src/app/model/interface/ibrand';
 import { BrandServiceService } from 'src/app/service/brand-service.service';
 
@@ -10,10 +10,11 @@ import { BrandServiceService } from 'src/app/service/brand-service.service';
 })
 export class BrandsComponent implements OnInit {
   brands: IBrand[];
-
+  @ViewChild('newImg') newImg: ElementRef;
   imgDirectory : string = 'http://localhost:8000';
   name :string = '';
   img : any ;
+  updateimg : any ;
   id : any= 0;
 
   constructor(private brandServ: BrandServiceService, private http: HttpClient  ) { }
@@ -25,17 +26,18 @@ export class BrandsComponent implements OnInit {
   updateFun(brand:IBrand){
     this.id = brand.id;
     this.name = brand.name;
-    this.img = brand.img;
+    this.updateimg = false;
+    this.newImg.nativeElement.value = null;
   }
 
   deleteFun(brandId){
     
     this.brandServ.deleteBrandById(brandId).subscribe(data=>{
+      this.fillTableData();
     },
     err=>{
       console.log(err);
     });
-    this.fillTableData()
     
   }
 
@@ -44,6 +46,7 @@ export class BrandsComponent implements OnInit {
       const formdata= new FormData();
       formdata.append("name",this.name);
       formdata.append("img",this.img);
+      console.log(this.img);
 
       this.brandServ.addBrand(formdata).subscribe(data=>{
         this.brands.push(data);
@@ -57,7 +60,9 @@ export class BrandsComponent implements OnInit {
     else {
       const formdata= new FormData();
       formdata.append("name",this.name);
-      formdata.append("img",this.img);
+      if (this.updateimg){
+        formdata.append("img",this.updateimg);
+      }
       formdata.append("id",this.id);
 
       
@@ -90,11 +95,15 @@ export class BrandsComponent implements OnInit {
     this.name = '';
     this.img= null;
     this.id=0;
+    this.newImg.nativeElement.value = null;
   }
 
   loadImg(event :any){
+    if (this.id){
+      this.updateimg = event.target.files[0]
+    }
     this.img = event.target.files[0]
-    
+    console.log(this.img);
   }
 
 }

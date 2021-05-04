@@ -8,9 +8,9 @@
     <div class="col">
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <a class="nav-link active" id="nav-current-orders-tab" #CurrentOrders data-toggle="tab" href="#nav-current-orders" role="tab" aria-controls="nav-home" aria-selected="true">Requests under processing</a>
-              <a class="nav-link" id="nav-submited-order-tab" #NotDeliverOrders data-toggle="tab" href="#nav-not-dliver-order" role="tab" aria-controls="nav-profile" aria-selected="false">Not Delivered Orders</a>
-              <a class="nav-link" id="nav-old-order-tab" #oldOrders data-toggle="tab" href="#nav-old-order" role="tab" aria-controls="nav-profile" aria-selected="false">Delivered Orders</a>
+              <a (click)="resetOrderItems()" class="nav-link active" id="nav-current-orders-tab" #CurrentOrders data-toggle="tab" href="#nav-current-orders" role="tab" aria-controls="nav-home" aria-selected="true">Requests under processing</a>
+              <a (click)="resetOrderItems()" class="nav-link" id="nav-submited-order-tab" #NotDeliverOrders data-toggle="tab" href="#nav-not-dliver-order" role="tab" aria-controls="nav-profile" aria-selected="false">Not Delivered Orders</a>
+              <a (click)="resetOrderItems()"  class="nav-link" id="nav-old-order-tab" #oldOrders data-toggle="tab" href="#nav-old-order" role="tab" aria-controls="nav-profile" aria-selected="false">Delivered Orders</a>
             </div>
         </nav>
         <div class="tab-content bg-white" id="nav-tabContent" >
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class= "col-sm-4 col-md-4 col-lg-4">
-                        <div class="row table-responsive p-3" style="max-height: 400px;" *ngIf="orderSelect">
+                        <div class="row table-responsive p-3" style="max-height: 400px;" *ngIf="checkOrderItems()">
                             <table class="col table table-sm  table-hover text-center border p-0">
                                 <thead>
                                   <tr>
@@ -71,9 +71,9 @@
                                 <tbody>
                                     <tr  *ngFor="let item of OrderItems">
                                         <th scope="row">{{item.id}}</th>
-                                        <td>{{getItemName(item.id)}}</td>
+                                        <td>{{getItemName(item.item)}}</td>
                                         <td>{{item.quantity}}</td>
-                                        <td>{{getItemPrice(item.id, item.quantity)}}</td>
+                                        <td>{{getItemPrice(item.item, item.quantity)}}</td>
                                        
                                     </tr>
                        
@@ -92,7 +92,7 @@
 
             </div>
             <div class="container-fluid tab-pane fade shadow" id="nav-not-dliver-order" role="tabpanel" aria-labelledby="nav-submited-order-tab">
-                <div class="row"  *ngIf="getOrdersNotDeliver().length" >
+                <div class="row"  *ngIf="getOrdersNotDeliver()?.length" >
                     <div class= "col-sm-8 col-md-8 col-lg-8">
                         <div class="row table-responsive p-1" style="max-height: 400px;">
                             <table class="col table table-sm  table-hover text-center border p-0">
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <div class= "col-sm-4 col-md-4 col-lg-4">
-                        <div class="row table-responsive p-3" style="max-height: 400px;" *ngIf="orderSelect">
+                        <div class="row table-responsive p-3" style="max-height: 400px;" *ngIf="checkOrderItems()">
                             <table class="col table table-sm  table-hover text-center border p-0">
                                 <thead>
                                   <tr>
@@ -140,9 +140,9 @@
                                 <tbody>
                                     <tr  *ngFor="let item of OrderItems">
                                         <th scope="row">{{item.id}}</th>
-                                        <td>{{getItemName(item.id)}}</td>
+                                        <td>{{getItemName(item.item)}}</td>
                                         <td>{{item.quantity}}</td>
-                                        <td>{{getItemPrice(item.id, item.quantity)}}</td>
+                                        <td>{{getItemPrice(item.item, item.quantity)}}</td>
                                        
                                     </tr>
                        
@@ -151,14 +151,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" *ngIf="!getOrdersNotDeliver().length">
+                <div class="row" *ngIf="!getOrdersNotDeliver()?.length">
                     <div class="col d-flex align-items-center justify-content-center" style="height: 200px;" >
                         <h3 class="text-center ">There are no orders to deliver</h3>
                     </div>
                 </div>
             </div>
             <div class="container-fluid tab-pane fade shadow" id="nav-old-order" role="tabpanel" aria-labelledby="nav-old-order-tab">
-                <div class="row" *ngIf="getOrdersDelivered().length">
+                <div class="row" *ngIf="getOrdersDelivered()?.length">
                     <div class= "col-sm-8 col-md-8 col-lg-8">
                         <div class="row table-responsive p-1" style="max-height: 400px;">
                             <table class="col table table-sm  table-hover text-center border p-0">
@@ -179,7 +179,7 @@
                                         <td>{{order.total}}</td>
                                         <td>
                                             <button class="btn btn-sm btn-primary" (click)="showOrderItems(order.id)">
-                                                Show Products
+                                                Products
                                             </button>
                                             <button class="btn btn-sm btn-success ml-2" (click)="resetOrder(order)">
                                                 Reset 
@@ -194,7 +194,7 @@
                         </div>
                     </div>
                     <div class= "col-sm-4 col-md-4 col-lg-4">
-                        <div class="row table-responsive p-3" style="max-height: 400px;" *ngIf="orderSelect">
+                        <div class="row table-responsive p-3" style="max-height: 400px;" *ngIf="checkOrderItems()">
                             <table class="col table table-sm  table-hover text-center border p-0">
                                 <thead>
                                   <tr>
@@ -208,9 +208,9 @@
                                 <tbody>
                                     <tr  *ngFor="let item of OrderItems">
                                         <th scope="row">{{item.id}}</th>
-                                        <td>{{getItemName(item.id)}}</td>
+                                        <td>{{getItemName(item.item)}}</td>
                                         <td>{{item.quantity}}</td>
-                                        <td>{{getItemPrice(item.id, item.quantity)}}</td>
+                                        <td>{{getItemPrice(item.item, item.quantity)}}</td>
                                        
                                     </tr>
                        
@@ -219,7 +219,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" *ngIf="!getOrdersDelivered().length">
+                <div class="row" *ngIf="!getOrdersDelivered()?.length">
                     <div class="col d-flex align-items-center justify-content-center" style="height: 200px;" >
                         <h3 class="text-center ">There are no orders</h3>
                     </div>

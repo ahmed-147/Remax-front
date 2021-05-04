@@ -256,7 +256,6 @@
           <li *ngFor="let item of cart" class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
               <h6 class="my-0">{{item.item.name}}</h6>
-              <small class="text-muted">{{item.item.details}}.</small>
             </div>
             <span class="text-muted">{{getPrice(item) | currency : 'EGP'}}</span>
           </li>

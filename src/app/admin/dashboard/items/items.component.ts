@@ -83,6 +83,9 @@ export class ItemsComponent implements OnInit {
           this.itemServ.addItem(item).subscribe(data=>{
             this.items.push(data);
             this.id = data.id
+            this.resetValues();
+            this.itemView.nativeElement.click();
+            
             
           },
           err=>{
@@ -93,6 +96,8 @@ export class ItemsComponent implements OnInit {
     else {
       this.itemServ.updateItem(this.id, item).subscribe(data=>{
         this.fillTableData();
+        this.resetValues();
+        this.itemView.nativeElement.click();
       },
       err=>{
         console.log(err.detail);

@@ -19,7 +19,7 @@ export class OrdersComponent implements OnInit {
   orderTotal : number ; 
   orders : IOrder[] ;
   OrderItems : IOrderItem[];
-  items : IItem[]; 
+  myitems : IItem[]; 
   clients : IClient[];
   clientAddresss : IClientLocation [] ;
 
@@ -34,7 +34,6 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.fillTableData()
-    console.log(this.items);
   }
 
   //---------------
@@ -50,7 +49,7 @@ export class OrdersComponent implements OnInit {
 
     this.itemServ.getAllItems().subscribe(
       data=>{
-      this.items = data
+      this.myitems = data
     },
     err=>{
       console.log(err.detail);
@@ -90,6 +89,7 @@ export class OrdersComponent implements OnInit {
 
   deleteOrder(idItem){
     this.orderServ.deleteOrderById(idItem).subscribe(data=>{
+      this.fillTableData();
     },
     err=>{
       console.log(err.detail);
@@ -98,7 +98,7 @@ export class OrdersComponent implements OnInit {
   }
 
   getItemName(itemId):any{
-    let itemName = this.items?.find(element =>{return element.id== itemId } )
+    let itemName = this.myitems?.find(element =>{return element.id== itemId } )
     if (itemName){
       return itemName.name
     }
@@ -127,9 +127,7 @@ export class OrdersComponent implements OnInit {
   }
 
   getItemPrice(itemId, itemQui): any {
-    //console.log(this.items);
-    let itemPrice = this.items?.find(element =>{return element.id== itemId } )
-    console.log(itemPrice);
+    let itemPrice = this.myitems.filter(x => x.id == itemId)[0];
     if (itemPrice){
       return itemPrice.price * itemQui
     }
@@ -194,6 +192,14 @@ export class OrdersComponent implements OnInit {
       console.log(err.detail);
     });
 
+  }
+  resetOrderItems()
+  {
+    this.OrderItems = [];
+  }
+  checkOrderItems()
+  {
+    return this.OrderItems?.length;
   }
   
 

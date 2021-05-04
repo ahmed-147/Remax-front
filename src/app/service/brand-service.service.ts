@@ -33,7 +33,7 @@ export class BrandServiceService {
         //,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.put<IBrand>(`http://localhost:8000/brand/brands/${id}/`, pst, httpOptions)
+    return this.http.patch<IBrand>(`http://localhost:8000/brand/brands/${id}/`, pst, httpOptions)
   }
   deleteBrandById(id): Observable<IBrand>{
     // const httpOptions = {

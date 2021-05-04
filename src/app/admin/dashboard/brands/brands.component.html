@@ -21,7 +21,7 @@
                 
             </div>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="brandImg" name="myImage" accept="image/*" (change)="loadImg($event)" />
+                <input type="file" class="custom-file-input" id="brandImg" name="myImage" accept="image/*" #newImg (change)="loadImg($event)" />
                 <label class="custom-file-label" for="brandImg">Choose Images</label>
             </div>
             

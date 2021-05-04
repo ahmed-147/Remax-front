@@ -130,11 +130,11 @@ export class AccountsComponent implements OnInit {
   deleteFun(accountId) {
 
     this.accountService.deleteAccountById(accountId).subscribe(data => {
+      this.getAccounts();
     },
       err => {
         console.log(err);
       });
-    this.getAccounts();
 
   }
   saveAccount() {
