@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, DoCheck } from '@angular/core';
 import { IItem } from 'src/app/model/interface/iitem';
 import { ItemServiceService } from 'src/app/service/item-service.service';
 import { element } from 'protractor';
@@ -7,13 +7,12 @@ import { BrandServiceService } from 'src/app/service/brand-service.service';
 import { IBrand } from 'src/app/model/interface/ibrand';
 import { ICategory } from 'src/app/model/interface/icategory';
 
-
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
-export class ContentComponent implements OnInit  {
+export class ContentComponent implements OnInit, DoCheck {
 
   titel : string =''; 
 
@@ -63,15 +62,11 @@ export class ContentComponent implements OnInit  {
       this.titel = 'All Products';
     }
    
-    this.itemServ.getAllItems().subscribe(
-      data => {
-        this.items = data;
-      },
-      err => {
-        console.log(err);
-    });
   }
 
+  ngDoCheck() {
+    this.getContentItem()
+  } 
   getContentItem(){
     if (this.type == 1){
       if (this.selectType == 0){
@@ -97,9 +92,20 @@ export class ContentComponent implements OnInit  {
         return this.items?.filter(element => {return element.brand == this.filter && element.brand == this.selectfilterId });
       }
     }
-    else 
+    else if(this.type == 0)
     {
-      return this.items
+      if (this.selectType == 0){
+        return this.items;
+      }
+      else if (this.selectType == 1){
+        return this.items?.filter(element => {return element.category == this.selectfilterId });
+      }
+      else if (this.selectType == 2){
+        
+        return this.items?.filter(element => {return element.brand == this.selectfilterId });
+      }
+      
     }
   }
+
 }

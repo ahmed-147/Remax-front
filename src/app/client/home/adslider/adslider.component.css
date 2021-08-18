@@ -1,10 +1,67 @@
 .af_c_sli_contanier {
     width: 100%;
-    height: 500px;
-    
+    height: 35vw;
 }
 
 .af_c_sli_img{
     width: 100%;
     height: 100%;
 }
+.swiper-pagination >>> .swiper-pagination-bullet {
+
+    background-color: rgba(255, 255, 255, 0.753);
+}
+.swiper-pagination >>> .swiper-pagination-bullet-active {
+    background-color: white;
+}
+.swiper-button-prev, 
+.swiper-button-next{
+    
+    color: white;
+    
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 4.2vw !important; 
+    
+}
+
+/* .swiper-button-disabled{
+    color: rgb(173, 173, 173);
+} */
+/* Extra small devices (phones, 600px and down) xsm */
+@media only screen and (max-width: 576px) {
+    /* .af_c_sli_contanier {
+        height: 200px;
+    } */
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) sm */
+  @media only screen and (min-width: 576px) {
+    /* .af_c_sli_contanier {
+        height: 350px;
+    } */
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) md */
+  @media only screen and (min-width: 768px) {
+    /* .af_c_sli_contanier {
+        height: 400px;
+    } */
+  }
+  
+  /* Large devices (laptops/desktops, 992px and up) lg */
+  @media only screen and (min-width: 992px) {
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 2.2vw !important; 
+    }
+    }
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) xl */
+  @media only screen and (min-width: 1200px) {
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 2.2vw !important; 
+    }
+  }

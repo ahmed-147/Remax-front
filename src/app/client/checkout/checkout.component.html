@@ -1,35 +1,268 @@
-<main class="mt-5 pt-4">
-  <div class="container wow fadeIn">
-
-    <!-- Heading -->
-
-
-    <!--Grid row-->
+<main class="pt-2 pt-sm-3 pt-md-4 pt-lg-4">
+  <div class="container-fluid fadeIn">
     <div class="row">
+      <div class="col">
+        <h2 class="my-2 font-weight-bold">Checkout</h2>
+      </div>
+    </div>
+    <div class="row mb-2 mb-sm-3 mb-md-3 mb-lg-4 mb-lx-4 p-3">
+      <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+       
+        <div class="row card border-0 shadow-sm p-3" >
+          <div class="col" [style.display]="(confirmed) ? 'none' : 'block' " >
+            <div class="row">
+              <div class="col d-flex justify-content-center">
+               <h3 class="my-4 p-2 text-center bg-light shadow-sm rounded-lg w-75 w-sm-50 text-info">Client Information </h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class=" my-2" role="alert"
+                [style.display]="(phoneCheck) ? 'block' : 'none' "
+                [class]="(phoneExist) ? 'alert alert-success' :'alert alert-danger' "
+                >
+                  <span *ngIf="phoneExist"> The Phone Exist </span>
+                  <span *ngIf="!phoneExist">Check the email exist if you want</span>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="alert alert-success my-2 " role="alert"
+                [style.display]="(emailcheck) ? 'block' : 'none' "
+                >
+                  <span *ngIf="emailExist"> The Email Exist </span>
+                  <span *ngIf="!emailExist">your welcom this is your first order</span>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row "> 
+              <form class="col px-0 px-sm-3 " [formGroup]="clientphoneForm" (ngSubmit)="checkPhoneExist()">
+                
+                <div class="form-row align-items-center">
+                  <div class="form-group col-9 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                    <label for="inputItemPhone" class="h6">Phone</label>
+                    <input type="text" class="form-control" id="inputItemPhone" name="phone" formControlName="phone" 
+                    placeholder="Enter Your Phone Number"
+                    (focus) = "changeCheckAlret()" >
+                    <div class="alert alert-danger my-2" role="alert"
+                      *ngIf="clientphoneForm.controls['phone'].invalid && clientphoneForm.controls['phone'].touched">
+                      <span *ngIf="clientphoneForm.controls['phone'].errors.required"> Phone is required </span>
+                      <span *ngIf="clientphoneForm.controls['phone'].errors.minlength"> Phone number is less than 11
+                        numbers</span>
+                      <span *ngIf="clientphoneForm.controls['phone'].errors.maxlength"> Phone number is more than 11
+                        numbers</span>
+                      <span *ngIf="clientphoneForm.controls['phone'].errors.pattern"> Phone number must be numbers
+                        only</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                  </div>
+                  <div class="col d-flex justify-content-center">
+                    <button type="submit" class="btn btn-light shadow-sm" [disabled]="clientphoneForm.invalid">
+                        <span class="d-none d-sm-inline-block ">
+                          Phone check 
+                        </span>
+                        <i class="fa fa-arrow-circle-o-right text-info pl-sm-3 " aria-hidden="true"></i>
+                         
+                    </button>
+                  </div>
+                    
+                </div>
 
-      <!--Grid column-->
+              </form>
+            </div>
+            <div class="row" [style.display]="(loading) ? 'block' : 'none' " >
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto;  display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+              <circle cx="50" cy="50" fill="none" stroke="#1d3f72" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+                <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+              </circle>
+              </svg>
+            </div>
+            <div class="row" [style.display]="(loaded ) ?  'block' : 'none' ">
+              <form class="col px-0 px-sm-3" [formGroup]="newClientForm" (ngSubmit)="confirmInforfrom()">
+                <!-- email input  -->
+                <div class="form-row align-items-center">
+                  <div class="form-group col-9 col-sm-8 col-md-8 col-lg-8 col-xl-8 ">
+                    <label for="inputItemEmail" class="h6">Email</label>
+                    <input type="email" class="form-control" id="inputItemEmail" name="email" formControlName="email"  (focus)="changeCheckAlret()">
+                    <div class="alert alert-danger" role="alert" *ngIf="newClientForm.controls['email'].invalid && newClientForm.controls['email'].touched">
+                        <span *ngIf="newClientForm.controls['email'].errors.pattern"> email must be email format</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                  </div>
+                  <div class="col d-flex justify-content-center">
+                    <button type="button" class="btn btn-light shadow-sm" data-toggle="tooltip" data-animation="true" data-placement="bottom" 
+                    [title]="( newClientForm.controls['email'].valid ) ? 'Click this button if the email existed before.' : 'Please, enter the email to check.' "
+                    [disabled]="newClientForm.controls['email'].invalid"
+                    (click)="checkEmailExist()" >
+                      <span class="d-none d-sm-inline-block">
+                        Email check 
+                      </span>
+                      <i class="fa fa-arrow-circle-o-right text-info pl-sm-3 " aria-hidden="true"></i>
+                      
+                    </button>
+                  </div>
+                </div>
+
+                <!-- name input  -->
+                <div class="form-row">
+                  <div class="form-group col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                    <label for="inputItemName" class="h6">Name</label>
+                    <input type="text" class="form-control" id="inputItemName" name="name" formControlName="name">
+                    <div class="alert alert-danger my-2" role="alert"
+                      *ngIf="newClientForm.controls['name'].invalid && newClientForm.controls['name'].touched">
+                      <span *ngIf="newClientForm.controls['name'].errors.required"> Name is required </span>
+                      <span *ngIf="newClientForm.controls['name'].errors.minlength"> Name must be than 3 letter</span>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-auto"></div>
+                  
+                </div>
+
+                <!-- address input  -->
+                <div class="form-row">
+                  <div class="form-group col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                    <label for="addressInput" class="h6" >Address</label>
+                    <input type="text" class="form-control" id="addressInput"
+                    list="locations" name="address" formControlName="address">
+                    <datalist id="locations">
+                      <option *ngFor="let loc of clientsLocations" [value]="loc?.location">
+                    </datalist >
+                    <div class="alert alert-danger my-2" role="alert"
+                      *ngIf="newClientForm.controls['address'].invalid && newClientForm.controls['address'].touched">
+                      <span *ngIf="newClientForm.controls['address'].errors.required"> address is required
+                      </span>
+                      <span *ngIf="newClientForm.controls['address'].errors.minlength"> address must be more than
+                        10 letter</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                  </div>
+                  <div class="col-auto"></div>
+
+                </div>
+                <div class="form-row">
+                  <button type="submit" class="btn btn-success m-3 p-3 w-100" [disabled]="newClientForm.invalid">Confirm and Order </button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+          <div class="col p-2" [style.display]="(confirmed) ?  'block' : 'none' ">
+            <div class="row">
+              <div class="col d-flex justify-content-center">
+               <h3 class="my-4 p-2 text-center bg-light shadow-sm rounded-lg w-75 w-sm-50 text-info">Order Information </h3>
+              </div>
+            </div>
+            <dl class="row p-0 p-sm-4">
+              <dt class="col-sm-3 text-right">Name:</dt>
+              <dd class="col-sm-9">{{currentclient?.name}}</dd>
+            
+              <dt class="col-sm-3 text-right">Email:</dt>
+              <dd class="col-sm-9">{{currentclient?.email}}</dd>
+            
+              <dt class="col-sm-3 text-right">Phone</dt>
+              <dd class="col-sm-9">{{orderPhone?.id}}</dd>
+            
+              <dt class="col-sm-3 text-right">Address</dt>
+              <dd class="col-sm-9">{{orderLocation?.id}}</dd>
+            
+            </dl>
+            <div class="row justify-content-between">
+              <div class="col-4">
+                <button type="button" class="btn btn-light shadow-sm" data-toggle="tooltip" data-animation="true" data-placement="bottom" 
+                    title="change Order data"
+                    (click)="goBack()" >
+                    <i class="fa fa-arrow-left text-info pr-0 pr-sm-3 " aria-hidden="true"></i>
+                    <span class="d-none d-sm-inline-block">
+                      Back
+                    </span>
+                </button>
+              </div>
+              <div class="col-4">
+                <button type="button" class="btn btn-success shadow-sm" data-toggle="tooltip" data-animation="true" data-placement="bottom" 
+                    title="Order"
+                    (click)="addorder()" >
+                      Order Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 my-3">
+
+        <!-- Heading -->
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Your cart</span>
+          <span class="badge badge-info badge-pill">{{cart?.length}}</span>
+        </h4>
+
+        <!-- Cart -->
+        <ul class="list-group mb-3 z-depth-1">
+          <li *ngFor="let item of cart" class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <p class="my-0">{{item.item.name}}</p>
+            </div>
+            <span class="text-muted">{{getPrice(item) | currency : 'EGP'}}</span>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between">
+            <strong>Total (EGP)</strong>
+            <strong>{{totalPrice() | currency : 'EGP'}}</strong>
+          </li>
+        </ul>
+        <!-- Cart -->
+
+        <!-- Promo code -->
+        <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Promo code" aria-label="Recipient's username"
+              aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-info btn-md waves-effect m-0" type="button">Redeem</button>
+            </div>
+          </div>
+        </form>
+        <!-- Promo code -->
+
+      </div>
+    </div>
+
+
+    <!--hassan row-->
+    <!-- <div class="row">
+
+      
       <div class="col-md-8 mb-4">
 
-        <!--Card-->
+       
         <div class="card">
           <div class="card-header">
             <h2 class="my-2 h2">Checkout form</h2>
           </div>
-
-        
           <div class="card-body">
 
-            <!--Grid row-->
+            
             <div class="row">
               <div class="col">
-                <nav>
+                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                       <a class="nav-link active" id="nav-check-email-tab" #checkemail data-toggle="tab" href="#nav-check_email" role="tab" aria-controls="nav-home" aria-selected="true">Check email</a>
-                      
-                      <a class="nav-link" id="nav-send-key-tab" #sendkey data-toggle="tab" [style.visibility]="(currentclient?.is_active) ? 'hidden' : 'visible' " href="#nav-send-key" role="tab" aria-controls="nav-profile" aria-selected="false">send code</a>
-                       <a class="nav-link " id="nav-update-view-tab" [style.visibility]="(!currentclient?.is_active) ? 'hidden' : 'visible' "  #clientinfo data-toggle="tab" href="#nav-client-info" role="tab" aria-controls="nav-home" aria-selected="false" (click)="getclientdata()" >client info</a>
-                      <a class="nav-link" id="nav-order-info-tab" [style.visibility]="(!clientsLocations?.length) ? 'hidden' : 'visible' " #orderinfo data-toggle="tab" href="#nav-order-form" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="selectfunction()">order info</a>
-                      </div>
+                      <a class="nav-link" id="nav-send-key-tab" #sendkey data-toggle="tab"  href="#nav-send-key" role="tab" aria-controls="nav-profile" aria-selected="false">send code</a>
+                      <a class="nav-link " id="nav-update-view-tab" #clientinfo data-toggle="tab" href="#nav-client-info" role="tab" aria-controls="nav-home" aria-selected="false" (click)="getclientdata()" >client info</a>
+                      <a class="nav-link" id="nav-order-info-tab"  #orderinfo data-toggle="tab" href="#nav-order-form" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="selectfunction()">order info</a>
+                    </div>
                 </nav>
                 <div class="tab-content bg-white" id="nav-tabContent">
                     <div class="tab-pane fade show active shadow" id="nav-check_email" role="tabpanel" aria-labelledby="nav-item-view-tab">
@@ -99,8 +332,7 @@
                         <div class="row p-2">
                      
                         <form class="col p-4" [formGroup]="clientphoneForm" (ngSubmit)="updateclientphone()">
-                          <div class="form-row">
-                            
+                          <div class="form-row">                           
                             <div class="form-group col-sm-6 col-md-6">
                               
                                 <label for="inputItemName">Phone</label>
@@ -112,7 +344,6 @@
                                     <strong *ngIf="clientphoneForm.controls['phone'].errors.pattern"> Phone number must be numbers only</strong>  
                                 </div>
                               </div>
-                    
                         
                           <button  type="submit" class="btn btn-primary m-3" [disabled]="clientphoneForm.invalid" >ِAdd Phone</button>
                             
@@ -229,14 +460,33 @@
                       
                   </div>
                 
+                </div> 
+             </div> 
+            <div class="col">
+              <form class="col p-4" [formGroup]="clientphoneForm" (ngSubmit)="checkPhoneExist()">
+                <div class="form-row">
+                  
+                  <div class="form-group col-sm-6 col-md-6">
+                    
+                      <label for="inputItemName">Phone</label>
+                      <input type="text" class="form-control" id="inputItemName" name="phone" formControlName="phone">
+                      <div class="alert alert-danger" role="alert" *ngIf="clientphoneForm.controls['phone'].invalid && clientphoneForm.controls['phone'].touched">
+                          <strong *ngIf="clientphoneForm.controls['phone'].errors.required"> Phone is required </strong>
+                          <strong *ngIf="clientphoneForm.controls['phone'].errors.minlength"> Phone number is less than 11 numbers</strong>
+                          <strong *ngIf="clientphoneForm.controls['phone'].errors.maxlength"> Phone number is more than 11 numbers</strong>
+                          <strong *ngIf="clientphoneForm.controls['phone'].errors.pattern"> Phone number must be numbers only</strong>  
+                      </div>
+                    </div>
+              
+                <button  type="submit" class="btn btn-primary m-3" [disabled]="clientphoneForm.invalid" >ِAdd Phone</button>
+                  
                 </div>
+                
+              </form>
             </div>
-          
-  
-            
 
         </div>
-        <!--/.Card-->
+       
 
       </div>
         </div>
@@ -245,13 +495,13 @@
    
       <div class="col-md-4 mb-4">
 
-        <!-- Heading -->
+        
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Your cart</span>
           <span class="badge badge-secondary badge-pill">{{cart?.length}}</span>
         </h4>
 
-        <!-- Cart -->
+        
         <ul class="list-group mb-3 z-depth-1">
           <li *ngFor="let item of cart" class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
@@ -265,9 +515,9 @@
             <strong>{{totalPrice() | currency : 'EGP'}}</strong>
           </li>
         </ul>
-        <!-- Cart -->
+        
 
-        <!-- Promo code -->
+        
         <form class="card p-2">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Promo code" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -276,13 +526,12 @@
             </div>
           </div>
         </form>
-        <!-- Promo code -->
+        
 
       </div>
   
 
-    </div>
-
+    </div> -->
 
   </div>
 </main>

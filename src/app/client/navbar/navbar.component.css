@@ -1,4 +1,3 @@
-
 .animate {
   animation-duration: 0.3s;
   -webkit-animation-duration: 0.3s;
@@ -8,30 +7,24 @@
 
 @keyframes slideIn {
   0% {
-    
     opacity: 0;
   }
   100% {
-    
     opacity: 1;
   }
   0% {
-    
     opacity: 0;
   }
 }
 
 @-webkit-keyframes slideIn {
   0% {
-    
     -webkit-opacity: 0;
   }
   100% {
-    
     -webkit-opacity: 1;
   }
   0% {
-    
     -webkit-opacity: 0;
   }
 }
@@ -41,62 +34,51 @@
   animation-name: slideIn;
 }
 
-#cartDropdown
-{
+#cartDropdown {
   position: fixed;
   top: 0;
-  left :0;
-  width:500px;
-  max-height: 400px;
+  left: 0;
   
 }
 
-.nav-item > a
-{
-    color:rgb(85, 85, 85);
-    margin-right: 20px ;
+.nav-item > a {
+  color: rgb(85, 85, 85);
+  margin-right: 20px;
 }
-.nav-item > a:hover
-{
-    color:rgb(10, 20, 77);
+.nav-item > a:hover {
+  color: rgb(10, 20, 77);
 }
 
 .view-cart,
-.checkout
-{
+.checkout {
   -webkit-transition: background 0.3s ease;
   transition: background 0.3s ease;
 }
-.checkoutt:hover 
-{
+.checkoutt:hover {
   background: #f76b38;
   color: #fff;
 }
 
-.view-cart:hover 
-{
-  background: rgba(0, 186, 219, 0.8) ;
+.view-cart:hover {
+  background: rgba(0, 186, 219, 0.8);
   color: #fff;
 }
 
 .bg-orange {
-    background-color: #ec5720;
+  background-color: #ec5720;
 }
 
 .blue {
-    background: #00badb;
-  }
-
-#cartModal
-{
-    position: fixed;
-    top:50px;
-    right:200px
-
+  background: #00badb;
 }
-#cartDialog
-{
-    color:black
+
+#cartModal {
+  position: fixed;
+  top: 50px;
+  right: 200px;
+}
+#cartDialog {
+  color: black;
 }
 
 .heading {
@@ -105,72 +87,203 @@
   font-style: normal;
   color: #080c21;
 }
-.h1, .rte h1 {
-  
+.h1,
+.rte h1 {
   font-size: 25px;
   line-height: 1.45;
 }
-   .price--highlight {
-        margin-right: 0.7em;
-        color: #ee0000;
-    }
-    
-    .quantityButton {
-    padding: 0;
-    overflow: visible;
-    background: none;
-    border: none;
-    border-radius: 0;
-    -webkit-appearance: none; }
-   
-  .quantity-selector {
-    display: inline-flex;
-    align-items: center;
-    height: 38px;
-    font-size: 16px;
-    border: 1px solid #e1e3e4;
-    border-radius: 3px;
-    box-shadow: 0 1px 1px rgb(225 227 228 / 20%);
-    vertical-align: middle;
-    }
-    .quantity-selector svg:hover {
-      opacity: 1; }
-    .quantity-selector .icon--minus {
-      width: 10px;
-      height: 2px; }
-    .quantity-selector .icon--plus {
-      width: 10px;
-      height: 10px; }
-  
-  .quantity-selector__button {
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
-    color: rgba(103, 114, 121, 0.6);
-    height: 100%;
-    transition: color 0.2s ease-in-out; }
-    .quantity-selector__button:not([disabled]):hover {
-      color: #080c21; }
-  
-  .quantity-selector__value {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding: 0 5px;
-    min-width: 32px;
-    text-align: center;
-    border: none; }
-    .quantity-selector__value:focus {
-      outline: none; }
-    .quantity-selector__value br {
-      display: none;
-      /* quite ugly fix to prevent contenteditable to have breaklines, but simpler than JS based solution */ 
-    }
+.price--highlight {
+  margin-right: 0.7em;
+  color: #ee0000;
+}
 
+.quantityButton {
+  padding: 0;
+  overflow: visible;
+  background: none;
+  border: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
 
-    #searchList{
-      z-index: 3;
-      width: 61%;
-      top: 62px;
-      
-    }
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  font-size: 16px;
+  border: 1px solid #e1e3e4;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgb(225 227 228 / 20%);
+  vertical-align: middle;
+}
+.quantity-selector svg:hover {
+  opacity: 1;
+}
+.quantity-selector .icon--minus {
+  width: 10px;
+  height: 2px;
+}
+.quantity-selector .icon--plus {
+  width: 10px;
+  height: 10px;
+}
+
+.quantity-selector__button {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: rgba(103, 114, 121, 0.6);
+  height: 100%;
+  transition: color 0.2s ease-in-out;
+}
+.quantity-selector__button:not([disabled]):hover {
+  color: #080c21;
+}
+
+.quantity-selector__value {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0 5px;
+  min-width: 32px;
+  text-align: center;
+  border: none;
+}
+.quantity-selector__value:focus {
+  outline: none;
+}
+.quantity-selector__value br {
+  display: none;
+  /* quite ugly fix to prevent contenteditable to have breaklines, but simpler than JS based solution */
+}
+
+#searchList {
+  z-index: 3;
+  width: 61%;
+  top: 62px;
+}
+#cartDropdownBtn::after ,
+#menuDropdown::after{
+  display: none;
+}
+
+#remaxNav{
+  font-size: 1.6vw !important;
+}
+
+/* Extra small devices (phones, 600px and down) xsm */
+@media only screen and (max-width: 576px) {
+  #menuImg {
+    width: 20px;
+    height: 20px;
+  }
+  #seachImg {
+    width: 20px;
+    height: 20px;
+  }
+  #logoImg {
+    width: 90px;
+    height: 40px;
+  }
+  #cartImg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) sm */
+@media only screen and (min-width: 576px) {
+  #menuImg {
+    width: 25px;
+    height: 25px;
+  }
+  #seachImg {
+    width: 25px;
+    height: 25px;
+  }
+  #logoImg {
+    width: 110px;
+    height: 50px;
+  }
+  #cartImg {
+    width: 25px;
+    height: 25px;
+  }
+  #cartDropdown{
+    max-height:350px;
+    width: 445px ;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) md */
+@media only screen and (min-width: 768px) {
+  #menuImg {
+    width: 30px;
+    height: 30px;
+  }
+  #seachImg {
+    width: 30px;
+    height: 30px;
+  }
+  #logoImg {
+    width: 130px;
+    height: 60px;
+  }
+  #cartImg {
+    width: 30px;
+    height: 30px;
+  }
+  #cartDropdown{
+    max-height:300px;
+    width: 500px ;
+  }
+  
+}
+
+/* Large devices (laptops/desktops, 992px and up) lg */
+@media only screen and (min-width: 992px) {
+  #menuImg {
+    width: 40px;
+    height: 40px;
+  }
+  #seachImg {
+    width: 40px;
+    height: 40px;
+  }
+  #logoImg {
+    width: 150px;
+    height: 70px;
+  }
+  #cartImg {
+    width: 40px;
+    height: 40px;
+  }
+  #cartDropdown{
+    max-height:345px;
+    width: 500px ;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) xl */
+@media only screen and (min-width: 1200px) {
+  #menuImg {
+    width: 40px;
+    height: 40px;
+  }
+  #seachImg {
+    width: 40px;
+    height: 40px;
+  }
+  #logoImg {
+    width: 150px;
+    height: 70px;
+  }
+  #cartImg {
+    width: 40px;
+    height: 40px;
+  }
+  #cartDropdown{
+    max-height:345px;
+    width: 500px ;
+  }
+}

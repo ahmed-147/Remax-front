@@ -23,7 +23,6 @@
         color: #ee0000;
     }
     
-    
     .product-item .price--compare {
         font-size: 15px;
     }
@@ -39,4 +38,10 @@
         position: relative;
         color: #677279;
         font-size: 17px;
+    }
+
+    .productImgStyle {
+        width:100%;
+        height: 300px;
+        object-fit: fill;
     }

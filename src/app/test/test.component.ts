@@ -13,6 +13,8 @@ import { CategoryServiceService } from './../service/category-service.service';
 import { AccountService } from './../service/account.service';
 import { Component, OnInit } from '@angular/core';
 import { IBrand } from '../model/interface/ibrand';
+import { ItemImgsService } from '../service/item-imgs.service';
+import $ from 'jquery';
 
 @Component({
   selector: 'app-test',
@@ -24,6 +26,7 @@ export class TestComponent implements OnInit {
   brand:IBrand={name:'new brand'};
   item:IItem={user:1, name:'new item 3', brand:1, category:1, quantity:10, price:20, details:"dasf"}
   account:IAccount={username:'hassan1',phone:'01234568899', first_name:'hassan1', password:'hassan1'}
+  
   constructor(private AccountService: AccountService,
     private CategoryServiceService : CategoryServiceService, 
     private BrandServiceService: BrandServiceService, 
@@ -33,7 +36,8 @@ export class TestComponent implements OnInit {
     private ItemServiceService: ItemServiceService, 
     private OrderItemServiceService: OrderItemServiceService, 
     private OrderServiceService: OrderServiceService,
-    private cartitem: CartItemService
+    private cartitem: CartItemService,
+    private imgServ : ItemImgsService,
     ) {
     // console.log(localStorage);
     // this.category.name= 'Apple' ;
@@ -70,9 +74,27 @@ export class TestComponent implements OnInit {
     //    console.log(err);
       
     //  })
+    this.imgServ.getAllItemImgs().subscribe(
+      date => {
+        console.log(date);
+        },
+        err=>{
+          console.log(err);
+        });
+
+    $(document).ready(function() {
+        // $('#ba').click(function(){
+          
+        // });
+     });
     
-    
+        
+  }
+
+  afun(){
+    $('#test').animate({left:'250px',
+  bottom:'250px'});
   }
   
-
+  
 }

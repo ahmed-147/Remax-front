@@ -2,19 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IItem} from './../model/interface/iitem';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemServiceService {
+  hosttURL = environment.apiUrl
+  port = environment.port
 
   constructor(private http: HttpClient) { }
   getAllItems(): Observable<IItem[]> {
-    return this.http.get<IItem[]>('http://localhost:8000/item/getitems/');
+    return this.http.get<IItem[]>(`${this.hosttURL}:${this.port}/item/getitems/`);
   }
   getAllItemsById(id): Observable<IItem>{
     
-    return this.http.get<IItem>(`http://localhost:8000/item/getitembyid/${id}/`);
+    return this.http.get<IItem>(`${this.hosttURL}:${this.port}/item/getitembyid/${id}/`);
 
   }
   addItem(pst: IItem): Observable<IItem> {
@@ -25,7 +28,7 @@ export class ItemServiceService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.post<IItem>('http://localhost:8000/item/postitems/', pst, httpOptions)
+    return this.http.post<IItem>(`${this.hosttURL}:${this.port}/item/postitems/`, pst, httpOptions)
   }
   updateItem(id, pst: IItem): Observable<IItem> {
     const httpOptions = {
@@ -35,7 +38,7 @@ export class ItemServiceService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.put<IItem>(`http://localhost:8000/item/updateordeleteitembyid/${id}/`, pst, httpOptions)
+    return this.http.put<IItem>(`${this.hosttURL}:${this.port}/item/updateordeleteitembyid/${id}/`, pst, httpOptions)
   }
   deleteItemById(id): Observable<IItem>{
     const httpOptions = {
@@ -45,17 +48,17 @@ export class ItemServiceService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.delete<IItem>(`http://localhost:8000/item/updateordeleteitembyid/${id}/`, httpOptions);
+    return this.http.delete<IItem>(`${this.hosttURL}:${this.port}/item/updateordeleteitembyid/${id}/`, httpOptions);
 
   }
 
   getItemsByCategortyId(id): Observable<IItem[]>{
     
-    return this.http.get<IItem[]>(`http://localhost:8000/item/getitembycategoryid/${id}/`);
+    return this.http.get<IItem[]>(`${this.hosttURL}:${this.port}/item/getitembycategoryid/${id}/`);
   }
   getItemsByBrandId(id): Observable<IItem[]>{
     
-    return this.http.get<IItem[]>(`http://localhost:8000/item/getitembybrandid/${id}/`);
+    return this.http.get<IItem[]>(`${this.hosttURL}:${this.port}/item/getitembybrandid/${id}/`);
 
   }
 }

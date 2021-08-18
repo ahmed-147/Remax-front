@@ -17,7 +17,7 @@
 
 
 <div class="row m-0 p-0 my-3">
-    <div class="col p-5">
+    <div class="col p-3 p-sm-3 p-md-4 p-lg-5 p-xl-5">
         <h1 class="row  font-weight-bold">Our Catalogue</h1>
         <div class="row ">
             <iframe style="width:250px;height:400px" class="col-sm-4" src="https://online.anyflip.com/jgqmt/rmyq/index.html" seamless="seamless" scrolling="no" allowtransparency="true" allowfullscreen="true" frameborder="0"></iframe>
@@ -26,70 +26,40 @@
 </div>
 
 <div class="row m-0 p-0 my-3">
-    <div class="col p-5">
+    <div class="col p-3 p-sm-3 p-md-4 p-lg-5 p-xl-5">
         <h1 class="row  font-weight-bold">Brands we distribute</h1>
-        <div class="row row-cols-sm-3 row-cols-md-4 row-cols-lg-5 ">
-          <div class="card col" *ngFor="let brans of brands">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 ">
+
+          <div class="card col d-none d-lg-block" *ngFor="let brans of brands | slice:0:10;">
             <div class="card-body text-center animate__fadeInDownBig animate__delay-2 2s">
               <img src="{{imgDirectory}}{{brans?.img}}" alt="" class="af_c_brand_img_sq">
             </div>
           </div>
-          <!-- <div class="card col">
-            <div class="card-body text-center ">
-                <img src="../../../assets/brands/Q1.webp" alt="" class="af_c_brand_img_txt">
-            </div>
-          </div>
-          <div class="card col">
-            <div class="card-body text-center ">
-                <img src="../../../assets/brands/P1.webp" alt="" class="af_c_brand_img_txt">
-            </div>
-          </div>
-          <div class="card col">
-            <div class="card-body text-center ">
-                <img src="../../../assets/brands/1e.webp" alt="" class="af_c_brand_img_sq">
-            </div>
-          </div>
-          <div class="card col">
-            <div class="card-body text-center ">
-                <img src="../../../assets/brands/171.webp" alt="" class="af_c_brand_img_sq">
-            </div>
-          </div>
-          <div class="card col">
+          <div class="card col d-none d-md-block d-lg-none" *ngFor="let brans of brands | slice:0:6;">
             <div class="card-body text-center animate__fadeInDownBig animate__delay-2 2s">
-              <img src="../../../assets/brands/107.webp" alt="" class="af_c_brand_img_sq">
+              <img src="{{imgDirectory}}{{brans?.img}}" alt="" class="af_c_brand_img_sq">
             </div>
           </div>
-          <div class="card col">
-            <div class="card-body text-center ">
-                <img src="../../../assets/brands/Q1.webp" alt="" class="af_c_brand_img_txt">
+          <div class="card col d-none d-sm-block d-md-none" *ngFor="let brans of brands | slice:0:4;">
+            <div class="card-body text-center animate__fadeInDownBig animate__delay-2 2s">
+              <img src="{{imgDirectory}}{{brans?.img}}" alt="" class="af_c_brand_img_sq">
             </div>
           </div>
-          <div class="card col">
-            <div class="card-body text-center ">
-                <img src="../../../assets/brands/P1.webp" alt="" class="af_c_brand_img_txt">
+          <div class="card col d-block d-sm-none" *ngFor="let brans of brands | slice:0:2;">
+            <div class="card-body text-center animate__fadeInDownBig animate__delay-2 2s">
+              <img src="{{imgDirectory}}{{brans?.img}}" alt="" class="af_c_brand_img_sq">
             </div>
           </div>
-          <div class="card col">
-            <div class="card-body text-center ">
-                <img src="../../../assets/brands/1e.webp" alt="" class="af_c_brand_img_sq">
-            </div>
-          </div>
-          <div class="card col">
-            <div class="card-body text-center ">
-                <img src="../../../assets/brands/171.webp" alt="" class="af_c_brand_img_sq">
-            </div>
-          </div> -->
         </div>
         
     </div>
 </div>
 
 <div class="row m-0 p-0 my-3">
-    <div class="col p-5">
+    <div class="col p-3 p-sm-3 p-md-4 p-lg-5 p-xl-5">
         <h1 class="row  font-weight-bold">Quick links</h1>
-        <div class="row ">
-            
-            <div class="card-group col ">
+        <div class="row">
+            <div class="card-group col">
                 <div class="card p-2 ">
                   <div class="card-body text-center animate__fadeInDownBig animate__delay-2 2s">
                     <h3 class="card-title font-weight-bold "><a href="" class="text-dark text-decoration-none " >Wireless Earphone</a> </h3>
@@ -122,12 +92,12 @@
 </div>
 
 <div class="row m-0 p-0 my-3">
-    <div class="col-sm-12 col-md-12 col-6-lg col-xl-6 p-5">
+    <div class="col-sm-12 col-md-12 col-6-lg col-xl-6 p-sm-3 p-md-3 p-lg-5 p-xl-5 p-3">
         <img src="../../../assets/imgs-ad/store1.webp" alt="" style="width: 100%; height:100%;">
     </div>
     <div class="col-sm-12 col-md-12 col-6-lg col-xl-6 ">
         <div class="row p-3 ">
-            <div class="col pt-5">
+            <div class="col  pt-sm-3 pt-md-3 pt-lg-5 pt-xl-5 pt-2">
                 <h2 class="row font-weight-bold my-4">REMAX OFFICIAL STORE</h2>
                 <div class="row text-muted h6 my-4 pl-3">
                     <p>The Official Website of REMAX Assuit developed </p>

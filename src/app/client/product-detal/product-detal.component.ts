@@ -1,5 +1,5 @@
 import { CartItemService } from './../../service/cart-item.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IItem } from 'src/app/model/interface/iitem';
 import { ItemImgsService } from 'src/app/service/item-imgs.service';
@@ -9,6 +9,7 @@ import { BrandServiceService } from 'src/app/service/brand-service.service';
 import { CategoryServiceService } from 'src/app/service/category-service.service';
 import { IBrand } from 'src/app/model/interface/ibrand';
 import { ICategory } from 'src/app/model/interface/icategory';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -18,12 +19,17 @@ import { ICategory } from 'src/app/model/interface/icategory';
    
 })
 export class ProductDetalComponent implements OnInit {
+  
   brand : IBrand ;
   categ : ICategory ;
   item : IItem ;
   ItemImgs : ItemImgs[] ;
   itemId : number = 0 ;
-  imgDirectory : string = 'http://localhost:8000';
+  hosttURL = environment.apiUrl
+  port = environment.port
+  imgDirectory : string = `${this.hosttURL}:${this.port}`;
+
+ 
   
   constructor(
     private _activedRoute : ActivatedRoute,
@@ -76,7 +82,7 @@ export class ProductDetalComponent implements OnInit {
   {
     this.cartServices.addItem(item,quantity);
     console.log(this.cartServices.getCartItems());
-
+    
 
   }
 

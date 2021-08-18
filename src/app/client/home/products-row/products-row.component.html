@@ -1,132 +1,82 @@
-<div class="row pt-5 justify-content-between" *ngIf="items?.length">
+<div class="row pt-sm-4 pt-md-4 pt-lg-5  pt-3 justify-content-between" *ngIf="items?.length">
   <div class="col">
-    <h1 class="px-4 m-0 font-weight-bold" *ngIf="category">{{category.name}}</h1>
-    <h1 class="px-4 m-0 font-weight-bold" *ngIf="brand">{{brand.name}}</h1>
+    <h1  class="px-4 m-0 font-weight-bold rowTitle" *ngIf="category">{{category.name}}</h1>
+    <h1 class="px-4 m-0 font-weight-bold rowTitle" *ngIf="brand">{{brand.name}}</h1>
   </div>
-  <div class="col-2 text-center " >
-    <a id="showMorelink" *ngIf="category" class="text-info text-decoration-none"
+  <div class="col-4 text-center" >
+    <a id="showMorelink" *ngIf="category" class="text-info text-decoration-none moreLink"
     [routerLink]="['/products/1/',category?.id]"
-      >Show More 
+      > <span class="d-none d-md-inline-block">Show</span> More 
       <!-- <i class="fas fa-angle-right"></i> -->
       <i class="fas fa-chevron-right"></i></a>
-      <a id="showMorelink" *ngIf="brand" class="text-info text-decoration-none"
+      <a id="showMorelink" *ngIf="brand" class="text-info text-decoration-none moreLink"
     [routerLink]="['/products/2/',brand?.id]"
-      >Show More 
+      ><span class="d-none d-md-inline-block ">Show</span> More 
       <!-- <i class="fas fa-angle-right"></i> -->
       <i class="fas fa-chevron-right"></i></a>
   </div>
 </div>
 
-<div class="row pt-2 px-4 m-0" *ngIf="items?.length">
+<div class="row pt-1 pt-sm-2 pt-md-2 pt-lg-3 pt-lx-3 px-1 px-sm-3 px-md-4 px-lg-4 px-xl-4 m-0" *ngIf="items?.length">
     <swiper 
     [slidesPerView]="1"
     [spaceBetween]="50"
-    (swiper)="onSwiper($event)"
-    (slideChange)="onSlideChange()"
-    [pagination]="{ clickable: true }"
-    [navigation]="true">
+    [navigation]="{nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev'}"
+    >
+    <!-- swiper-wrapper for lg and xl  size  -->
+    
+      <div class="swiper-wrapper col">
+        <!-- swiper-wrapper for lg and xl  size  -->
+        <ng-template class="d-none d-lg-block" swiperSlide >
+          <div class="card-group">
+              <div class="card col" *ngFor="let item of getGroupItem(1,5)">
+                <app-product-card
+                  [item]="item"
+                ></app-product-card>
+              </div>
+          </div>
+        </ng-template>
+        <!-- swiper-wrapper for lg and xl  size  -->
+        <ng-template class="d-none d-lg-block" swiperSlide *ngIf="getGroupItem(2,5)?.length">
+          <div class="card-group">
+              <div class="card col " *ngFor="let item of getGroupItem(2,5)" >
+                <app-product-card
+                  [item]="item"
+                ></app-product-card>
+              </div>
+          </div>
+        </ng-template>
 
-    <ng-template  swiperSlide >
-      <div class="card-group">
-          <div class="card col " *ngFor="let item of getGroupItem(1)">
-            <app-product-card
-              [item]="item"
-            ></app-product-card>
-          </div>
-      </div>
-    </ng-template>
-    <ng-template  swiperSlide *ngIf="getGroupItem(2)?.length">
-      <div class="card-group">
-          <div class="card col " *ngFor="let item of getGroupItem(2)" >
-            <app-product-card
-              [item]="item"
-            ></app-product-card>
-          </div>
-      </div>
-    </ng-template>
-    <!-- <ng-template  swiperSlide >
-      <div class="card-group">
-        <div class="card col">
-  
-          <div class="card-img-top product-grid " >
-            <img class="pic-1 p-3 text-center" style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
-            <img class="pic-2 p-3 text-center"style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-4.jpg">
-            <span class="product-new-label">Save 15%</span>
-          </div>
-  
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text price price--highlight">K8,075</p>
-            <p class="price price--compare"><del>k,000</del></p>
-          </div>
-        </div>
-          <div class="card col">
-    
-            <div class="card-img-top product-grid " >
-              <img class="pic-1 p-3 text-center" style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
-              <img class="pic-2 p-3 text-center"style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-4.jpg">
-              <span class="product-new-label">Save 15%</span>
-            </div>
-    
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text price price--highlight">K8,075</p>
-              <p class="price price--compare"><del>k,000</del></p>
+        <!-- swiper-wrapper for sm and md  size  -->
+       
+        <!-- swiper-wrapper for sm and md  size  -->
+        <!-- *ngFor="let gropNum of calculationGroups()" -->
+        <ng-template class="d-none d-sm-block d-lg-none" swiperSlide *ngFor="let gropNum of [1,2,3,4];" >
+          <div class="card-group">
+            <div class="card col " *ngFor="let item of getGroupItem(gropNum,2);" >
+              <app-product-card
+                [item]="item"
+              ></app-product-card>
             </div>
           </div>
-          <div class="card col">
-    
-            <div class="card-img-top product-grid " >
-              <img class="pic-1 p-3 text-center" style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
-              <img class="pic-2 p-3 text-center"style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-4.jpg">
-              <span class="product-new-label">Save 15%</span>
-            </div>
-    
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text price price--highlight">K8,075</p>
-              <p class="price price--compare"><del>k,000</del></p>
-            </div>
-          </div>
-          <div class="card col">
-    
-            <div class="card-img-top product-grid " >
-              <img class="pic-1 p-3 text-center" style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
-              <img class="pic-2 p-3 text-center"style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-4.jpg">
-              <span class="product-new-label">Save 15%</span>
-            </div>
-    
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text price price--highlight">K8,075</p>
-              <p class="price price--compare"><del>k,000</del></p>
-            </div>
-          </div>
-          <div class="card col">
-    
-            <div class="card-img-top product-grid " >
-              <img class="pic-1 p-3 text-center" style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
-              <img class="pic-2 p-3 text-center"style="width: 100%;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-4.jpg">
-              <span class="product-new-label">Save 15%</span>
-            </div>
-    
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text price price--highlight">K8,075</p>
-              <p class="price price--compare"><del>k,000</del></p>
-            </div>
-          </div>
-      </div>
-    </ng-template> -->
-    <!-- <ng-template pagination>
+        </ng-template>
 
-    </ng-template> -->
-    <div class="swiper-pagination"></div>
+        <!-- swiper-wrapper for xs  size  -->
+        <ng-template class="d-block d-sm-none" swiperSlide *ngFor="let item of getItemsInXsSize(6)" >
+            <div class="card col" >
+              <app-product-card
+                [item]="item"
+              ></app-product-card>
+            </div>
+        </ng-template>
+        
+      </div>
+    
+    
+    
+    
+    <div slot="container-end" class="swiper-button-prev"></div>
+    <div slot="container-start" class="swiper-button-next"></div>
   </swiper>
 
 </div>

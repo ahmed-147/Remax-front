@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit } from '@angular/core';
 import { IItem } from 'src/app/model/interface/iitem';
 import { IOrder } from 'src/app/model/interface/iorder';
 import { IOrderItem } from 'src/app/model/interface/iorder-item';
@@ -9,33 +9,42 @@ import { OrderServiceService } from 'src/app/service/order-service.service';
 import { IClient } from 'src/app/model/interface/iclient';
 import { IClientLocation } from 'src/app/model/interface/iclient-location';
 import { ClientLocationService } from 'src/app/service/client-location.service';
+import { ClientPhoneService } from 'src/app/service/client-phone.service';
+import { IClientPhone } from 'src/app/model/interface/iclient-phone';
+import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, AfterViewInit {
   orderTotal : number ; 
   orders : IOrder[] ;
   OrderItems : IOrderItem[];
   myitems : IItem[]; 
   clients : IClient[];
   clientAddresss : IClientLocation [] ;
+  clientPhones : IClientPhone [] ; 
 
   orderSelect : boolean = false; 
+ 
 
   constructor(
     private orderServ : OrderServiceService, 
     private orderItemServ : OrderItemServiceService,
     private itemServ : ItemServiceService,
     private clientServ : ClientService,
-    private clientlocatServ : ClientLocationService) { }
+    private clientlocatServ : ClientLocationService,
+    private clientPhoneServ :  ClientPhoneService) { }
 
   ngOnInit(): void {
     this.fillTableData()
   }
-
+  ngAfterViewInit(){
+    this.fillTableData()
+  }
+  
   //---------------
   
 
@@ -71,6 +80,14 @@ export class OrdersComponent implements OnInit {
         console.log(err)
       }
     );
+
+    this.clientPhoneServ.getAllClientPhones().subscribe(
+      data => {
+        this.clientPhones = data;
+      },
+      err => {
+        console.log(err.detail);
+      });
      
   }
 
@@ -133,6 +150,17 @@ export class OrdersComponent implements OnInit {
     }
     else {
       return 'No Price'
+    }
+  }
+
+  
+  getOrderPhone(phoneId):any{
+    let orderPhone = this.clientPhones?.find(element =>{return element.id == phoneId } )
+    if (orderPhone){
+      return orderPhone.phone
+    }
+    else {
+      return 'No phone'
     }
   }
 

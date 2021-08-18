@@ -4,6 +4,7 @@ import { BrandServiceService } from 'src/app/service/brand-service.service';
 import { CategoryServiceService } from 'src/app/service/category-service.service';
 import { IBrand } from 'src/app/model/interface/ibrand';
 import { element } from 'protractor';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -12,7 +13,10 @@ import { element } from 'protractor';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  imgDirectory : string = 'http://localhost:8000';
+  
+  hosttURL = environment.apiUrl
+  port = environment.port
+  imgDirectory : string = `${this.hosttURL}:${this.port}`;
   categories : ICategory[];
   brands : IBrand[];
 

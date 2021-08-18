@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="row my-2 position-relative">
 
-        <div class="preview col-sm-12 col-md-12 col-lg-6 p-3">
-            <div class="pro_card card">
+        <div class="preview col-sm-12 col-md-12 col-lg-6 p-1 p-sm-3 p-md-4 p-lg-4 p-xl-4  ">
+            <div class="pro_card card border-0 shadow-sm rounded-0">
                 <!-- <ngx-image-zoom [thumbImage]=myThumbnail [fullImage]=myFullresImage >
                 </ngx-image-zoom> -->
                 <!-- <lib-ngx-image-zoom
@@ -10,11 +10,11 @@
                     [fullImage]=myFullresImage
                 ></lib-ngx-image-zoom> -->
                 	
-                <div class="preview-pic tab-content">
-                    <div class="tab-pane" *ngFor="let img of ItemImgs; index as i; let first = first"   [ngClass]="{ 'active': first}"  id="pic-{{i}}"><img src="{{imgDirectory}}{{img.img}}"  height="500" style="object-fit: cover;" /></div>
+                <div class="preview-pic tab-content shadow-sm">
+                    <div class="tab-pane " *ngFor="let img of ItemImgs; index as i; let first = first" [ngClass]="{ 'active': first}"  id="pic-{{i}}"><img src="{{imgDirectory}}{{img.img}}"  class="imgfit" height="500px"/></div>
                 </div>
                 <ul class="preview-thumbnail nav nav-tabs">
-                    <li  *ngFor="let img of ItemImgs; let i = index; let X = first" [ngClass]="{'active': X}"  ><a  data-toggle="tab" href="#pic-{{i}}"><img src="{{imgDirectory}}{{img.img}}" width="120" height="100" /></a></li>
+                    <li class="shadow" *ngFor="let img of ItemImgs; let i = index; let X = first" [ngClass]="{'active': X}"  ><a  data-toggle="tab" href="#pic-{{i}}"><img src="{{imgDirectory}}{{img.img}}" class="imgUlist"  /></a></li>
                 </ul>
                 <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item"  *ngFor="let img of ItemImgs; let i = index; let X = first" >
@@ -34,14 +34,13 @@
                  
             </div>
             <div class="row p-3">
-                <div class="pro_card card col">
-                    <p class="product-description">{{item?.details }}</p>
+                <div class="pro_card card col border-0 shadow-sm rounded-0">
+                    <pre class="product-description">{{item?.details }}</pre>
                 </div>
             </div>
-            
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6 p-3  ">
-            <div class="pro_card card sticky-top" style="z-index: inherit;">
+            <div class="pro_card card sticky-top border-0 shadow-sm rounded-0" style="z-index: inherit;top:140px">
                 <h1 class="product-title">{{item?.name}}</h1>
                 <div class="p-1 bg-red text-light rounded discount" *ngIf="item?.discount" >Discount {{item?.discount}}</div>
                 <div class="pt-2 my-2">
@@ -64,12 +63,11 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col bg-orange rounded-sm text-center p-3 mx-2 add-to-cart">
-                        <a (click)="addToCart(item,quantity.value)" class="h5 text-white text-decoration-none btn" >Add to cart</a>
+                    <div class="col-12 col-sm bg-orange rounded-sm text-center p-3 mx-1 add-to-cart">
+                        <a (mousedown)="addToCart(item,quantity.value)"  class="h5 text-white text-decoration-none w-100 h-100 stretched-link" >Add to cart</a>
                     </div>
-                    
-                    <div class="col blue rounded-sm text-center p-3 mx-2 buy-it">
-                        <a [routerLink]="['/checkout']" class="h5 text-white text-decoration-none" >Buy it now</a>
+                    <div class="col-12 col-sm blue rounded-sm text-center p-3 pt-2 my-3 my-sm-0 mx-1 buy-it">
+                        <a [routerLink]="['/checkout']" class="h5 text-white text-decoration-none stretched-link" >Buy it now</a>
                     </div>
                 </div>     
             </div>

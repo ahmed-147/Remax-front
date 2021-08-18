@@ -21,9 +21,9 @@
         <br><br>
         <button type="button"  class=" atBtn2 btn btn-lg">Quick View</button>
       </div>
-    </div>
+    </div> -->
 
-    <div class="row no-gutters  ">
+    <!-- <div class="row no-gutters  ">
         <div class="col-lg-4 p-2" class="product-grid">
           <img class="pic-1 p-2" style="width: 150px;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-1.jpg">
           <img class="pic-2 p-2 "style="width: 150px;"  src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg">
@@ -49,43 +49,16 @@
       </div>  -->
 
 <div class="row p-3">
-    <div class="card col p-0">
+    <div class="card col border-0 shadow-sm p-0">
       <div class="container-fluid">
         <div class="row p-4">
           <div class="col ">
             <h1 class="font-weight-bold ">{{titel}} </h1>
           </div>
         </div>
-        <!-- <div class="row row-cols-sm-3 justify-content-between">
-          <div class="col hidden-sm-up">
-            Showing 1 - 24 of 30 products
-          </div>
-          <div class="col">
-            
-            <a class="text-secondary text-decoration-none dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-          </div>
-          <div class="col">
-            
-            <a class="text-secondary text-decoration-none dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-          </div>
-        </div> -->
-        <div class="row mb-4 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" *ngIf="getContentItem()?.length" >
+        <div class="row mb-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" *ngIf="getContentItem()?.length" >
           
-          <div class="card col" *ngFor="let item of getContentItem()">
+          <div class="card col rounded-0 " *ngFor="let item of getContentItem()">
             <app-product-card
               [item]="item"
             ></app-product-card>

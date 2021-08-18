@@ -5,6 +5,7 @@ import { CartItem } from 'src/app/model/interface/cart-item';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'node:constants';
 import { ItemImgs } from 'src/app/model/interface/item-imgs';
 import { ItemImgsService } from 'src/app/service/item-imgs.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,9 @@ import { ItemImgsService } from 'src/app/service/item-imgs.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  imgDirectory : string = 'http://localhost:8000';
+  hosttURL = environment.apiUrl
+  port = environment.port
+  imgDirectory : string = `${this.hosttURL}:${this.port}`;
   cartItems:CartItem[];
   itemImgs :ItemImgs [];
   constructor(
@@ -105,7 +108,7 @@ export class CartComponent implements OnInit {
   }
 
   getItemImg(itemId){
-    return this.itemImgs.filter(element => {return element.item == itemId })
+    return this.itemImgs?.filter(element => {return element.item == itemId })
   }
 
 }

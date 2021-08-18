@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { IBrand } from 'src/app/model/interface/ibrand';
 import { BrandServiceService } from 'src/app/service/brand-service.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-brands',
@@ -11,7 +12,9 @@ import { BrandServiceService } from 'src/app/service/brand-service.service';
 export class BrandsComponent implements OnInit {
   brands: IBrand[];
   @ViewChild('newImg') newImg: ElementRef;
-  imgDirectory : string = 'http://localhost:8000';
+  hosttURL = environment.apiUrl
+  port = environment.port
+  imgDirectory : string = `${this.hosttURL}:${this.port}`;
   name :string = '';
   img : any ;
   updateimg : any ;

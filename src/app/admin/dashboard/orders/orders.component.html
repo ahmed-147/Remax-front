@@ -24,16 +24,18 @@
                                     <th scope="col">Order.No</th>
                                     <th scope="col">Date </th>
                                     <th scope="col">Client</th>
+                                    <th scope="col">Phone</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">Total</th>
                                     <th scope="col" >Actions</th>
                                   </tr>
                                 </thead>
                                 <tbody >
-                                    <tr  *ngFor="let order of getOrders()">
+                                    <tr  *ngFor="let order of getOrders() ">
                                         <th scope="row">{{order.id}}</th>
                                         <td>{{order.date_time}}</td>
                                         <td>{{getClientName(order.client)}}</td>
+                                        <td>{{getOrderPhone(order.phone)}}</td>
                                         <td>{{getaddress(order.address)}}</td>
                                         <td>{{order.total}}</td>
                                         <td>
@@ -101,6 +103,8 @@
                                     <th scope="col">Order.No</th>
                                     <th scope="col">Date </th>
                                     <th scope="col">Client</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Address</th>
                                     <th scope="col">Total</th>
                                     <th scope="col" >Actions</th>
                                   </tr>
@@ -110,6 +114,8 @@
                                         <th scope="row">{{order.id}}</th>
                                         <td>{{order.date_time}}</td>
                                         <td>{{getClientName(order.client)}}</td>
+                                        <td>{{getOrderPhone(order.phone)}}</td>
+                                        <td>{{getaddress(order.address)}}</td>
                                         <td>{{order.total}}</td>
                                         <td>
                                             <button class="btn btn-sm btn-primary" (click)="showOrderItems(order.id)">
@@ -167,6 +173,8 @@
                                     <th scope="col">Order.No</th>
                                     <th scope="col">Date </th>
                                     <th scope="col">Client</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Address</th>
                                     <th scope="col">Total</th>
                                     <th scope="col" >Actions</th>
                                   </tr>
@@ -176,6 +184,8 @@
                                         <th scope="row">{{order.id}}</th>
                                         <td>{{order.date_time}}</td>
                                         <td>{{getClientName(order.client)}}</td>
+                                        <td>{{getOrderPhone(order.phone)}}</td>
+                                        <td>{{getaddress(order.address)}}</td>
                                         <td>{{order.total}}</td>
                                         <td>
                                             <button class="btn btn-sm btn-primary" (click)="showOrderItems(order.id)">

@@ -1,4 +1,4 @@
-// workaround
+ /* workaround */
 .intl-tel-input {
   display: table-cell;
 }
@@ -14,3 +14,15 @@
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 0;
 }
+
+.btnCol{
+  display: flex;
+  justify-content: right;
+}
+
+.iconBtn{
+  width: 20px;
+  height: 20px;
+}
+
+

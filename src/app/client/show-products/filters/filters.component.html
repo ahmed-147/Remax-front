@@ -1,8 +1,8 @@
    
-<div class="row p-3 d-sm-none d-md-block">
-  <div class="card col p-0">
-      <div class="card-body " >
-        <form class="bg-white">
+<div class="row p-3 d-none d-lg-block">
+    <div class=" col card-body shadow-sm bg-white" >
+      <form class="row bg-white">
+        <section class="col-12 col-sm-4 col-md-4 col-lg-12 col-xl-12">
           <h2 class="pl-2">Filters</h2>
           <div class="form-check ml-3">
             <input class="form-check-input" type="radio" name="filters" id="exampleRadios1" (change)="selectfilter(0, 0)"  checked>
@@ -10,6 +10,9 @@
               No Filter 
             </label>
           </div>
+        </section>
+        
+        <section class="col-12 col-sm-4 col-md-4 col-lg-12 col-xl-12">
           <h3 class="text-dark mt-3">Brands</h3>
           <div class="form-check ml-3" *ngFor="let brand of brands">
             <input class="form-check-input " type="radio" name="filters"  (change)="selectfilter(2, brand?.id)" >
@@ -17,7 +20,9 @@
               {{brand?.name}}
             </label>
           </div>
-          
+        </section>
+        
+        <section class="col-12 col-sm-4 col-md-4  col-lg-12 col-xl-12">
           <h3 class="text-dark mt-3">Categories</h3>
           <div class="form-check ml-3" *ngFor="let categ of categories">
             <input class="form-check-input" type="radio" name="filters"  (change)="selectfilter(1, categ?.id)" >
@@ -25,66 +30,83 @@
               {{categ?.name}}
             </label>
           </div>
-          <!-- <div class="form-check">
-            <label>
-              <input
-                type="checkbox"
-                name="check"
-                [checked]="currentlyChecked === check_box_type.ch_1"
-                (click)="selectCheckBox(check_box_type.ch_1)"
-              />
-              <span class="label-text">100 watt</span>
-            </label>
-          </div> -->
-          <!-- <div class="form-check">
-            <label>
-              <input
-                type="checkbox"
-                name="check"
-                [checked]="currentlyChecked === check_box_type.ch_2"
-                (click)="selectCheckBox(check_box_type.ch_2)"
-              />
-              <span class="label-text">100 watt</span>
-            </label>
-          </div>
-          <div class="form-check">
-            <label>
-              <input
-                type="checkbox"
-                name="check"
-                [checked]="currentlyChecked === check_box_type.ch_3"
-                (click)="selectCheckBox(check_box_type.ch_3)"
-              />
-              <span class="label-text">2 in 1 cable</span>
-            </label>
-          </div> -->
-          <!-- <div class="form-check">
-            <label>
-              <input
-                type="checkbox"
-                name="check"
-                [checked]="currentlyChecked === check_box_type.ch_2"
-                (click)="selectCheckBox(check_box_type.ch_2)"
-              />
-              <span class="label-text">100 watt</span>
-            </label>
-          </div>
-          <div class="form-check">
-            <label>
-              <input
-                type="checkbox"
-                name="check"
-                [checked]="currentlyChecked === check_box_type.ch_3"
-                (click)="selectCheckBox(check_box_type.ch_3)"
-              />
-              <span class="label-text">2 in 1 cable</span>
-            </label>
-          </div> -->
-        </form>
-      </div>
-  </div>
+        </section>
+        
+      </form>
+    </div>
+  
 </div>
 
+
+<div class="row d-lg-none .d-xl-block">
+  <div class="accordion col  " id="accordionExample">
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white shadow-sm" id="headingThree">
+        <h3 class="mb-0 ">
+          <button class="btn btn-white w-100 d-flex" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+            Filters 
+            <i class="fas fa-chevron-down ml-auto "></i>
+          </button>
+          
+          
+        </h3>
+      </div>
+      <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="form-check ml-3">
+            <input class="form-check-input" type="radio" name="filters" id="exampleRadios1" (change)="selectfilter(0, 0)"  checked>
+            <label class="form-check-label" for="exampleRadios1">
+              No Filter 
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card border-0  shadow-sm">
+      <div class="card-header bg-white shadow-sm" id="headingOne">
+        <h3 class="mb-0">
+          <button class="btn btn-white w-100 d-flex collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Brands
+            <i class="fas fa-chevron-down ml-auto "></i>
+          </button>
+        </h3>
+      </div>
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="form-check ml-3" *ngFor="let brand of brands">
+            <input class="form-check-input " type="radio" name="filters"  id="{{brand?.name}}" (change)="selectfilter(2, brand?.id)" >
+            <label class="form-check-label" for="{{brand?.name}}" >
+              {{brand?.name}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white shadow-sm" id="headingTwo">
+        <h3 class="mb-0">
+          <button class="btn btn-white w-100 d-flex collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Categories
+            <i class="fas fa-chevron-down ml-auto "></i>
+          </button>
+        </h3>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+
+          <div class="form-check ml-3" *ngFor="let categ of categories">
+            <input class="form-check-input" type="radio" name="filters" id="{{categ?.name}}"  (change)="selectfilter(1, categ?.id)" >
+            <label class="form-check-label" for="{{categ?.name}}" >
+              {{categ?.name}}
+            </label>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
 
     
 

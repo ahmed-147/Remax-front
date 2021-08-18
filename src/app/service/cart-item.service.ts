@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class CartItemService {
   cartItem: CartItem[];
   constructor() { 
-    console.log(localStorage.getItem('items'));
+    // console.log(localStorage.getItem('items'));
     if (localStorage.getItem('items') != null) {
       //console.log('good');
     }

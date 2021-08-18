@@ -15,11 +15,6 @@ img {
   -ms-flex-direction: column;
   flex-direction: column;
 }
-@media screen and (max-width: 996px) {
-  .preview {
-    margin-bottom: 20px;
-  }
-}
 
 .preview-pic {
   -webkit-box-flex: 1;
@@ -33,7 +28,7 @@ img {
   margin-top: 15px;
 }
 .preview-thumbnail.nav-tabs li {
-  width: 18%;
+  width: 20%;
   margin-right: 2.5%;
 }
 .preview-thumbnail.nav-tabs li img {
@@ -102,8 +97,6 @@ img {
   font-weight: bold;
 }
 
-
-
 .product-title,
 .rating,
 .product-description,
@@ -146,6 +139,7 @@ img {
 {
   background: #f76b38;
   color: #fff;
+  cursor: pointer;
 }
 
 .buy-it:hover 
@@ -250,3 +244,84 @@ img {
   background-color: #e7316e;
 }
 
+.imgfit{
+  object-fit: contain;
+  width: 100%;
+  height: 500px;
+}
+.imgUlist{
+  height: 100px;
+  width: 100%;
+}
+
+/* Extra small devices (phones, 600px and down) xsm */
+@media only screen and (max-width: 576px) {
+  .imgfit{
+    height: 300px;
+  }
+  .pro_card {
+    padding: 2em;
+    margin-top: 30px;
+  }
+  .imgUlist{
+    height: 75px;
+  }
+  .preview-thumbnail.nav-tabs li {
+    width: 22%;
+  }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) sm */
+@media only screen and (min-width: 576px) {
+  .imgfit{
+    height: 300px;
+  }
+  .pro_card {
+    padding: 2em;
+  }
+  .imgUlist{
+    height: 85px;
+  }
+  .preview-thumbnail.nav-tabs li {
+    width: 20%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) md */
+@media only screen and (min-width: 768px) {
+  .imgfit{
+    height: 500px;
+  }
+  .pro_card {
+    padding: 2em;
+  }
+
+  .preview-thumbnail.nav-tabs li {
+    width: 20%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) lg */
+@media only screen and (min-width: 992px) {
+  .imgfit{
+    height: 500px;
+  }
+  .pro_card {
+    padding: 2em;
+  }
+  .preview {
+    margin-bottom: 20px;
+  }
+ 
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) xl */
+@media only screen and (min-width: 1200px) {
+  .imgfit{
+    height: 500px;
+  }
+  .pro_card {
+    padding: 3em;
+  }
+}

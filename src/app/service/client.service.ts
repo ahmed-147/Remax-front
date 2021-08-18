@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IClient} from './../model/interface/iclient';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
+  hosttURL = environment.apiUrl
+  port = environment.port
 
   constructor(private http: HttpClient) { }
   getAllClients(): Observable<IClient[]> {
@@ -16,12 +19,10 @@ export class ClientService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.get<IClient[]>('http://localhost:8000/client/getclients/', httpOptions);
+    return this.http.get<IClient[]>(`${this.hosttURL}:${this.port}/client/getclients/`, httpOptions);
   }
   getAllClientsById(id): Observable<IClient>{
-
-    return this.http.get<IClient>(`http://localhost:8000/client/clients/${id}/`);
-
+    return this.http.get<IClient>(`${this.hosttURL}:${this.port}/client/clients/${id}/`);
   }
   addClient(pst: IClient): Observable<IClient> {
     const httpOptions = {
@@ -31,7 +32,7 @@ export class ClientService {
         //  ,'Authorization': 'my-auth-token'
       })
     };
-    return this.http.post<IClient>('http://localhost:8000/client/postclients/', pst, httpOptions)
+    return this.http.post<IClient>(`${this.hosttURL}:${this.port}/client/postclients/`, pst, httpOptions)
   }
   updateClient(id, pst: IClient): Observable<IClient> {
     const httpOptions = {
@@ -41,10 +42,10 @@ export class ClientService {
     //    ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.put<IClient>(`http://localhost:8000/client/clients/${id}/`, pst, httpOptions)
+    return this.http.put<IClient>(`${this.hosttURL}:${this.port}/client/clients/${id}/`, pst, httpOptions)
   }
   deleteClientById(id): Observable<IClient>{
-        return this.http.delete<IClient>(`http://localhost:8000/client/clients/${id}/`);
+        return this.http.delete<IClient>(`${this.hosttURL}:${this.port}/client/clients/${id}/`);
 
   }
   sendClientKey(email): Observable<IClient>{
@@ -56,7 +57,7 @@ export class ClientService {
       })
     };
     
-    return this.http.post<IClient>(`http://localhost:8000/client/postclientkey/`,{email:email}, httpOptions);
+    return this.http.post<IClient>(`${this.hosttURL}:${this.port}/client/postclientkey/`,{email:email}, httpOptions);
 
   }
   activeClientKey(email, key): Observable<IClient>{
@@ -68,7 +69,11 @@ export class ClientService {
       })
     };
     
-    return this.http.post<IClient>(`http://localhost:8000/client/clientactivekey/`,{email:email, key:key}, httpOptions);
+    return this.http.post<IClient>(`${this.hosttURL}:${this.port}/client/clientactivekey/`,{email:email, key:key}, httpOptions);
 
+  }
+
+  getClientsByEmail(email): Observable<IClient>{
+    return this.http.get<IClient>(`${this.hosttURL}:${this.port}/client/cilentByEmail/${email}/`);
   }
 }

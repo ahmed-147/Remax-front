@@ -2,24 +2,27 @@ import { IClientLocation } from './../model/interface/iclient-location';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientLocationService {
-
+  hosttURL = environment.apiUrl
+  port = environment.port
+  
   constructor(private http: HttpClient) { }
   getAllClientLocations(): Observable<IClientLocation[]> {
    
-    return this.http.get<IClientLocation[]>('http://localhost:8000/client/getclientlocations/');
+    return this.http.get<IClientLocation[]>(`${this.hosttURL}:${this.port}/client/getclientlocations/`);
   }
   getAllClientLocationsById(id): Observable<IClientLocation>{
-    return this.http.get<IClientLocation>(`http://localhost:8000/client/clientlocations/${id}/`);
+    return this.http.get<IClientLocation>(`${this.hosttURL}:${this.port}/client/clientlocations/${id}/`);
 
   }
   getAllClientLocationsByClientId(id): Observable<IClientLocation[]>{
 
-    return this.http.get<IClientLocation[]>(`http://localhost:8000/client/clientlocationsbyid/${id}/`);
+    return this.http.get<IClientLocation[]>(`${this.hosttURL}:${this.port}/client/clientlocationsbyid/${id}/`);
 
   }
   addClientLocation(pst: IClientLocation): Observable<IClientLocation> {
@@ -30,7 +33,7 @@ export class ClientLocationService {
         //  ,'Authorization': 'my-auth-token'
       })
     };
-    return this.http.post<IClientLocation>('http://localhost:8000/client/postclientlocations/', pst, httpOptions)
+    return this.http.post<IClientLocation>(`${this.hosttURL}:${this.port}/client/postclientlocations/`, pst, httpOptions)
   }
   updateClientLocation(id, pst: IClientLocation): Observable<IClientLocation> {
     const httpOptions = {
@@ -40,11 +43,11 @@ export class ClientLocationService {
    //     ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.put<IClientLocation>(`http://localhost:8000/client/clientlocations/${id}/`, pst, httpOptions)
+    return this.http.put<IClientLocation>(`${this.hosttURL}:${this.port}/client/clientlocations/${id}/`, pst, httpOptions)
   }
   deleteClientLocationById(id): Observable<IClientLocation>{
     
-    return this.http.delete<IClientLocation>(`http://localhost:8000/client/clientlocations/${id}/`);
+    return this.http.delete<IClientLocation>(`${this.hosttURL}:${this.port}/client/clientlocations/${id}/`);
 
   }
 }

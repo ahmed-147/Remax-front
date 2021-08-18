@@ -9,6 +9,7 @@ import { CategoryServiceService } from 'src/app/service/category-service.service
 import { ItemImgsService } from 'src/app/service/item-imgs.service';
 import { ItemServiceService } from 'src/app/service/item-service.service';
 import { element } from 'protractor';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-items',
@@ -23,7 +24,9 @@ export class ItemsComponent implements OnInit {
   images : ItemImgs[] ;
   img: any;
   id: any =0;
-  imgDirectory : string = 'http://localhost:8000';
+  hosttURL = environment.apiUrl
+  port = environment.port
+  imgDirectory : string = `${this.hosttURL}:${this.port}`;
   itemForm:FormGroup;
 
   @ViewChild('itemform') itemfrom: ElementRef;
@@ -85,13 +88,10 @@ export class ItemsComponent implements OnInit {
             this.id = data.id
             this.resetValues();
             this.itemView.nativeElement.click();
-            
-            
           },
           err=>{
             console.log(err.detail);
           });
-    
     }
     else {
       this.itemServ.updateItem(this.id, item).subscribe(data=>{

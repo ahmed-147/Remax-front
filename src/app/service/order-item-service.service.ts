@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IOrderItem} from './../model/interface/iorder-item';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderItemServiceService {
+  hosttURL = environment.apiUrl
+  port = environment.port
 
   constructor(private http: HttpClient) { }
   getAllOrderItems(): Observable<IOrderItem[]> {
@@ -17,7 +20,7 @@ export class OrderItemServiceService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.get<IOrderItem[]>('http://localhost:8000/order/getorderitems/', httpOptions);
+    return this.http.get<IOrderItem[]>(`${this.hosttURL}:${this.port}/order/getorderitems/`, httpOptions);
   }
   getAllOrderItemById(id): Observable<IOrderItem>{
     const httpOptions = {
@@ -27,7 +30,7 @@ export class OrderItemServiceService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.get<IOrderItem>(`http://localhost:8000/order/orderitems/${id}/`, httpOptions);
+    return this.http.get<IOrderItem>(`${this.hosttURL}:${this.port}/order/orderitems/${id}/`, httpOptions);
 
   }
   getAllOrderItemsByOrderId(id): Observable<IOrderItem[]>{
@@ -38,7 +41,7 @@ export class OrderItemServiceService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.get<IOrderItem[]>(`http://localhost:8000/order/orderitemsbyid/${id}/`, httpOptions);
+    return this.http.get<IOrderItem[]>(`${this.hosttURL}:${this.port}/order/orderitemsbyid/${id}/`, httpOptions);
 
   }
   addOrderItem(pst: IOrderItem): Observable<IOrderItem> {
@@ -49,7 +52,7 @@ export class OrderItemServiceService {
         //  ,'Authorization': 'my-auth-token'
       })
     };
-    return this.http.post<IOrderItem>('http://localhost:8000/order/postorderitems/', pst, httpOptions)
+    return this.http.post<IOrderItem>(`${this.hosttURL}:${this.port}/order/postorderitems/`, pst, httpOptions)
   }
   updateOrderItem(id, pst: IOrderItem): Observable<IOrderItem> {
     const httpOptions = {
@@ -59,7 +62,7 @@ export class OrderItemServiceService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.put<IOrderItem>(`http://localhost:8000/order/orderitems/${id}/`, pst, httpOptions)
+    return this.http.put<IOrderItem>(`${this.hosttURL}:${this.port}/order/orderitems/${id}/`, pst, httpOptions)
   }
   deleteOrderItemById(id): Observable<IOrderItem>{
     const httpOptions = {
@@ -69,7 +72,7 @@ export class OrderItemServiceService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.delete<IOrderItem>(`http://localhost:8000/order/orderitems/${id}/`, httpOptions);
+    return this.http.delete<IOrderItem>(`${this.hosttURL}:${this.port}/order/orderitems/${id}/`, httpOptions);
 
   }
 }

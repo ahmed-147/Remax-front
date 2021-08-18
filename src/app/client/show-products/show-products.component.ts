@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './show-products.component.html',
   styleUrls: ['./show-products.component.css']
 })
-export class ShowProductsComponent implements OnInit {
+export class ShowProductsComponent implements OnInit,DoCheck {
  
   type : number = 0;
   filter : number = 0;
@@ -14,8 +14,8 @@ export class ShowProductsComponent implements OnInit {
   selectfilterId : number =0;
 
   constructor(private router : Router, private _activedRoute : ActivatedRoute ) {
-    this.type = this._activedRoute.snapshot.params["typeid"];
-    this.filter = this._activedRoute.snapshot.params["fid"];
+    // this.type = this._activedRoute.snapshot.params["typeid"];
+    // this.filter = this._activedRoute.snapshot.params["fid"];
    }
 
   ngOnInit(): void {
@@ -24,7 +24,12 @@ export class ShowProductsComponent implements OnInit {
     console.log(this.filter);
   }
 
-  
+  ngDoCheck(){
+    this.type = this._activedRoute.snapshot.params["typeid"];
+    this.filter = this._activedRoute.snapshot.params["fid"];
+  }
+
+ 
   getfilter(selected:any){
     this.selectfilterId = selected?.filterId;
     this.selectType = selected?.type;

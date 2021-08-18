@@ -8,13 +8,15 @@ import { tap, shareReplay } from 'rxjs/operators';
 import  jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 import { IAccount } from '../model/interface/iaccount';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   private apiRoot = 'http://localhost:8000/auth/';
-
+  hosttURL = environment.apiUrl
+  port = environment.port
   constructor(private http: HttpClient) { }
 
   private setSession(authResult) {
@@ -47,7 +49,7 @@ export class AccountService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.get<IAccount[]>('http://localhost:8000/account/accounts/', httpOptions);
+    return this.http.get<IAccount[]>(`${this.hosttURL}:${this.port}/account/accounts/`, httpOptions);
   }
 
   signup(pst: any): Observable<IAccount>
@@ -59,7 +61,7 @@ export class AccountService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.post<IAccount>('http://localhost:8000/account/accounts/', pst, httpOptions)
+    return this.http.post<IAccount>(`${this.hosttURL}:${this.port}/account/accounts/`, pst, httpOptions)
   }
   
 
@@ -75,7 +77,7 @@ export class AccountService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.get<IAccount>(`http://localhost:8000/account/accounts/${id}/`, httpOptions)
+    return this.http.get<IAccount>(`${this.hosttURL}:${this.port}/account/accounts/${id}/`, httpOptions)
   }
 
   getCurrentAccount(): Observable<IAccount>{
@@ -86,7 +88,7 @@ export class AccountService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.get<IAccount>(`http://localhost:8000/account/currentuser/`, httpOptions)
+    return this.http.get<IAccount>(`${this.hosttURL}:${this.port}/account/currentuser/`, httpOptions)
   }
   updateAccount(id, pst: any): Observable<IAccount> {
     const httpOptions = {
@@ -96,7 +98,7 @@ export class AccountService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.patch<IAccount>(`http://localhost:8000/account/accounts/${id}/`, pst, httpOptions)
+    return this.http.patch<IAccount>(`${this.hosttURL}:${this.port}/account/accounts/${id}/`, pst, httpOptions)
   }
   deleteAccountById(id): Observable<IAccount>{
     const httpOptions = {
@@ -106,7 +108,7 @@ export class AccountService {
         ,'Authorization': 'jwt '+localStorage.getItem('token')
       })
     };
-    return this.http.delete<IAccount>(`http://localhost:8000/account/accounts/${id}/`, httpOptions)
+    return this.http.delete<IAccount>(`${this.hosttURL}:${this.port}/account/accounts/${id}/`, httpOptions)
 
   }
 

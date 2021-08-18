@@ -3,6 +3,7 @@ import { AccountService } from './../../../service/account.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { element } from 'protractor';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -23,7 +24,9 @@ export class AccountsComponent implements OnInit {
   resetElement: boolean = false;
   updateElement: boolean = false;
   
-  imgDirectory: string = 'http://localhost:8000';
+  hosttURL = environment.apiUrl
+  port = environment.port
+  imgDirectory: string = `${this.hosttURL}:${this.port}`;
 
   @ViewChild('accountView') accountView: ElementRef;
   @ViewChild('addaccountform') addaccountfrom: ElementRef;

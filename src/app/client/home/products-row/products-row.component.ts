@@ -24,6 +24,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, EffectFade ]);
 export class ProductsRowComponent implements OnInit {
 
   items : IItem [];
+  itemsGrop : any [];
+
 
   @Input() category: ICategory;
   @Input() brand:  IBrand;
@@ -51,36 +53,52 @@ export class ProductsRowComponent implements OnInit {
     }
   }
 
-  onSwiper(swiper) {
-   
-  }
-  onSlideChange() {
-    
-  }
 
-  getGroupItem(groupNum):IItem[]{
+  getGroupItem(groupNum,cardNum):IItem[]{
     let gropITem : IItem [] ;
-    
-    if (this.items?.length >= groupNum * 5 ){
-      gropITem = this.items.slice( (groupNum - 1) * 5, groupNum * 5 );
-
+    if (this.items?.length >= groupNum * cardNum ){
+      gropITem = this.items.slice( (groupNum - 1) * cardNum, groupNum * cardNum );
     }
-    else if (this.items?.length > ((groupNum - 1) * 5) )
+    else if (this.items?.length > ((groupNum - 1) * cardNum) )
     {
-      let itemsNum = 5 - (this.items?.length - (groupNum - 1)* 5) ;
+      let itemsNum = cardNum - (this.items?.length - (groupNum - 1)* cardNum) ;
       if (groupNum == 1){
         gropITem = this.items;
       }
       else {
-        gropITem = this.items.slice( ( (groupNum - 1) * 5) - itemsNum, this.items?.length ) ;
+        gropITem = this.items.slice( ( (groupNum - 1) * cardNum) - itemsNum, this.items?.length ) ;
       }
       
     }
     else{
       gropITem = []
     }
-    
     return gropITem
+  }
+
+  calculationGroups(){
+    var grops = [];
+    var subGrops=[];
+    for (let i = 0; i < this.items?.length; i=i+2) {
+      subGrops = this.items?.slice(i,i+2);
+      if(subGrops.length === 2){
+        grops.push(subGrops);
+      } 
+    }
+    if(grops.length > 4){
+      return grops.slice(0, 4)
+    }else{
+      return grops
+    }
+    
+  }
+
+  getItemsInXsSize(size):IItem[]{
+    if(this.items?.length > size){
+      return this.items?.slice(0, size)
+    }else {
+      return this.items
+    }
   }
 
 }

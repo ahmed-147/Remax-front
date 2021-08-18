@@ -41,4 +41,47 @@
         font-size: 17px;
     }
     
+
+/* Extra small devices (phones, 600px and down) xsm */
+@media only screen and (max-width: 576px) {
+    #filterImg {
+      width: 13px;
+      height: 13px;
+    }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) sm */
+  @media only screen and (min-width: 576px) {
+    #filterImg {
+      width: 18px;
+      height: 18px;
+    }
+   
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) md */
+  @media only screen and (min-width: 768px) {
+    #filterImg {
+      width: 23px;
+      height: 23px;
+    }
     
+  }
+  
+  /* Large devices (laptops/desktops, 992px and up) lg */
+  @media only screen and (min-width: 992px) {
+    #filterImg {
+      width: 28px;
+      height: 28px;
+    }
+    
+  }
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) xl */
+  @media only screen and (min-width: 1200px) {
+    #filterImg {
+        width: 28px;
+        height: 28px;
+    }
+    
+  }

@@ -1,51 +1,51 @@
 <!--Section: Block Content-->
-<section class="container-fluid">
-  <section class="container-fluid">
-    <div class="row p-5">
+<section class="container-fluid p-0">
+  <section class="container-fluid p-0">
+    <div class="row px-5 py-3">
       <h1 class="font-weight-bold heading">My Cart</h1>
     </div>
     <!--Grid row-->
     <div class="row mx-1">
 
       <!--Grid column-->
-      <div class="col-lg-8">
+      <div class="col-lg-8 p-0 p-sm-3">
 
         <!-- Card -->
-        <div class="card wish-list mb-3 rounded-sm">
-          <div class=" card-header bg-white ">
+        <div class="card wish-list mb-3 rounded-sm border-0 shadow-sm">
+          <div class=" card-header bg-white py-3">
             <div class="row ">
-              <div class="col-7">
-                <h4 class="text-muted ">Product</h4>
+              <div class="col-12 col-sm-7 ">
+                <h3 class="text-secondary font-weight-bold pl-3 pl-sm-5">Product</h3>
               </div>
-              <div class="col-3">
-                <h4 class="text-muted ">Quantity</h4>
+              <div class="col-3 d-none d-sm-block">
+                <h3 class="text-secondary font-weight-bold ">Quantity</h3>
               </div>
-              <div class="col-2">
-                <h4 class="text-muted ">Total</h4>
+              <div class="col-2 d-none d-sm-block">
+                <h3 class="text-secondary font-weight-bold ">Total</h3>
               </div>
 
             </div>
 
           </div>
-          <div class="card-body">
+          <div class="card-body itemsSection">
             <div class="row d-flex align-items-center border-bottom p-2" *ngFor="let item of cartItems">
-              <div class="col-7">
+              <div class="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-6">
                 <div class="row">
 
-                  <div class="col-4">
-                    <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                    <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0 text-center">
                       <a [routerLink]="['/products',item.item.id ]">
-                          <img class="img-fluid w-100" src="../../../assets/noImgItem.png" alt="Sample" *ngIf="!getItemImg(item.item.id).length" >
-                          <img class="img-fluid w-100" src="{{imgDirectory}}{{getItemImg(item.item.id)[0].img}}" alt="Sample" *ngIf="getItemImg(item.item.id).length" >
+                          <img class=" ProdImd " src="../../../assets/noImgItem.png" alt="Sample" *ngIf="!getItemImg(item.item.id)?.length" >
+                          <img class=" ProdImd " src="{{imgDirectory}}{{getItemImg(item.item.id)[0]?.img}}" alt="Sample" *ngIf="getItemImg(item.item.id)?.length" >
                       </a>
                     </div>
                   </div>
 
-                  <div class="col-8">
+                  <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
                     <div class="card-body">
-                      <h5 class="card-title">{{item.item.name}}</h5>
+                      <h4 class="card-title font-weight-bold">{{item.item.name}}</h4>
                       <p class="card-text text-truncate">{{item.item.details}}.</p>
-                      <p class="card-text price price--highlight">{{getCurrentPrice(item.item) | currency : 'EGP'}}</p>
+                      <p class="card-text price price--highlight text-secondary">{{getCurrentPrice(item.item) | currency : 'EGP'}}</p>
                       <p class="price price--compare" *ngIf="item.discount"><del>{{item.item.price}}</del></p>
                     </div>
 
@@ -53,16 +53,8 @@
                 </div>
 
               </div>
-              <div class="col-3">
-                <!--
-                          <div class="row">
-                              <button style="display: inline;width: 20%;"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                            ><i class="fa fa-minus"></i></button>
-                              <input style="display: inline;width: 60%;"  min="0" name="quantity" value="1" type="number">                         
-                              <button style="display: inline;width: 20%;" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                            ><i class="fa fa-plus"></i></button>
-                        </div>
-                       -->
+              <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-3">
+                
                 <div class="quantity-selector">
                   <button type="button" class="quantity-selector__button quantityButton" data-action="decrease-quantity"
                     data-quantity="1" data-line-id="32463935373372:2c6eca2e264be199b03d8637acda4cba"
@@ -83,9 +75,9 @@
                 </div>
                 <a (click)="deleteItem(item.item)" class="ml-3 text-muted text-decoration-none btn" style="margin-left: 50px;" >Remove</a>
               </div>
-              <div class="col-2">
-                <h4>
-                  <p class="mb-0 text-muted"><span><strong>{{ getTotalPrice(item)| currency : 'EGP'}}</strong></span></p>
+              <div class="col-6 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                <h4 class="text-center">
+                  <p class="mb-0 text-success"><span>{{ getTotalPrice(item)| currency : 'EGP'}}</span></p>
                 </h4>
               </div>
             </div>
@@ -95,7 +87,7 @@
       </div>
 
       <!--Grid column-->
-      <div class="col-lg-4">
+      <div class="col-lg-4 p-0 p-sm-3">
         <div style="position: -webkit-sticky;
         position: -moz-sticky;
         position: -ms-sticky;
@@ -166,10 +158,9 @@
     <!--Grid row-->
 
   </section>
-  <section class=" row mx-3">
+  <section class=" row px-3">
 
-    <div class="col-lg-8">
-
+    <div class="col-lg-8 p-2 p-sm-4">
       <!-- Card -->
       <div class="card wish-list mb-3 rounded-sm">
         <div class=" card-header " data-toggle="collapse" data-target="#Career_Objective">
@@ -216,6 +207,7 @@
       </div>
     </div>
   </section>
+
   <section class="row mx-3">
     <div class="row p-3">
       <h3 class="font-weight-bold">Recently viewed</h3>

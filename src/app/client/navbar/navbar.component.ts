@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, DoCheck, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/model/interface/cart-item';
 import { IItem } from 'src/app/model/interface/iitem';
 import { CartItemService } from 'src/app/service/cart-item.service';
@@ -9,15 +9,22 @@ import { IBrand } from 'src/app/model/interface/ibrand';
 import { BrandServiceService } from 'src/app/service/brand-service.service';
 import { CategoryServiceService } from 'src/app/service/category-service.service';
 import { ICategory } from 'src/app/model/interface/icategory';
+import { Observable, Observer } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
-  imgDirectory : string = 'http://localhost:8000';
+export class NavbarComponent implements OnInit, DoCheck {
+  
+  hosttURL = environment.apiUrl
+  port = environment.port
+  imgDirectory : string = `${this.hosttURL}:${this.port}`;
 
+  numCurrntItems : number ;
   results: IItem[];
   searchTerm : string  = ''; 
   itemImgs :ItemImgs [];
@@ -33,6 +40,8 @@ export class NavbarComponent implements OnInit {
     private itemImgServ : ItemImgsService,
     private categServ : CategoryServiceService,
     private brandServ : BrandServiceService,
+    private cdr: ChangeDetectorRef,
+    
      ) { 
       
     }
@@ -60,7 +69,13 @@ export class NavbarComponent implements OnInit {
       err => {
         console.log(err);
     }); 
+    
   }
+  ngDoCheck(){
+    
+    this.cdr.detectChanges();
+  }
+
 
   serachResult(){
     if (this.searchTerm.length != 0){
@@ -97,15 +112,13 @@ export class NavbarComponent implements OnInit {
       this.CartItemService.subtractQuantity(item.item);
       this.getALLItems();
     }
-
+    
   }
   calcQuantity(item:IItem, quantity:number){
     if (Number(quantity)<item.quantity && Number(quantity)>=1){
       this.CartItemService.addItem(item,Number(quantity));
     }
     this.getALLItems();
-    
-
   }
   addQuantity(item:CartItem){
     if (item.quantity+1<item.item.quantity){
@@ -129,12 +142,14 @@ export class NavbarComponent implements OnInit {
     }
     return total;
   }
+
   totalQuantity()
   {
     let total = 0;
     for (let index = 0; index < this.cartItems.length; index++) {
       total += Number(this.cartItems[index].quantity)
     }
+    
     return total;
   }
   resetCart()
@@ -149,10 +164,11 @@ export class NavbarComponent implements OnInit {
     return this.itemImgs?.filter(element => {return element.item == itemId })
   }
 
+  changeCart(){
+    
+    this.totalQuantity()
+  }
+
   //-------------search----------
-
-
-
-
 
 }

@@ -1,20 +1,107 @@
-/* ngb-carousel .wrapper {
-    position: relative;
-    height: 0;
-    padding-top: 55%;  Keep ratio for 900x500 images 
-  }
-  
-  ngb-carousel .wrapper>img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  } */
 
 #showMorelink{
     transition: margin-left 1s;
 }
 #showMorelink:hover{
     margin-left: 30px;
+}
+.rowTitle{
+  font-size: 3.2vw;
+}
+.moreLink{
+  font-size: 1.8vw;
+}
+
+@media only screen and (max-width: 576px) {
+  .rowTitle{
+    font-size: 5vw;
+  }
+  .moreLink{
+    font-size: 4.1vw;
+  }
+  .swiper-button-prev,
+    .swiper-button-next {
+      width: 0vw;
+      height: 30vw;
+    }
+  
+  .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 4.6vw !important; 
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) sm */
+@media only screen and (min-width: 576px) {
+  .rowTitle{
+    font-size: 4.2vw;
+  }
+  .moreLink{
+    font-size: 2.1vw;
+  } 
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 0vw;
+    height: 15vw;
+  }
+
+.swiper-button-prev::after,
+  .swiper-button-next::after {
+      font-size: 4.2vw !important; 
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) md */
+@media only screen and (min-width: 768px) {
+  
+  .rowTitle{
+    font-size:  3.5vw;
+  }
+  .moreLink{
+    font-size: 1.9vw;
+  } 
+  .swiper-button-prev,
+    .swiper-button-next {
+      width: 1vw;
+    }
+  .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 4.2vw !important; 
+    }
+}
+@media only screen and (min-width: 992px) {
+  .rowTitle{
+    font-size: 2.6vw;
+  }
+  .moreLink{
+    font-size: 1.4vw;
+  } 
+  .swiper-button-prev,
+    .swiper-button-next {
+      width: 1vw;
+      height: 0vw;
+    }
+  .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 3.2vw !important; 
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) xl */
+@media only screen and (min-width: 1200px) {
+  .rowTitle{
+    font-size: 1.6vw;
+  }
+  .moreLink{
+    font-size: 1.4vw;
+  } 
+  .swiper-button-prev,
+    .swiper-button-next {
+      width: 1vw;
+    }
+
+  .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 2.2vw !important; 
+    }
 }

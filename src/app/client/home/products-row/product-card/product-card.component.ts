@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IItem } from 'src/app/model/interface/iitem';
 import { ItemImgsService } from 'src/app/service/item-imgs.service';
+import { environment } from 'src/environments/environment';
 import { ItemImgs } from './../../../../model/interface/item-imgs';
 
 @Component({
@@ -10,7 +11,9 @@ import { ItemImgs } from './../../../../model/interface/item-imgs';
 })
 export class ProductCardComponent implements OnInit {
 
-  imgDirectory : string = 'http://localhost:8000';
+  hosttURL = environment.apiUrl
+  port = environment.port
+  imgDirectory : string = `${this.hosttURL}:${this.port}`;
   itemImgs : ItemImgs [] ;
   currentPrict: number = 0;
 

@@ -22,11 +22,10 @@ export class LoginComponent implements OnInit {
 
   loginFun(){
     this.acouuntServ.login(this.username, this.passwd).subscribe(data=>{
-      this.router.navigate(['/dashboard/']);
+      this.router.navigate(['/dashboard']);
     },
     err=>{
       console.log('http ',err);
-      alert(err)
     })
   }
 
